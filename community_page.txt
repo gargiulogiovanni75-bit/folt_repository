@@ -1,0 +1,639 @@
+/* community */
+
+position: relative;
+width: 1728px;
+height: 4618px;
+overflow-y: scroll;
+
+background: #FFFFFF;
+
+
+/* Frame 30 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+
+position: absolute;
+width: 2372px;
+height: 1240px;
+left: 40px;
+top: 159px;
+
+
+
+/* Nicole_sciamanna */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 4px 0px;
+gap: 14px;
+
+width: 1824px;
+height: 143px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* NICOLE SCIAMANNA- */
+
+width: 1824px;
+height: 128px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 180px;
+line-height: 265px;
+/* leading-trim and text-edge are draft CSS properties.
+
+Read more: https://drafts.csswg.org/css-inline-3/#leading-trim
+*/
+leading-trim: both;
+text-edge: cap;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 27 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px 14px;
+gap: 11px;
+
+width: 1117px;
+height: 137px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* image 12 */
+
+width: 96px;
+height: 137px;
+
+background: url(image);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* L'opera di Artista X non si limita a occupare uno spazio; lo infetta. Navigatore di spazi inquieti e cercatore instancabile di dettagli brucianti, X trasforma il rumore in un sussurro che lacera la pelle.Qui, tra i suoi neri profondi e la grana viva, il confine tra desiderio e paura svanisce in un salto nel vuoto. Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente. */
+
+width: 982px;
+height: 137px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 29 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 4px 0px;
+gap: 9px;
+
+width: 1715px;
+height: 137px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* GIOVANNI GARGIULO */
+
+width: 1715px;
+height: 128px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 180px;
+line-height: 265px;
+/* leading-trim and text-edge are draft CSS properties.
+
+Read more: https://drafts.csswg.org/css-inline-3/#leading-trim
+*/
+leading-trim: both;
+text-edge: cap;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 28 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px 15px;
+gap: 12px;
+
+width: 1160px;
+height: 138px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* image 13 */
+
+width: 136px;
+height: 138px;
+
+background: url(image);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* L'opera di Artista X non si limita a occupare uno spazio; lo infetta. Navigatore di spazi inquieti e cercatore instancabile di dettagli brucianti, X trasforma il rumore in un sussurro che lacera la pelle.Qui, tra i suoi neri profondi e la grana viva, il confine tra desiderio e paura svanisce in un salto nel vuoto. Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente. */
+
+width: 982px;
+height: 137px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* GAIA CREDENTINO-PHO */
+
+width: 2372px;
+height: 128px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 180px;
+line-height: 265px;
+/* leading-trim and text-edge are draft CSS properties.
+
+Read more: https://drafts.csswg.org/css-inline-3/#leading-trim
+*/
+leading-trim: both;
+text-edge: cap;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* AURORA ERICA-ENVIRO */
+
+width: 2372px;
+height: 128px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 180px;
+line-height: 265px;
+/* leading-trim and text-edge are draft CSS properties.
+
+Read more: https://drafts.csswg.org/css-inline-3/#leading-trim
+*/
+leading-trim: both;
+text-edge: cap;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* MICHELA MARCELLO - */
+
+width: 2372px;
+height: 128px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 180px;
+line-height: 265px;
+/* leading-trim and text-edge are draft CSS properties.
+
+Read more: https://drafts.csswg.org/css-inline-3/#leading-trim
+*/
+leading-trim: both;
+text-edge: cap;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* CATERINA DIMUNZIO- */
+
+width: 2372px;
+height: 128px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 180px;
+line-height: 265px;
+/* leading-trim and text-edge are draft CSS properties.
+
+Read more: https://drafts.csswg.org/css-inline-3/#leading-trim
+*/
+leading-trim: both;
+text-edge: cap;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 5;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* LORENZ QUALCOSA- */
+
+width: 2372px;
+height: 128px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 180px;
+line-height: 265px;
+/* leading-trim and text-edge are draft CSS properties.
+
+Read more: https://drafts.csswg.org/css-inline-3/#leading-trim
+*/
+leading-trim: both;
+text-edge: cap;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 6;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* FEDERICO MORETTI - */
+
+width: 2372px;
+height: 128px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 180px;
+line-height: 265px;
+/* leading-trim and text-edge are draft CSS properties.
+
+Read more: https://drafts.csswg.org/css-inline-3/#leading-trim
+*/
+leading-trim: both;
+text-edge: cap;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 7;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* SIN - GRAPHIC DESIGNER */
+
+width: 2372px;
+height: 128px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 180px;
+line-height: 265px;
+/* leading-trim and text-edge are draft CSS properties.
+
+Read more: https://drafts.csswg.org/css-inline-3/#leading-trim
+*/
+leading-trim: both;
+text-edge: cap;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 8;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* header */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-end;
+padding: 0px;
+gap: 1176px;
+
+position: absolute;
+width: 1648px;
+height: 29.53px;
+left: 40px;
+top: 42px;
+
+
+
+/* Frame 24 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-end;
+padding: 0px;
+gap: 91px;
+
+width: 426.02px;
+height: 29.53px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* logo */
+
+width: 91.02px;
+height: 29.53px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 78.85%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 59.03%;
+right: 21.08%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 19.84%;
+right: 43.48%;
+top: 0%;
+bottom: 0%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 74.66%;
+right: 0%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* buttons_header */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 100px;
+height: 29px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Community */
+
+width: 100px;
+height: 29px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 29px;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* buttons_header */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 53px;
+height: 29px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* About */
+
+width: 53px;
+height: 29px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 29px;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* buttons_header */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 46px;
+height: 29px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Shop */
+
+width: 46px;
+height: 29px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 29px;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;

@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'W95FA';
+  src: url('/W95F.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-pixel {
+  font-family: 'W95FA', 'Courier New', Courier, monospace;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+}

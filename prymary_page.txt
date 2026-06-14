@@ -1,0 +1,1010 @@
+/* primary */
+
+position: relative;
+width: 1728px;
+height: 7022px;
+overflow-y: scroll;
+
+background: #FFFFFF;
+
+
+/* logo */
+
+position: absolute;
+width: 1648px;
+height: 534.7px;
+left: 38px;
+top: 435px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 78.85%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 59.03%;
+right: 21.08%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 19.84%;
+right: 43.48%;
+top: 0%;
+bottom: 0%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 74.66%;
+right: 0%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* cosa mi consuma  2 */
+
+position: absolute;
+width: 961px;
+height: 679px;
+left: 171px;
+top: 1806px;
+
+
+
+/* cosa mi consuma  1 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: url(cosa mi consuma .jpg);
+
+
+/* Born from a sharp need for reality, FØLT stands in opposition to a world of sanitized visuals and neutered thoughts. It was built to counter this obsession with "perfect" content, opening up a space where creativity is no longer held on a leash. */
+
+position: absolute;
+width: 352px;
+height: 354px;
+left: 1152px;
+top: 1417px;
+
+
+
+/* Born from a sharp need for reality, FØLT stands in opposition to a world of sanitized visuals and neutered thoughts. It was built to counter this obsession with "perfect" content, opening up a space where creativity is no longer held on a leash. */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+
+
+
+/* Because every fence has been removed, each resulting output is intrinsically charged with meaning. What is produced is more than just art; it is a direct window into the creative reality of the person who made it, offered exactly as it was felt. */
+
+position: absolute;
+width: 536px;
+height: 256px;
+left: 967px;
+top: 4029px;
+
+
+
+/* Because every fence has been removed, each resulting output is intrinsically charged with meaning. What is produced is more than just art; it is a direct window into the creative reality of the person who made it, offered exactly as it was felt. */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* The foundation of the project is built on the total absence of control. There are no briefs, no style guides, and no "don’ts." Instead each artist responds to an introspective theme, with the their rawest, most personal vision. */
+
+position: absolute;
+width: 346px;
+height: 320px;
+left: 1157px;
+top: 3709px;
+
+
+
+/* The foundation of the project is built on the total absence of control. There are no briefs, no style guides, and no "don’ts." Instead each artist responds to an introspective theme, with the their rawest, most personal vision. */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* Rectangle 4 */
+
+position: absolute;
+width: 1728px;
+height: 1067px;
+left: 0px;
+top: 5952px;
+
+
+
+/* Order ISSUE 01 */
+
+position: absolute;
+width: 424px;
+height: 94px;
+left: 625px;
+top: 6439px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 64px;
+line-height: 94px;
+/* identical to box height */
+letter-spacing: -0.05em;
+
+/* black */
+color: #000000;
+
+
+
+/* We don't want to tell stories. We want to open wounds. Fashion, art, philosophy, psychology, music, photography. Fragments. Bodies. Thoughts. An experience that does not seek consensus, but impact. */
+
+position: absolute;
+width: 256px;
+height: 698.5px;
+left: 225px;
+top: 2712px;
+
+
+
+/* We don't want to tell stories. We want to open wounds. Fashion, art, philosophy, psychology, music, photography. Fragments. Bodies. Thoughts. An experience that does not seek consensus, but impact. */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* Each chapter of FØLT represents a specific creative input provided to the collective. These prompts were designed to trigger unfiltered reactions, forcing the artists to navigate through raw, introspective territories. */
+
+position: absolute;
+width: 78px;
+height: 939px;
+left: 100px;
+top: 4678px;
+
+
+
+/* Each chapter of FØLT represents a specific creative input provided to the collective. These prompts were designed to trigger unfiltered reactions, forcing the artists to navigate through raw, introspective territories. */
+
+position: absolute;
+left: 0%;
+right: -1103.84%;
+top: 0%;
+bottom: 91.69%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+transform: rotate(90deg);
+
+
+/* Composition 4 1 */
+
+position: absolute;
+width: 1728px;
+height: 972px;
+left: 0px;
+top: 1146px;
+
+background: url(Composition 4.png);
+mix-blend-mode: multiply;
+
+
+/* Chpiece2 2 */
+
+position: absolute;
+width: 536px;
+height: 758px;
+left: 1152px;
+top: 2712px;
+
+
+
+/* Chpiece2 1 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: url(Chpiece2.jpg);
+
+
+/* bottom_texts */
+
+position: absolute;
+width: 1650px;
+height: 46px;
+left: 38px;
+top: 1035px;
+
+
+
+/* experimental print / sound / thought */
+
+position: absolute;
+left: 78.97%;
+right: 0%;
+top: 41.68%;
+bottom: 8.32%;
+
+
+
+/* experimental print / sound / thought */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 22.6427px;
+line-height: 23px;
+/* identical to box height, or 100% */
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+
+/* not to be read. to be felt. */
+
+position: absolute;
+left: 0%;
+right: 91.27%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* not to be read. to be felt. */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 22.64px;
+line-height: 23px;
+/* or 100% */
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+
+/* It was created to be a home for the ideas that aren't usually allowed to exist, a space where creativity is liberated from every aesthetic and social constraint. */
+
+position: absolute;
+width: 536px;
+height: 261px;
+left: 225px;
+top: 1208px;
+
+
+
+/* It was created to be a home for the ideas that aren't usually allowed to exist, a space where creativity is liberated from every aesthetic and social constraint. */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* manifesto */
+
+position: absolute;
+width: 65px;
+height: 3084px;
+left: 100px;
+top: 1208px;
+
+
+
+/* Noise. flesh. whisper. fragments. the skin becomes a screen, the mind a labyrinth of broken mirrors. listen? An irregular heartbeat, labored breathing, the echo of that which dares not speak to itself. There is no surface here. just falls, leaps into the void, sudden discards. fashion that scratches, art that screams silently, philosophy that slips into the folds of the soul. biting images, deep blacks with living grain, secrets Unveiled Between Shadows. You're a navigator of restless spaces, a seeker of burning details, a soul that wants to know, feel, expand beyond the confines of the skin. Music guides you, a wave that collapses and rebuilds, a psychological journey made of bright splinters and pulsating darkness. It is not a journey for those who fear chaos, for those looking for simple answers. it's a whirlwind, a tightrope dance, an exploration of the boundary between pleasure and annoyance, between desire and fear. Here you get lost to find yourself. here the raw becomes art, and art becomes life. */
+
+position: absolute;
+left: 0%;
+right: -4644.62%;
+top: 0%;
+bottom: 97.89%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+transform: rotate(90deg);
+
+
+/* n.pag */
+
+position: absolute;
+width: 32px;
+height: 20px;
+left: 225px;
+top: 2465px;
+
+
+
+/* .90 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+
+/* paranoia_code */
+
+position: absolute;
+width: 447px;
+height: 632px;
+left: 219px;
+top: 4453px;
+
+
+
+/* PARANOIA_Pagina_18 1 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: url(PARANOIA_Pagina_18.jpg);
+opacity: 0.4;
+
+
+/* n.pag */
+
+position: absolute;
+width: 32px;
+height: 20px;
+left: 225px;
+top: 5085px;
+
+
+
+/* .35 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+
+/* n.pag */
+
+position: absolute;
+width: 32px;
+height: 20px;
+left: 1152px;
+top: 3478px;
+
+
+
+/* .58 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+
+/* n.pag */
+
+position: absolute;
+width: 32px;
+height: 20px;
+left: 1152px;
+top: 5620px;
+
+
+
+/* .41 */
+
+position: absolute;
+left: 0%;
+right: 12.5%;
+top: 0%;
+bottom: 0%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+
+/* digestive8 1 */
+
+position: absolute;
+width: 536px;
+height: 382px;
+left: 1152px;
+top: 5233px;
+
+opacity: 0.4;
+
+
+/* digestive8 1 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: url(digestive8.jpg);
+
+
+/* circolar_input */
+
+position: absolute;
+width: 1329.33px;
+height: 1329.33px;
+left: 175px;
+top: 4463px;
+
+
+
+/* THE DIGESTIVE BODY */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* THE DIGESTIVE BODY */
+
+position: absolute;
+left: 4.1%;
+right: 20.95%;
+top: 4.1%;
+bottom: 20.95%;
+
+background: #000000;
+transform: rotate(-15deg);
+
+
+/* WHAt WE CONSUME CONSUMES US */
+
+position: absolute;
+left: 13.62%;
+right: 13.61%;
+top: 13.58%;
+bottom: 13.65%;
+
+
+
+/* WHAt WE CONSUME CONSUMES US */
+
+position: absolute;
+left: 5.63%;
+right: 21.92%;
+top: 5.63%;
+bottom: 21.92%;
+
+background: #000000;
+transform: rotate(-15deg);
+
+
+/* EFFETTO KULEšHOV */
+
+position: absolute;
+left: 3.84%;
+right: 3.82%;
+top: 3.8%;
+bottom: 3.86%;
+
+
+
+/* EFFETTO KULEšHOV */
+
+position: absolute;
+left: 4.44%;
+right: 21.16%;
+top: 4.44%;
+bottom: 21.16%;
+
+background: #000000;
+transform: rotate(-15deg);
+
+
+/* THE PART OF ME THAT WATCHES FROM THE OUTSIDE */
+
+position: absolute;
+left: 7.3%;
+right: 7.31%;
+top: 7.3%;
+bottom: 7.31%;
+
+
+
+/* THE PART OF ME THAT WATCHES FROM THE OUTSIDE */
+
+position: absolute;
+left: 4.8%;
+right: 21.39%;
+top: 4.8%;
+bottom: 21.39%;
+
+background: #000000;
+transform: rotate(-15deg);
+
+
+/* THe MASK */
+
+position: absolute;
+left: 22.89%;
+right: 22.89%;
+top: 22.86%;
+bottom: 22.91%;
+
+
+
+/* THe MASK */
+
+position: absolute;
+left: 6.36%;
+right: 8.98%;
+top: 6.36%;
+bottom: 8.98%;
+
+background: #000000;
+transform: rotate(-1.8deg);
+
+
+/* THE BODY THAT DOESN’T BELONG TO ME */
+
+position: absolute;
+height: 818.84px;
+left: 19.18%;
+right: 19.22%;
+top: 255.11px;
+
+
+
+/* THE BODY THAT DOESN’T BELONG TO ME */
+
+position: absolute;
+left: 7.07%;
+right: 26.91%;
+top: 7.07%;
+bottom: 26.91%;
+
+background: #000000;
+transform: rotate(21.88deg);
+
+
+/* FØLT IS INSIDE YOU */
+
+position: absolute;
+height: 583.12px;
+left: 28.06%;
+right: 28.08%;
+top: 372.69px;
+
+
+
+/* FØLT IS INSIDE YOU */
+
+position: absolute;
+left: 9.35%;
+right: 24.27%;
+top: 9.35%;
+bottom: 24.27%;
+
+background: #000000;
+transform: rotate(-15deg);
+
+
+/* THE IN - BETWEEN */
+
+position: absolute;
+height: 1204.93px;
+left: 4.66%;
+right: 4.7%;
+top: 62.81px;
+
+
+
+/* THE IN - BETWEEN */
+
+position: absolute;
+left: 5.19%;
+right: 31.05%;
+top: 5.19%;
+bottom: 31.05%;
+
+background: #000000;
+transform: rotate(-38.67deg);
+
+
+/* header */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-end;
+padding: 0px;
+gap: 1176px;
+
+position: absolute;
+width: 1648px;
+height: 29.53px;
+left: 40px;
+top: 40px;
+
+
+
+/* Frame 24 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-end;
+padding: 0px;
+gap: 91px;
+
+width: 426.02px;
+height: 29.53px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* logo */
+
+width: 91.02px;
+height: 29.53px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 78.85%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 59.03%;
+right: 21.08%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 19.84%;
+right: 43.48%;
+top: 0%;
+bottom: 0%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 74.66%;
+right: 0%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* buttons_header */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 100px;
+height: 29px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Community */
+
+width: 100px;
+height: 29px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 29px;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* buttons_header */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 53px;
+height: 29px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* About */
+
+width: 53px;
+height: 29px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 29px;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* buttons_header */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 46px;
+height: 29px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Shop */
+
+width: 46px;
+height: 29px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 29px;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;

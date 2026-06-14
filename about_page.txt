@@ -1,0 +1,501 @@
+/* about */
+
+position: relative;
+width: 1728px;
+height: 1117px;
+overflow-y: scroll;
+
+background: #FFFFFF;
+
+
+/* header */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-end;
+padding: 0px;
+gap: 1176px;
+
+position: absolute;
+width: 1648px;
+height: 29.53px;
+left: 40px;
+top: 42px;
+
+
+
+/* Frame 24 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-end;
+padding: 0px;
+gap: 91px;
+
+width: 426.02px;
+height: 29.53px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* logo */
+
+width: 91.02px;
+height: 29.53px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 78.85%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 59.03%;
+right: 21.08%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 19.84%;
+right: 43.48%;
+top: 0%;
+bottom: 0%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 74.66%;
+right: 0%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* buttons_header */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 100px;
+height: 29px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Community */
+
+width: 100px;
+height: 29px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 29px;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* buttons_header */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 53px;
+height: 29px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* About */
+
+width: 53px;
+height: 29px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 29px;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* buttons_header */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 46px;
+height: 29px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Shop */
+
+width: 46px;
+height: 29px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 29px;
+letter-spacing: -0.05em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* about_text */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 30px;
+
+position: absolute;
+width: 1246px;
+height: 668px;
+left: 40px;
+top: 165px;
+
+
+
+/* The Foundation */
+
+width: 1246px;
+height: 224px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* The Foundation FØLT is an independent editorial project founded in Naples in 2025. Conceived by Nicole Sciamanna, who serves as the project’s Founder and Creative Director, the magazine emerged as a technical and artistic response to a contemporary landscape of sterilized and over-polished content. It was established to provide a dedicated spaceboth physical and digital for creative expression that is no longer held by conventional restraints or industrial filters. */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* The Collective and Methodology */
+
+width: 1246px;
+height: 256px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* The Collective and Methodology the content within FØLT is produced by a collective of young artists driven by a collaborative and unfiltered approach. The editorial process is centered on a specific creative input or theme provided by the creative direction. In response, each artist develops an original output based entirely on their personal vision. This methodology ensures that every work is intrinsically charged with meaning, offering a raw and direct insight into the artistic reality of its creator without the interference of external "style guides" or aesthetic boundaries. */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* The mission */
+
+width: 1246px;
+height: 128px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* The Mission The mission of FØLT is to foster authentic artistic interpretation and provoke significant emotional reactions. By eliminating traditional editorial fences, the project creates a direct connection between the artist’s vision and the observer */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* contact_sectio */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 18px;
+
+position: absolute;
+width: 338px;
+height: 119px;
+left: 40px;
+top: 948px;
+
+
+
+/* Contact */
+
+width: 111px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Contact */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* identical to box height, or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* contacts */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 5px;
+
+width: 338px;
+height: 69px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* email */
+
+width: 338px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* info@foltmagazine.com */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* identical to box height, or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* instagram_tag */
+
+width: 338px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* email */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* info@foltmagazine.com */
+
+position: absolute;
+left: 0%;
+right: 36.09%;
+top: 0%;
+bottom: 0%;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* identical to box height, or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* Composition 4 1 */
+
+position: absolute;
+width: 1728px;
+height: 972px;
+left: 0px;
+top: 165px;
+
+background: url(Composition 4.png);
+mix-blend-mode: multiply;

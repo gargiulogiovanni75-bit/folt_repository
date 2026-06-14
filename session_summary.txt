@@ -1,0 +1,102 @@
+========================================================================
+FØLT MAGAZINE WEBSITE - PROJECT PROGRESS & HANDOVER SUMMARY
+========================================================================
+
+CONTEXT & CURRENT SITUATION:
+----------------------------
+We have successfully implemented the scroll-synced particles background, custom scroll scrubbing Lottie integration, and a first-time visitor virus attack experience with full browser autoplay audio compatibility.
+
+Key Technical Achievements:
+1. Removal of Click-to-Enter Cover Overlay (Start Directly on Primary Page):
+   - The cover screen overlay was removed entirely. The site now opens directly onto the primary page without any pre-click cover.
+   
+2. Mouse-Move Triggered Virus Attack:
+   - On the very first mouse movement on the normal page, the virus attack is triggered.
+   - It retains the 1-second transition freeze delay (locking pointer-events, selection, and overflow on `body` via `.virus-lock` class).
+   - After the 1-second delay, the page hides the normal site (`#app-container`) and shows the virus attack container (`#virus-attack-container`).
+
+3. Foreground Corner Texts & Text Positioning in Virus Attack:
+   - Inside the `#virus-attack-container`, two light grey (`#cacaca`) texts are styled in the `W95FA` font:
+     * Top-Left: "click to hear the sound" (passive text with `cursor: default`, no click event handler. It automatically dims to 0.5 opacity once audio begins playing via user interaction).
+     * Top-Right: "log in" (clickable text with `cursor: pointer`, currently triggers no action).
+   - These are positioned in the foreground (with a high `z-index` of `100000`) so they are visible on top of both the cascade windows and the typing text phases of the virus attack.
+   - **Padding Gutter (Overlap Prevention)**: Updated `.typing-container` in `style.css` to use `padding: 100px 40px 40px;` (from `20px`). This moves the simulated typing text and the question block down past the headers, keeping them clean and preventing any overlap.
+
+4. First-Time Visit Virus Attack Logic:
+   - Ported the React-based experience from the `virus_attack` directory to clean, vanilla ES module JavaScript in `virus.js`.
+   - Copied assets (`0.jpg` through `5.png`) and the custom font (`W95F.otf`) from `virus_attack/public` into the main `public` directory.
+   - **In-Memory Completion Status (Reset on Refresh)**: Changed the completion flag from `localStorage` to a module-scoped in-memory variable (`virusAttackCompleted`). This ensures that refreshing or reloading the browser page always resets the virus attack status completely, while answering the question still lets the user browse the normal site during their active session.
+   - **Font Scaling (-40%)**: Reduced font-size of W95FA in the virus attack section by 40% (window title headers down to 7px, typing text down to 1.5vh-2.1vh).
+   - Integrated the question validation: upon pressing Enter in the input state, the app sets `virusAttackCompleted` to `true`, removes the virus overlay, and displays the main website.
+
+5. Lottie Scrubbing & Scroll Locking:
+   - Replaced concentric SVG orbits with the "circular.input.json" Lottie animation.
+   - Handled scale-aware viewport lock at "targetScrollY" with smooth entrance and exit glides.
+   - Deceleration scrubbing (lerping with 0.06 factor) and adjusted sensitivity (0.00025) for high visual harmony.
+   - Jitter-free native scroll locking by setting "overflow: hidden" on html.
+
+6. Interactive Particles Background & Global Blending:
+   - Enabled "#particles-bg-canvas" behind the "primary_page" content.
+   - Set "#primary-page .canvas-container" background to "transparent".
+   - **Global Particle Blending (Bypass Stacking Context Isolation)**: Because the `transform: scale` on `.canvas-container` isolates stacking contexts on smaller viewport widths, applying `mix-blend-mode: multiply;` directly on `.cosa-mi-consuma-img` would only multiply with its transparent parent container backdrop (rendering it solid white).
+   - **Solution**: Changed `.particles-bg-canvas` style in `style.css` to `z-index: 1000;` and added `mix-blend-mode: multiply;` (and removed the local `mix-blend-mode` from `.cosa-mi-consuma-img`). Moving the canvas on top of the content layer and multiplying it globally allows the dark particle trails to draw on top of both the white page backgrounds and image borders dynamically, rendering them fully visible everywhere.
+   - Adjusted Particle Trails Opacity: Reduced the opacity of the particles and stroke lines by 40%.
+   - Shrunk Transparent Logo & Collision Mask: Scaled the transparent logo boundary down by 20%.
+   - Restored Particle Trails: Changed canvas background fill style in the render loop from solid `#ffffff` back to `rgba(255, 255, 255, 0.08)`.
+   - Synced opacity dynamically with the scroll bar:
+     * Fades in from opacity 0 to 1 as scroll Y moves from 300px to 900px.
+     * Fades out from opacity 1 to 0 as scroll position approaches the bottom order section.
+
+ 7. Image Remapping:
+   - Fixed asset paths in CSS and HTML for output illustrations (`cosa_mi_consuma_gaia.jpg`, `paranoia_code.jpg`, `digestive_erica.jpg`, `chpiece_caterina.jpg`).
+
+ 8. Deletion of the "The process that overrides the result" Text:
+   - Removed the `.process-overrides` block from `index.html`.
+   - Deleted the corresponding CSS styling rules for `.process-overrides` and `.process-overrides span` from `style.css`.
+   - Cleaned up the Figma layout notes and reference CSS in `prymary_page.txt`.
+   - Re-compiled production assets successfully with `npm run build` to update `dist/index.html` and css bundles.
+
+ 9. Alignment of the "We don't want to tell stories" Text Block:
+   - Repositioned `.we-dont-want-stories` from `left: 411px` to `left: 225px` in `style.css` so that it aligns on the left with the "Community" nav link.
+   - Updated corresponding reference positioning notes in `prymary_page.txt`.
+   - Rebuilt production bundle via `npm run build`.
+
+ 10. Indentation & Shifting of vertical "Each chapter of FØLT..." text block:
+    - Added `text-indent: 90px;` to `.each-chapter span` in `style.css` to add 90px of space at the beginning of the first line of text.
+    - Moved the `.each-chapter` container from `top: 4658px` to `top: 4678px` in `style.css` to shift it 20px lower.
+    - Updated corresponding layout reference notes in `prymary_page.txt`.
+    - Rebuilt production bundle via `npm run build`.
+
+ 11. Centralization of Typography & Text Styles (Figma Spec):
+    - Added CSS custom variables to `:root` representing all font families, font sizes, line heights, letter spacing, and weights from Figma.
+    - Created helper classes matching each style name (e.g. `.community_names_text`, `.display_big_text`, etc.) in `style.css`.
+    - Refactored text selectors across primary page, about page, community page, checkout page, and virus attack screens to reference these variables and helper classes.
+    - Confirmed Helvetica Now Text always defaults to `font-weight: 500` (Medium) and `letter-spacing: -0.03em` (-3% tracking).
+    - Refactored dynamic corner texts in `virus.js` to inherit these styles via class name assignments.
+    - Re-built production bundle successfully.
+
+ 12. Baseline Alignment of Vertical Texts to Left Gutter:
+    - Shifted vertical text containers `.manifesto-group` and `.each-chapter` to `left: 100px` in `style.css`. Because these elements rotate 90deg clockwise, they wrap towards the left. Setting `left: 100px` ensures that the baseline of the third/last line of text aligns exactly with the `40px` margin (the left edge of the logo folt) and the entire block stays cleanly within the content area.
+    - Updated corresponding layout reference notes in `prymary_page.txt`.
+    - Rebuilt production bundle via `npm run build`.
+
+CURRENT BUILD STATUS:
+---------------------
+- Production bundling compiles successfully via "npm run build".
+- Vite dev server is running locally on port 5173 ("npm run dev").
+
+GOAL & NEXT STEPS FOR NEW SESSIONS:
+-----------------------------------
+1. Verify that the landing page loads directly to the primary page.
+2. Move the mouse to trigger the 1-second freeze lock followed by the virus cascade.
+3. Observe that "click to hear the sound" and "log in" are displayed in the top corners during the virus attack.
+4. Clicking anywhere (to interact with windows/typing) unlocks the audio context, unmuting the beeps and automatically dimming the "click to hear the sound" text.
+5. "log in" has a pointer cursor but does nothing when clicked.
+6. Scroll down to the `cosa_mi_consuma_gaia` image section and check that particles background trails pass cleanly behind/through the white portions of the illustration.
+7. Observe that "The process that overrides the result" text is no longer displayed on the primary page (it was previously positioned vertically at `left: 219px; top: 2712px;`).
+8. Verify that the "We don't want to tell stories..." text block at `top: 2712px` has been shifted to `left: 225px` and aligns left with the "Community" header link.
+9. Verify that the vertical "Each chapter of FØLT..." text starts with a 90px indentation (space) at the beginning of the first line.
+10. Confirm that the vertical texts `.manifesto-text` and `.each-chapter` are positioned at `left: 100px` so that their last line of text has its baseline aligned precisely with the `40px` logo gutter (remaining inside the content margin).
+11. Confirm that typography values are loaded dynamically via CSS variables (Helvetica uses weight 500 and -3% tracking everywhere).
+12. Keep the portraits folder "immagini/portraits/" ignored for now.
+===========================================================================

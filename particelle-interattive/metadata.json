@@ -1,0 +1,6 @@
+{
+  "name": "Particelle Interattive",
+  "description": "Un'esperienza visiva interattiva con particelle che formano un logo vettoriale e reagiscono al movimento del mouse con attrazione oscillante.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

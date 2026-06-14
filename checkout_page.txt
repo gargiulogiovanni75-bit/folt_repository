@@ -1,0 +1,2676 @@
+/* checkout */
+
+position: relative;
+width: 1728px;
+height: 1090px;
+overflow-y: scroll;
+
+background: #FFFFFF;
+
+
+/* checklist */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 48px;
+
+position: absolute;
+width: 621px;
+height: 409px;
+left: 225px;
+top: 218px;
+
+
+
+/* checklist_line_name */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 621px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 621px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line_last_name */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 621px;
+height: 45px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 621px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 22px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line_email */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 621px;
+height: 45px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 621px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 22px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line_phone_number */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 621px;
+height: 45px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 621px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 22px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line_date_birth */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 621px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 621px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* logo */
+
+position: absolute;
+width: 165px;
+height: 54px;
+left: 40px;
+top: 103px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 78.85%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 59.03%;
+right: 21.08%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 19.84%;
+right: 43.48%;
+top: 0%;
+bottom: 0%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 74.66%;
+right: 0%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* shipping_checkbox_section */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 36px;
+
+position: absolute;
+width: 240px;
+height: 129px;
+left: 411px;
+top: 705px;
+
+
+
+/* Fulfilment_selection */
+
+width: 180px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Fulfilment selection */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+
+/* shipping_checkbox */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 20px;
+
+width: 240px;
+height: 73px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* home_delivery_section */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 19px;
+
+width: 240px;
+height: 30px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Home_delivery_checkbox */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 156px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* check_box */
+
+width: 14px;
+height: 14px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Rectangle 7 */
+
+box-sizing: border-box;
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+border: 1px solid #000000;
+
+
+/* Home delivery */
+
+width: 132px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Home delivery */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+
+/* check_list_home_delivery */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px 16px;
+gap: 6px;
+
+width: 240px;
+height: 229px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* checklist_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 208px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 208px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 208px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 208px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 208px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 208px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 208px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 208px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 208px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 208px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 37 */
+
+width: 240px;
+height: 23px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 36 */
+
+position: absolute;
+width: 188px;
+height: 40px;
+left: 0px;
+top: 0px;
+
+
+
+/* local_pickup_checkbox */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+position: absolute;
+width: 145px;
+height: 20px;
+left: 0px;
+top: 0px;
+
+
+
+/* check_box */
+
+width: 14px;
+height: 14px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Rectangle 7 */
+
+box-sizing: border-box;
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+border: 1px solid #000000;
+
+
+/* Local pick up */
+
+width: 121px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Select Affiliated Hub */
+
+position: absolute;
+height: 20px;
+left: 12px;
+right: -12px;
+top: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+
+/* affiliate_hub_section */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 7px;
+
+position: absolute;
+height: 74px;
+left: 13px;
+right: -13px;
+top: 52px;
+
+
+
+/* affiliate_hub */
+
+width: 240px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Napoli - Libreria Dispaccio */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+
+/* affiliate_hub */
+
+width: 240px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Milano - Frab’s Magazine */
+
+position: absolute;
+left: 0%;
+right: 5.83%;
+top: 0%;
+bottom: 0%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+
+/* affiliate_hub */
+
+width: 240px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Roma - Edicola Erno */
+
+position: absolute;
+left: 0%;
+right: 22.92%;
+top: 0%;
+bottom: 0%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+
+/* order_checkout_section */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+position: absolute;
+width: 356px;
+height: 515px;
+left: 1152px;
+top: 210px;
+
+
+
+/* order_and_payment */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 71px;
+
+width: 356px;
+height: 505px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+margin: -42px 0px;
+
+
+/* your order */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 53px;
+
+width: 239px;
+height: 224px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Your order */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 147px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Your order */
+
+width: 147px;
+height: 32px;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* identical to box height, or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* order_info */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 31px;
+
+width: 225px;
+height: 139px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 39 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 12px;
+
+width: 225px;
+height: 76px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* issue_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-end;
+padding: 0px;
+gap: 67px;
+
+width: 225px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Issue 01 */
+
+width: 118px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Issue 01 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* identical to box height, or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* prezzo_magazine */
+
+width: 40px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* €40 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+
+/* shipping_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 59px;
+
+width: 212px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Shipping */
+
+width: 126px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Shipping */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* identical to box height, or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* prezzo_spedizione */
+
+width: 27px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* €5 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+
+/* total_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 116px;
+
+width: 225px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* totale */
+
+width: 69px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Total */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* identical to box height, or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* prezzo_totale */
+
+width: 40px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* €45 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+
+/* select_your_payment_section */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 31px;
+
+width: 318px;
+height: 120px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Select your payment method */
+
+width: 275px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Select your payment method */
+
+position: absolute;
+width: 275px;
+height: 20px;
+left: 0px;
+top: 0px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+
+/* credit_or_debit_section/checkbox_payment */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 23px;
+
+width: 318px;
+height: 69px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* credit_or_debit_section */
+
+width: 318px;
+height: 23px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* credit_card_checkbox */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 16px;
+
+position: absolute;
+width: 252px;
+height: 23px;
+left: 0px;
+top: 0px;
+
+
+
+/* check_box */
+
+width: 14px;
+height: 14px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Rectangle 7 */
+
+box-sizing: border-box;
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+border: 1px solid #000000;
+
+
+/* credit_card_icon */
+
+width: 29px;
+height: 23px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #000000;
+
+
+/* Credit or debit card */
+
+width: 177px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Credit or debit card */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+
+/* checklist_debit_card */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 12px;
+
+position: absolute;
+height: 200px;
+left: 30px;
+right: -30px;
+top: 40px;
+
+
+
+/* checklist_line_payment */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 318px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 318px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 318px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 318px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 318px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line_payment */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 318px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 318px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 318px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 318px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 318px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line_payment */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 318px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 318px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 318px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 318px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 318px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line_payment */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 318px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 318px;
+height: 20px;
+
+/* small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+letter-spacing: -0.011em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 318px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 318px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #CACACA;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 318px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* paypal_checkbox */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 19px;
+
+width: 120px;
+height: 23px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* check_box */
+
+width: 14px;
+height: 14px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Rectangle 7 */
+
+box-sizing: border-box;
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+border: 1px solid #000000;
+
+
+/* PayPal_logo 1 */
+
+width: 87px;
+height: 23px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* g10 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* g12 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* path14 */
+
+position: absolute;
+left: 0%;
+right: 81.21%;
+top: 0.01%;
+bottom: 18.92%;
+
+background: #283B82;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* path16 */
+
+position: absolute;
+left: 17.63%;
+right: 64.1%;
+top: 25.69%;
+bottom: 17.62%;
+
+background: #283B82;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* path18 */
+
+position: absolute;
+left: 37.73%;
+right: 44.26%;
+top: 27.01%;
+bottom: 0%;
+
+background: #283B82;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* path20 */
+
+position: absolute;
+left: 55.48%;
+right: 25.73%;
+top: 0.01%;
+bottom: 18.92%;
+
+background: #469BDB;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* path22 */
+
+position: absolute;
+left: 73.12%;
+right: 8.62%;
+top: 25.69%;
+bottom: 17.62%;
+
+background: #469BDB;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* path24 */
+
+position: absolute;
+left: 91.92%;
+right: 0%;
+top: 0%;
+bottom: 18.92%;
+
+background: #469BDB;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* checkout_botton */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px 107px;
+gap: 10px;
+
+width: 356px;
+height: 52px;
+
+background: #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Checkout */
+
+width: 136px;
+height: 32px;
+
+/* medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 100%;
+/* identical to box height, or 32px */
+letter-spacing: -0.03em;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
