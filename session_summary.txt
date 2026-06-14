@@ -76,9 +76,16 @@ Key Technical Achievements:
     - Re-built production bundle successfully.
 
  12. Baseline Alignment of Vertical Texts to Left Gutter:
-    - Shifted vertical text containers `.manifesto-group` and `.each-chapter` to `left: 100px` in `style.css`. Because these elements rotate 90deg clockwise, they wrap towards the left. Setting `left: 100px` ensures that the baseline of the third/last line of text aligns exactly with the `40px` margin (the left edge of the logo folt) and the entire block stays cleanly within the content area.
-    - Updated corresponding layout reference notes in `prymary_page.txt`.
-    - Rebuilt production bundle via `npm run build`.
+     - Shifted vertical text containers `.manifesto-group` and `.each-chapter` to `left: 100px` in `style.css`. Because these elements rotate 90deg clockwise, they wrap towards the left. Setting `left: 100px` ensures that the baseline of the third/last line of text aligns exactly with the `40px` margin (the left edge of the logo folt) and the entire block stays cleanly within the content area.
+     - Updated corresponding layout reference notes in `prymary_page.txt`.
+     - Rebuilt production bundle via `npm run build`.
+
+ 13. Git & GitHub Repository Setup:
+     - Initialized local Git repository in the project root.
+     - Created a `.gitignore` to prevent uploading heavy or unnecessary folders (e.g. `node_modules/`, `dist/`, `.DS_Store`).
+     - Staged and created the first commit locally.
+     - Configured the remote to `https://github.com/gargiulogiovanni75-bit/folt_repository.git` and successfully pushed the code to the private repository on the `main` branch.
+     - Restored the remote URL to a clean configuration to protect the Personal Access Token from being stored in plaintext.
 
 CURRENT BUILD STATUS:
 ---------------------
