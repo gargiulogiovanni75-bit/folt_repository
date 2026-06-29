@@ -328,95 +328,117 @@ export default function App() {
       onDragOver={onDragOver}
     >
       {originalImage && (
-        <div className="absolute top-1/2 -translate-y-1/2 right-4 md:right-10 z-50 w-[200px] flex flex-col items-stretch text-[#1a1a1a] pointer-events-auto">
-          <div className="flex flex-col gap-0">
-            <div className="py-2">
-              <label className="block text-[10px] uppercase tracking-[0.05em] text-[#888] mb-2 flex justify-between items-center cursor-pointer">
-                Low Res Filter
-                <div className={`relative inline-flex h-4 w-8 items-center rounded-full transition-colors ${params.lowResEnabled ? 'bg-black' : 'bg-gray-200'}`}>
-                  <input 
-                    type="checkbox" 
-                    name="lowResEnabled" 
-                    checked={params.lowResEnabled} 
-                    onChange={handleSliderChange}
-                    className="peer sr-only"
-                  />
-                  <span className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${params.lowResEnabled ? 'translate-x-4' : 'translate-x-1'}`} />
-                </div>
+        <div className="paperface-action-window">
+          {/* selectors_section */}
+          <div className="selectors-section">
+            <div className="selector-row">
+              <span className="selector-label">Low res filter</span>
+              <label className="toggle-switch">
+                <input 
+                  type="checkbox" 
+                  name="lowResEnabled" 
+                  checked={params.lowResEnabled} 
+                  onChange={handleSliderChange}
+                />
+                <span className="toggle-slider"></span>
               </label>
             </div>
-
-            <div className="py-2">
-              <label className="block text-[10px] uppercase tracking-[0.05em] text-[#888] mb-2 flex justify-between items-center cursor-pointer">
-                Extrusion Effect
-                <div className={`relative inline-flex h-4 w-8 items-center rounded-full transition-colors ${params.extrusionEnabled ? 'bg-black' : 'bg-gray-200'}`}>
-                  <input 
-                    type="checkbox" 
-                    name="extrusionEnabled" 
-                    checked={params.extrusionEnabled} 
-                    onChange={handleSliderChange}
-                    className="peer sr-only"
-                  />
-                  <span className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${params.extrusionEnabled ? 'translate-x-4' : 'translate-x-1'}`} />
-                </div>
+            
+            <div className="selector-row">
+              <span className="selector-label">Extrusion effect</span>
+              <label className="toggle-switch">
+                <input 
+                  type="checkbox" 
+                  name="extrusionEnabled" 
+                  checked={params.extrusionEnabled} 
+                  onChange={handleSliderChange}
+                />
+                <span className="toggle-slider"></span>
               </label>
             </div>
+          </div>
 
-            <div className={`py-2 transition-opacity ${!params.extrusionEnabled ? 'opacity-30 pointer-events-none' : 'opacity-100'}`}>
-              <label className="block text-[10px] uppercase tracking-[0.05em] text-[#888] mb-2 flex justify-between">
-                Extrusion Length <span>{params.extrusionLength}%</span>
-              </label>
-              <input 
-                type="range" name="extrusionLength" min="0" max="100" 
-                value={params.extrusionLength} onChange={handleSliderChange}
-                className="theme-slider"
-              />
+          {/* slider_section */}
+          <div className="slider-section">
+            {/* slider_extrusion_lenght */}
+            <div className={`slider-row-container ${!params.extrusionEnabled ? 'disabled' : ''}`}>
+              <span className="slider-label">Extrusion length</span>
+              <div className="slider-and-value">
+                <input 
+                  type="range" 
+                  name="extrusionLength" 
+                  min="0" 
+                  max="100" 
+                  value={params.extrusionLength} 
+                  onChange={handleSliderChange}
+                  className="custom-range-slider"
+                  disabled={!params.extrusionEnabled}
+                  style={{ '--value-percent': `${params.extrusionLength}%` } as React.CSSProperties}
+                />
+                <span className="slider-value-text">{params.extrusionLength}</span>
+              </div>
             </div>
 
-            <div className="py-2">
-              <label className="block text-[10px] uppercase tracking-[0.05em] text-[#888] mb-2 flex justify-between">
-                Glitch Fragments <span>{params.polyGlitch}</span>
-              </label>
-              <input 
-                type="range" name="polyGlitch" min="1" max="10" 
-                value={params.polyGlitch} onChange={handleSliderChange}
-                className="theme-slider"
-              />
+            {/* slider_glitch_fragments */}
+            <div className="slider-row-container">
+              <span className="slider-label">Glitch fragments</span>
+              <div className="slider-and-value">
+                <input 
+                  type="range" 
+                  name="polyGlitch" 
+                  min="1" 
+                  max="10" 
+                  value={params.polyGlitch} 
+                  onChange={handleSliderChange}
+                  className="custom-range-slider"
+                  style={{ '--value-percent': `${(params.polyGlitch - 1) / 9 * 100}%` } as React.CSSProperties}
+                />
+                <span className="slider-value-text">{params.polyGlitch}</span>
+              </div>
             </div>
 
-            <div className="py-2">
-              <label className="block text-[10px] uppercase tracking-[0.05em] text-[#888] mb-2 flex justify-between">
-                Fragment Size <span>{params.fragmentSize}%</span>
-              </label>
-              <input 
-                type="range" name="fragmentSize" min="10" max="300" 
-                value={params.fragmentSize} onChange={handleSliderChange}
-                className="theme-slider"
-              />
+            {/* slider_fragment_size */}
+            <div className="slider-row-container">
+              <span className="slider-label">Fragment size</span>
+              <div className="slider-and-value">
+                <input 
+                  type="range" 
+                  name="fragmentSize" 
+                  min="10" 
+                  max="300" 
+                  value={params.fragmentSize} 
+                  onChange={handleSliderChange}
+                  className="custom-range-slider"
+                  style={{ '--value-percent': `${(params.fragmentSize - 10) / 290 * 100}%` } as React.CSSProperties}
+                />
+                <span className="slider-value-text">{params.fragmentSize}</span>
+              </div>
             </div>
 
-            <div className="py-2 mb-2 pb-4">
-              <label className="block text-[10px] uppercase tracking-[0.05em] text-[#888] mb-2 flex justify-between">
-                Chaos & Variance <span>{params.chaos}%</span>
-              </label>
-              <input 
-                type="range" name="chaos" min="0" max="100" 
-                value={params.chaos} onChange={handleSliderChange}
-                className="theme-slider"
-              />
+            {/* slider_chaos_&_variance */}
+            <div className="slider-row-container">
+              <span className="slider-label">Chaos & variance</span>
+              <div className="slider-and-value">
+                <input 
+                  type="range" 
+                  name="chaos" 
+                  min="0" 
+                  max="100" 
+                  value={params.chaos} 
+                  onChange={handleSliderChange}
+                  className="custom-range-slider"
+                  style={{ '--value-percent': `${params.chaos}%` } as React.CSSProperties}
+                />
+                <span className="slider-value-text">{params.chaos}</span>
+              </div>
             </div>
+          </div>
 
-            <div className="flex flex-col gap-3 pt-6 *:flex *:items-center *:gap-2 *:text-[10px] *:uppercase *:tracking-widest *:text-[#888] *:hover:text-[#1a1a1a] *:transition-colors *:text-left">
-              <button onClick={generateSeed}>
-                <RefreshCw size={12} /> Re-roll
-              </button>
-              <button onClick={downloadImage}>
-                <Download size={12} /> Save
-              </button>
-              <button onClick={() => { setOriginalImage(null); }}>
-                Load another photo
-              </button>
-            </div>
+          {/* operation-buttons-section */}
+          <div className="operation-buttons-section">
+            <button className="op-btn" onClick={generateSeed}>Re-roll</button>
+            <button className="op-btn" onClick={downloadImage}>Save</button>
+            <button className="op-btn" onClick={() => setOriginalImage(null)}>Load another photo</button>
           </div>
         </div>
       )}
@@ -459,12 +481,16 @@ export default function App() {
               />
             </div>
             <button 
-              onClick={downloadImage}
-              className="text-[#888] hover:text-[#1a1a1a] text-xs uppercase tracking-[0.1em] transition-colors"
+              onClick={() => {
+                downloadImage();
+                if (window.parent && window.parent !== window) {
+                  window.parent.postMessage({ type: 'paperface-confirm' }, '*');
+                }
+              }}
+              className="confirm-btn"
             >
               Confirm
             </button>
-            <div className="absolute bottom-6 right-8 text-[10px] text-[#bbb] tracking-[0.1em] pointer-events-none uppercase hidden sm:block">ALGORITHM: LINEAR_WARP_GAUSSIAN</div>
           </div>
         )}
       </main>

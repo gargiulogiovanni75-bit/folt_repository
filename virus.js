@@ -40,7 +40,8 @@ const audioSystem = {
     
     try {
       const response = await fetch('/respiro.mp3');
-      if (response.ok) {
+      const contentType = response.headers.get('content-type') || '';
+      if (response.ok && contentType.includes('audio')) {
         const arrayBuffer = await response.arrayBuffer();
         this.breathBuffer = await this.ctx.decodeAudioData(arrayBuffer);
       } else {
@@ -190,6 +191,12 @@ const audioSystem = {
         this.breathGain.gain.value = 0;
     }
   },
+
+  suspend() {
+    if (this.ctx && this.ctx.state === 'running') {
+      this.ctx.suspend().catch(e => console.log('suspend context err', e));
+    }
+  },
   
   updateBreathParams(speed) {
     const maxSpeed = 50; 
@@ -223,31 +230,219 @@ const FALLBACK_CARDS = [
 
 let virusAttackCompleted = false;
 
-export function initVirusAttack() {
+export function initVirusAttack(force = false) {
   localStorage.removeItem('virus_attack_completed'); // Clean up any stale local storage keys
-  if (virusAttackCompleted) {
-    return; // Already completed, do not run!
+  if (force) {
+    virusAttackCompleted = false;
+    window.__virusAttackCompleted = false;
+    window.__virusAttackInitialized = false;
   }
+  if (virusAttackCompleted || window.__virusAttackCompleted || window.__virusAttackInitialized) {
+    return; // Already completed or initialized, do not run!
+  }
+  window.__virusAttackInitialized = true;
 
   // Create the container element dynamically
   let container = document.getElementById('virus-attack-container');
+  let handleInputKeyDown = null;
   if (!container) {
     container = document.createElement('div');
     container.id = 'virus-attack-container';
     container.className = 'font-pixel';
-    container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999999; background-color: #ffffff; user-select: none; overflow: hidden; display: none;';
+    container.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999999; background-color: var(--color-surface-main); user-select: none; overflow: hidden; display: none;';
     document.body.appendChild(container);
   }
 
-  // Insert base layout with foreground texts "click to hear the sound" and "log in"
+  // Insert base layout with foreground texts "click to hear the sound" and "key_components"
   container.innerHTML = `
-    <div id="virus-header-left" class="header_texts" style="position: absolute; top: 39px; left: 40px; color: #cacaca; text-transform: uppercase; letter-spacing: 0.05em; z-index: 100000; cursor: default;">click to hear the sound</div>
-    <div id="virus-header-right" class="header_texts" style="position: absolute; top: 39px; right: 40px; color: #cacaca; text-transform: uppercase; letter-spacing: 0.05em; z-index: 100000; cursor: pointer;">log in</div>
+    <div id="virus-header-left" class="header_texts" style="position: absolute; top: 39px; left: 40px; color: var(--color-text-disabled); text-transform: uppercase; letter-spacing: 0.05em; z-index: 100000; cursor: default;">click to hear the sound</div>
+    
+    <div class="key-components-container" id="key-components-container">
+      <div class="key-components" id="key-components-wrapper">
+        <!-- Close Button X -->
+        <div class="key-close-btn" id="key-close-btn" style="display: none;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.5 4.5L4.5 13.5M4.5 4.5L13.5 13.5" stroke="#979797" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        
+        <!-- Trigger Button -->
+        <div class="key-trigger-btn label_link_button_small_texts" id="key-trigger-btn" style="cursor: pointer;">
+          <span>insert the key to skip</span>
+        </div>
+        
+        <!-- PIN Input Fields -->
+        <div class="pin-input-field" id="pin-input-field" style="display: none;">
+          <div class="pin-input-slot" data-index="0">
+            <span class="pin-digit"></span>
+            <div class="pin-line"></div>
+          </div>
+          <div class="pin-input-slot" data-index="1">
+            <span class="pin-digit"></span>
+            <div class="pin-line"></div>
+          </div>
+          <div class="pin-input-slot" data-index="2">
+            <span class="pin-digit"></span>
+            <div class="pin-line"></div>
+          </div>
+          <div class="pin-input-slot" data-index="3">
+            <span class="pin-digit"></span>
+            <div class="pin-line"></div>
+          </div>
+          <div class="pin-input-slot" data-index="4">
+            <span class="pin-digit"></span>
+            <div class="pin-line"></div>
+          </div>
+          <div class="pin-input-slot" data-index="5">
+            <span class="pin-digit"></span>
+            <div class="pin-line"></div>
+          </div>
+        </div>
+        <!-- Error message -->
+        <div class="key-error-text" id="virus-key-error-text" style="display: none;">key not valid</div>
+      </div>
+    </div>
+
     <div id="virus-cascade-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></div>
     <div id="virus-typing-layer" class="typing-container" style="display: none;">
       <div id="virus-typing-text" class="typing-text"></div>
     </div>
   `;
+
+  // Get key components elements & setup event listeners
+  const keyComponentsContainer = document.getElementById('key-components-container');
+  const keyTriggerBtn = document.getElementById('key-trigger-btn');
+  const pinInputField = document.getElementById('pin-input-field');
+  const keyCloseBtn = document.getElementById('key-close-btn');
+  const pinSlots = container.querySelectorAll('#pin-input-field .pin-input-slot');
+
+  let pinActive = false;
+  let enteredPin = "";
+
+  function updatePinDisplay() {
+    pinSlots.forEach((slot, index) => {
+      const digitSpan = slot.querySelector('.pin-digit');
+      const lineDiv = slot.querySelector('.pin-line');
+      
+      digitSpan.classList.remove('error');
+      lineDiv.classList.remove('error');
+      
+      if (index < enteredPin.length) {
+        digitSpan.textContent = "*";
+      } else {
+        digitSpan.textContent = "";
+      }
+    });
+  }
+
+  function setErrorState() {
+    pinSlots.forEach((slot) => {
+      const digitSpan = slot.querySelector('.pin-digit');
+      const lineDiv = slot.querySelector('.pin-line');
+      digitSpan.classList.add('error');
+      lineDiv.classList.add('error');
+      digitSpan.textContent = ""; // Asterisks disappear
+    });
+    enteredPin = "";
+
+    const errText = document.getElementById('virus-key-error-text');
+    if (errText) {
+      errText.style.display = 'block';
+    }
+  }
+
+  function clearErrorState() {
+    pinSlots.forEach((slot) => {
+      const digitSpan = slot.querySelector('.pin-digit');
+      const lineDiv = slot.querySelector('.pin-line');
+      digitSpan.classList.remove('error');
+      lineDiv.classList.remove('error');
+    });
+
+    const errText = document.getElementById('virus-key-error-text');
+    if (errText) {
+      errText.style.display = 'none';
+    }
+  }
+
+  if (keyTriggerBtn) {
+    keyTriggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!pinActive) {
+        pinActive = true;
+        if (pinInputField) {
+          pinInputField.style.display = 'flex';
+        }
+        keyCloseBtn.style.display = 'flex';
+        enteredPin = "";
+        updatePinDisplay();
+        
+        if (container) {
+          container.classList.add('pin-active');
+        }
+        const wrapper = document.getElementById('key-components-wrapper');
+        if (wrapper) {
+          wrapper.classList.add('selected');
+        }
+      }
+    });
+  }
+
+  if (keyCloseBtn) {
+    keyCloseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      pinActive = false;
+      if (pinInputField) {
+        pinInputField.style.display = 'none';
+      }
+      keyCloseBtn.style.display = 'none';
+      enteredPin = "";
+      updatePinDisplay();
+      clearErrorState();
+      
+      if (container) {
+        container.classList.remove('pin-active');
+      }
+      const wrapper = document.getElementById('key-components-wrapper');
+      if (wrapper) {
+        wrapper.classList.remove('selected');
+      }
+    });
+  }
+
+  const handlePinKeyDown = (e) => {
+    if (!pinActive) return;
+
+    if (e.key >= '0' && e.key <= '9') {
+      if (enteredPin.length < 6) {
+        clearErrorState();
+        enteredPin += e.key;
+        updatePinDisplay();
+      }
+      e.preventDefault();
+      e.stopPropagation();
+    } else if (e.key === 'Backspace') {
+      clearErrorState();
+      enteredPin = enteredPin.slice(0, -1);
+      updatePinDisplay();
+      e.preventDefault();
+      e.stopPropagation();
+    } else if (e.key === 'Enter') {
+      if (enteredPin.length === 6) {
+        if (enteredPin === "111223") {
+          pinActive = false;
+          finishVirusAttack();
+        } else {
+          setErrorState();
+        }
+      }
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+    }
+  };
+
+  window.addEventListener('keydown', handlePinKeyDown);
 
   const appContainer = document.getElementById('app-container');
   
@@ -290,7 +485,7 @@ export function initVirusAttack() {
     }
   };
 
-  const audioEvents = ['mousedown', 'keydown', 'touchstart', 'mousemove', 'pointerdown'];
+  const audioEvents = ['mousedown', 'keydown', 'touchstart', 'pointerdown'];
   const cleanupAudioEvents = () => {
     audioEvents.forEach(e => window.removeEventListener(e, unlockAudio));
   };
@@ -334,6 +529,27 @@ export function initVirusAttack() {
 
   // Listen for mousemove to start the virus attack on normal site immediately
   window.addEventListener('mousemove', handleMouseMove);
+
+  // If forced, trigger transition immediately
+  if (force) {
+    const startX = window.innerWidth / 2;
+    const startY = window.innerHeight / 2;
+    lastMousePos.x = startX;
+    lastMousePos.y = startY;
+    
+    appState = 'transitioning';
+    document.body.classList.add('virus-lock');
+
+    setTimeout(() => {
+      appState = 'cascading';
+      document.body.classList.remove('virus-lock');
+      
+      if (appContainer) appContainer.style.display = 'none';
+      container.style.display = 'block';
+      
+      createCascadeWindow(startX, startY);
+    }, 1000);
+  }
 
   function createCascadeWindow(startX, startY) {
     audioSystem.playErrorBeep();
@@ -418,7 +634,7 @@ export function initVirusAttack() {
       inputBlock.innerHTML = `
         <div>${questionBody}</div>
         <div style="margin-top: 1vh; display: flex; align-items: center; break-all; flex-wrap: wrap;">
-          <span id="virus-input-value" style="white-space: pre-wrap; color: #000;"></span>
+          <span id="virus-input-value" style="white-space: pre-wrap; color: var(--color-text-primary);"></span>
           <span class="blink-cursor"></span>
         </div>
       `;
@@ -427,9 +643,14 @@ export function initVirusAttack() {
 
     const valueSpan = document.getElementById('virus-input-value');
 
-    const handleKeyDown = (e) => {
+    handleInputKeyDown = (e) => {
+      // Ignore key events if the PIN input overlay is active
+      if (pinActive) {
+        return;
+      }
+
       if (e.key === 'Enter') {
-        window.removeEventListener('keydown', handleKeyDown);
+        window.removeEventListener('keydown', handleInputKeyDown);
         finishVirusAttack();
       } else if (e.key === 'Backspace') {
         inputValue = inputValue.slice(0, -1);
@@ -440,16 +661,31 @@ export function initVirusAttack() {
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleInputKeyDown);
   }
 
   function finishVirusAttack() {
     appState = 'idle';
     audioSystem.stopBreath();
+    audioSystem.suspend();
+    
+    if (typeInterval) {
+      clearInterval(typeInterval);
+      typeInterval = null;
+    }
+    
+    // Remove all listeners to prevent memory leaks and re-triggering of virus screen
+    window.removeEventListener('mousemove', handleMouseMove);
     window.removeEventListener('mousemove', handleMouseMoveBreathOnly);
+    window.removeEventListener('keydown', handlePinKeyDown);
+    if (handleInputKeyDown) {
+      window.removeEventListener('keydown', handleInputKeyDown);
+    }
+    cleanupAudioEvents();
 
     // Save state in memory so it resets on page refresh/reload
     virusAttackCompleted = true;
+    window.__virusAttackCompleted = true;
 
     // Remove the virus container and restore normal site
     container.style.display = 'none';
@@ -459,5 +695,8 @@ export function initVirusAttack() {
     if (container.parentNode) {
       container.parentNode.removeChild(container);
     }
+
+    // Dispatch finished event to main.js
+    window.dispatchEvent(new CustomEvent('virus-attack-finished'));
   }
 }

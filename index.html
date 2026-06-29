@@ -16,23 +16,25 @@
         <a href="#" class="logo-link" id="header-logo-btn">
           <img src="/logo_folt_definitivo.svg" alt="FØLT Logo" class="header-logo-img">
         </a>
-        <a href="#" class="nav-link" id="nav-community">Community</a>
-        <a href="#" class="nav-link" id="nav-about">About</a>
+        <a href="#" class="nav-link" id="nav-community"><span>Community</span></a>
+        <a href="#" class="nav-link" id="nav-about"><span>About</span></a>
       </div>
       <nav class="header-right">
-        <a href="#" class="nav-link" id="nav-shop">Shop</a>
+        <a href="#" class="nav-link" id="nav-shop"><span>Shop</span></a>
       </nav>
     </div>
   </header>
+
+  <canvas id="particles-bg-canvas" class="particles-bg-canvas"></canvas>
+  <button type="button" id="transparent-particles-logo-btn" aria-label="Interactive Logo Button"></button>
 
   <div id="app-container">
 
     <!-- PRIMARY PAGE -->
     <section id="primary-page" class="page-view active">
-      <canvas id="particles-bg-canvas" class="particles-bg-canvas"></canvas>
       
       <div class="viewport-scaler">
-        <div class="canvas-container primary-canvas" data-original-height="7022" data-original-width="1728">
+        <div class="canvas-container primary-canvas" data-original-height="6672" data-original-width="1728">
           
           <!-- Giant Logo -->
           <div class="giant-logo-container">
@@ -132,19 +134,22 @@
           <!-- Circular Scroll Sticky Section -->
           <div class="container-generale">
             <div class="circular-container-sticky">
-              
               <!-- Interactive Lottie Animation -->
               <div id="circular-input" class="orbit-container"></div>
             </div>
           </div>
 
-          <!-- Black background rectangle -->
-          <div class="rectangle-4"></div>
-
           <!-- Order button trigger -->
-          <div class="order-issue" id="buy-button">ORDER ISSUE 01</div>
+          <div class="order-issue" id="buy-button"><span>ORDER ISSUE 01</span></div>
+
+          <!-- Hubs Coordinates Label -->
+          <a href="#" id="hubs-confirmed-btn" class="hubs-label">HUBS: 40.8518° N (NA) // 45.4642° N (MI) // 41.8902° N (RM)</a>
+
+          <!-- Virus Trigger Button -->
+          <button class="virus-trigger-btn" id="virus-trigger">The infection never truly leaves the system</button>
 
         </div>
+
       </div>
     </section>
 
@@ -171,10 +176,10 @@
             <div class="contact-label-block"><span>Contact</span></div>
             <div class="contacts-subgroup">
               <div class="contact-email-block">
-                <a href="mailto:info@foltmagazine.com">info@foltmagazine.com</a>
+                <a href="mailto:info@foltmagazine.com"><span>info@foltmagazine.com</span></a>
               </div>
               <div class="contact-insta-block">
-                <a href="https://instagram.com/folt.magazine" target="_blank">@folt.magazine</a>
+                <a href="https://instagram.com/folt.magazine" target="_blank"><span>@folt.magazine</span></a>
               </div>
             </div>
           </div>
@@ -186,43 +191,117 @@
     <!-- COMMUNITY PAGE -->
     <section id="community-page" class="page-view">
       <div class="viewport-scaler">
-        <div class="canvas-container community-canvas" data-original-height="4618" data-original-width="2372">
+        <div class="canvas-container community-canvas" data-original-height="3100" data-original-width="1728">
           
           <div class="community-frame-30">
             <!-- Nicole Sciamanna -->
             <div class="artist-row-nicole">
-              <div class="artist-name-nicole">NICOLE SCIAMANNA-</div>
+              <div class="community_names_text artist-name-nicole">NICOLE SCIAMANNA-</div>
               <div class="artist-frame-27">
-                <div class="artist-image-12" style="background-image: url('/image_12.jpg')"></div>
-                <div class="artist-bio-nicole">L'opera di Artista X non si limita a occupare uno spazio; lo infetta. Navigatore di spazi inquieti e cercatore instancabile di dettagli brucianti, X trasforma il rumore in un sussurro che lacera la pelle.Qui, tra i suoi neri profondi e la grana viva, le confine tra desiderio e paura svanisce in un salto nel vuoto. Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente.</div>
+                <div class="artist-image-12" style="background-image: url('/immagini/portraits/nicole_portrait.png')"></div>
+                <div class="artist-bio-nicole">L'opera di Artista X non si limita a occupare uno spazio; lo infetta. Navigatore di spazi inquieti e cercatore instancabile di dettagli brucianti, X trasforma il rumore in un sussurro che lacera la pelle.Qui, tra i suoi neri profondi e la grana viva, il confine tra desiderio e paura svanisce in un salto nel vuoto. Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente.</div>
               </div>
             </div>
 
             <!-- Giovanni Gargiulo -->
             <div class="artist-row-giovanni">
-              <div class="artist-name-giovanni">GIOVANNI GARGIULO</div>
+              <div class="community_names_text artist-name-giovanni">GIOVANNI GARGIULO</div>
               <div class="artist-frame-28">
-                <div class="artist-image-13" style="background-image: url('/image_13.jpg')"></div>
-                <div class="artist-bio-giovanni">L'opera di Artista X non si limita a occupare uno spazio; lo infetta. Navigatore di spazi inquieti e cercatore instancabile di dettagli brucianti, X trasforma il rumore in un sussurro che lacera la pelle.Qui, tra i suoi neri profondi e la grana viva, le confine tra desiderio e paura svanisce in un salto nel vuoto. Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente.</div>
+                <div class="artist-image-13" style="background-image: url('/immagini/portraits/giovanni_portrait.png')"></div>
+                <div class="artist-bio-giovanni">I’m Giovanni, a graphic design and communication student based in Naples, Italy. My journey into art and design started with a childhood passion for drawing, which evolved over time, leading me to discover new ways to express myself and complex concepts. This search for new ways to communicate is still expanding today. In fact, my work method is based on using one or more mediums in unconventional ways whenever possible, aiming to make the work unique and the communication as effective as possible. This approach highlights my greatest strength: curiosity. I am someone who always looks around in search of new things or new ways to see what is apparently commonplace.Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente.</div>
               </div>
             </div>
 
-            <!-- GAIA CREDENTINO-PHO -->
-            <div class="community-row-giant">GAIA CREDENTINO-PHO</div>
-            <!-- AURORA ERICA-ENVIRO -->
-            <div class="community-row-giant">AURORA ERICA-ENVIRO</div>
-            <!-- MICHELA MARCELLO - -->
-            <div class="community-row-giant">MICHELA MARCELLO -</div>
-            <!-- CATERINA DIMUNZIO- -->
-            <div class="community-row-giant">CATERINA DIMUNZIO-</div>
-            <!-- LORENZ QUALCOSA- -->
-            <div class="community-row-giant">LORENZ QUALCOSA-</div>
+            <!-- AURORA ERICA M. - ENVI -->
+            <div class="artist-row-aurora">
+              <div class="community_names_text artist-name-aurora">AURORA ERICA M. - ENVI</div>
+              <div class="artist-frame-27">
+                <div class="artist-image-12" style="background-image: url('/immagini/portraits/aurora_portrait.png')"></div>
+                <div class="artist-bio-aurora">L'opera di Artista X non si limita a occupare uno spazio; lo infetta. Navigatore di spazi inquieti e cercatore instancabile di dettagli brucianti, X trasforma il rumore in un sussurro che lacera la pelle.Qui, tra i suoi neri profondi e la grana viva, il confine tra desiderio e paura svanisce in un salto nel vuoto. Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente.</div>
+              </div>
+            </div>
+
+            <!-- CATERINA DI MUNZIO- -->
+            <div class="artist-row-caterina">
+              <div class="community_names_text artist-name-caterina">CATERINA DI MUNZIO-</div>
+              <div class="artist-frame-28">
+                <div class="artist-image-13" style="background-image: url('/immagini/portraits/caterina_portrait.png')"></div>
+                <div class="artist-bio-caterina">My name is Caterina, I’m a photographer, I find a constant need to create from the urgency of describing reality with my own gaze.I like inconsistencies and connections, coincidences, disasters, even trash. What fascinates me most about photography is the boundless range of possibilities it offers; a multiverse of creativity that constantly evolves and reinvents itself. The emotional resonance is what truly defines the impact of an image, the way it captures a moment, a feeling, or an idea; the story it conveys, the message, the mood and how it's presented or performed. Since when I approached photography, I changed my attitude, I decided to trust myself and my intuition. I spend my life with a camera in my hand and I know I always will.Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente.</div>
+              </div>
+            </div>
+
+            <!-- CODE.627 - VISUAL ARTIST -->
+            <div class="artist-row-code">
+              <div class="community_names_text artist-name-code">CODE.627 - VISUAL ARTIST</div>
+              <div class="artist-frame-27">
+                <div class="artist-image-12" style="background-image: url('/immagini/portraits/code.627_portrait.png')"></div>
+                <div class="artist-bio-code">L'opera di Artista X non si limita a occupare uno spazio; lo infetta. Navigatore di spazi inquieti e cercatore instancabile di dettagli brucianti, X trasforma il rumore in un sussurro che lacera la pelle.Qui, tra i suoi neri profondi e la grana viva, il confine tra desiderio e paura svanisce in un salto nel vuoto. Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente.</div>
+              </div>
+            </div>
+
+            <!-- LORENZ HOLZER - VISUAL -->
+            <div class="artist-row-lorenz">
+              <div class="community_names_text artist-name-lorenz">LORENZ HOLZER - VISUAL</div>
+              <div class="artist-frame-27">
+                <div class="artist-image-12" style="background-image: url('/immagini/portraits/lorenz_portrait.png')"></div>
+                <div class="artist-bio-lorenz">L'opera di Artista X non si limita a occupare uno spazio; lo infetta. Navigatore di spazi inquieti e cercatore instancabile di dettagli brucianti, X trasforma il rumore in un sussurro che lacera la pelle.Qui, tra i suoi neri profondi e la grana viva, il confine tra desiderio e paura svanisce in un salto nel vuoto. Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente.</div>
+              </div>
+            </div>
+
+            <!-- SIN - VISUAL ARTIST -->
+            <div class="artist-row-sin">
+              <div class="community_names_text artist-name-sin">SIN - VISUAL ARTIST</div>
+              <div class="artist-frame-28">
+                <div class="artist-image-13" style="background-image: url('/immagini/portraits/sin_portrait.png')"></div>
+                <div class="artist-bio-sin">SIN is a french visual artist (born in 1992, France) graduated in Arts (Lille III University, France). She uses art purely as an outlet and her work is focused on destruction, eros, sensitivity, absurd and fear. She uses painting (traditional & digital, photography and other mediums to express the pain of her lifetime. Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente.</div>
+              </div>
+            </div>
+
+            <!-- MICHELA MARCELLO -->
+            <div class="artist-row-michela">
+              <div class="community_names_text artist-name-michela">MICHELA MARCELLO</div>
+              <div class="artist-frame-28">
+                <div class="artist-image-13" style="background-image: url('/immagini/portraits/michela_portrait.png')"></div>
+                <div class="artist-bio-michela">Federico Moretti: Writer, 3D Modeler, and Animator. I like to think of myself as a collection of many things. I am the stories I tell, the characters I create, the paths they walk, the chaos that surrounds them, the crowds passing by, the color of things, and the sounds. I truly believe that identity, much like fear, takes whatever shape we are willing to give it.Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente.</div>
+              </div>
+            </div>
+
             <!-- FEDERICO MORETTI - -->
-            <div class="community-row-giant">FEDERICO MORETTI -</div>
-            <!-- SIN - GRAPHIC DESIGNER -->
-            <div class="community-row-giant">SIN - GRAPHIC DESIGNER</div>
+            <div class="artist-row-federico">
+              <div class="community_names_text artist-name-federico">FEDERICO MORETTI -</div>
+              <div class="artist-frame-28">
+                <div class="artist-image-13" style="background-image: url('/immagini/portraits/federico_portrait.png')"></div>
+                <div class="artist-bio-federico">Federico Moretti: Writer, 3D Modeler, and Animator. I like to think of myself as a collection of many things. I am the stories I tell, the characters I create, the paths they walk, the chaos that surrounds them, the crowds passing by, the color of things, and the sounds. I truly believe that identity, much like fear, takes whatever shape we are willing to give it.Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente.</div>
+              </div>
+            </div>
+
+            <!-- GAIA CREDENTINO - PHO -->
+            <div class="artist-row-gaia">
+              <div class="community_names_text artist-name-gaia">GAIA CREDENTINO - PHO</div>
+              <div class="artist-frame-27">
+                <div class="artist-image-12" style="background-image: url('/immagini/portraits/gaia_portrait.png')"></div>
+                <div class="artist-bio-gaia">L'opera di Artista X non si limita a occupare uno spazio; lo infetta. Navigatore di spazi inquieti e cercatore instancabile di dettagli brucianti, X trasforma il rumore in un sussurro che lacera la pelle.Qui, tra i suoi neri profondi e la grana viva, il confine tra desiderio e paura svanisce in un salto nel vuoto. Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente.</div>
+              </div>
+            </div>
+
+            <!-- ROSSELLA STARITA -->
+            <div class="artist-row-rossella">
+              <div class="community_names_text artist-name-rossella">ROSSELLA STARITA</div>
+              <div class="artist-frame-28">
+                <div class="artist-image-13" style="background-image: url('/immagini/portraits/rossella_portrait.png')"></div>
+                <div class="artist-bio-rossella">Federico Moretti: Writer, 3D Modeler, and Animator. I like to think of myself as a collection of many things. I am the stories I tell, the characters I create, the paths they walk, the chaos that surrounds them, the crowds passing by, the color of things, and the sounds. I truly believe that identity, much like fear, takes whatever shape we are willing to give it.Nelle sue fotografie distorte, ogni pixel è una ferita aperta che non cerca di raccontare una storia, ma di scatenare un rituale. È un'arte che grida silenziosamente, una filosofia che si annida nei respiri affannosi di chi osa guardarsi dentro. Non guardare le sue opere. Attraversale. Lascia che le macchie rimangano sulle tue dita, lasciati trascinare da questa onda che crolla e si ricostruisce continuamente.</div>
+              </div>
+            </div>
 
           </div>
+
+          <!-- Bottom Membership Text & Join Button -->
+          <div class="community-membership-text">
+            Membership is strictly exclusive to holders of Issue 01. Verification occurs automatically through the account created during the checkout process.
+          </div>
+          <a class="btn-text community-join-btn">
+            <span>join the community</span>
+          </a>
 
         </div>
       </div>
@@ -233,93 +312,342 @@
       <div class="viewport-scaler">
         <div class="canvas-container checkout-canvas" data-original-height="1090" data-original-width="1728">
           
-          <div class="checkout-logo-container">
+          <!-- Logo button -->
+          <a href="#" id="checkout-logo-btn" class="checkout-logo-container">
             <img class="checkout-logo-img" src="/logo_folt_definitivo.svg" alt="FØLT Logo">
+          </a>
+
+          <form id="checkout-form" novalidate onsubmit="event.preventDefault(); alert('Ordine inviato con successo!');">
+            
+            <!-- Left Column: Personal details & Fulfilment -->
+            <div class="checkout-left-column">
+              
+              <!-- Title / Header of checkout checklist -->
+              <div class="checkout-signin-title">Sign in</div>
+
+              <div class="checkout-checklist">
+                <!-- Name -->
+                <div class="checklist-field">
+                  <div class="checklist-label">Name</div>
+                  <div class="checklist-input-wrapper">
+                    <input type="text" class="checkout-field-input" id="input-name" placeholder="Name" required>
+                  </div>
+                  <div class="checklist-line-separator"></div>
+                  <div class="checkout-error-text" style="display: none;"></div>
+                </div>
+                <!-- Email -->
+                <div class="checklist-field">
+                  <div class="checklist-label">Email address</div>
+                  <div class="checklist-input-wrapper">
+                    <input type="email" class="checkout-field-input" id="input-email" placeholder="Email address" required>
+                  </div>
+                  <div class="checklist-line-separator"></div>
+                  <div class="checkout-error-text" style="display: none;"></div>
+                </div>
+                <!-- Password -->
+                <div class="checklist-field">
+                  <div class="checklist-label">Password</div>
+                  <div class="checklist-input-wrapper">
+                    <input type="password" class="checkout-field-input" id="input-password" placeholder="Password" required>
+                  </div>
+                  <div class="checklist-line-separator"></div>
+                  <div class="checkout-error-text" style="display: none;"></div>
+                </div>
+                <!-- Phone -->
+                <div class="checklist-field">
+                  <div class="checklist-label">Phone number</div>
+                  <div class="checklist-input-wrapper">
+                    <input type="tel" class="checkout-field-input" id="input-phone" placeholder="Phone number" required>
+                  </div>
+                  <div class="checklist-line-separator"></div>
+                  <div class="checkout-error-text" style="display: none;"></div>
+                </div>
+                <!-- Date of Birth -->
+                <div class="checklist-field">
+                  <div class="checklist-label">Date of birth</div>
+                  <div class="checklist-input-wrapper">
+                    <input type="text" class="checkout-field-input" id="input-dob" placeholder="Date of birth" required>
+                  </div>
+                  <div class="checklist-line-separator"></div>
+                  <div class="checkout-error-text" style="display: none;"></div>
+                </div>
+              </div>
+
+              <!-- Fulfilment checkbox section -->
+              <div class="checkout-shipping-section">
+                <div class="shipping-title-block">Fulfilment selection</div>
+                
+                <div class="shipping-options-sub">
+                  <!-- Home delivery option -->
+                  <div class="shipping-option-row" id="row-home">
+                    <div class="shipping-checkbox-rect" id="check-home"></div>
+                    <div class="shipping-label-text">Home delivery</div>
+                  </div>
+
+                  <!-- Home delivery Address checklist (hidden by default) -->
+                  <div class="checkout-address-block" id="checkout-address-block" style="display: none;">
+                    <div class="address-checklist-line">
+                      <div class="checklist-label">Street name and number</div>
+                      <input type="text" class="address-input-field" id="input-street" placeholder="Street name and number">
+                      <div class="checklist-line-separator"></div>
+                      <div class="checkout-error-text" style="display: none;"></div>
+                    </div>
+                    <div class="address-checklist-line">
+                      <div class="checklist-label">Zip code</div>
+                      <input type="text" class="address-input-field" id="input-zip" placeholder="Zip code">
+                      <div class="checklist-line-separator"></div>
+                      <div class="checkout-error-text" style="display: none;"></div>
+                    </div>
+                    <div class="address-checklist-line">
+                      <div class="checklist-label">City</div>
+                      <input type="text" class="address-input-field" id="input-city" placeholder="City">
+                      <div class="checklist-line-separator"></div>
+                      <div class="checkout-error-text" style="display: none;"></div>
+                    </div>
+                    <div class="address-checklist-line">
+                      <div class="checklist-label">State / Province</div>
+                      <input type="text" class="address-input-field" id="input-state" placeholder="State / Province">
+                      <div class="checklist-line-separator"></div>
+                      <div class="checkout-error-text" style="display: none;"></div>
+                    </div>
+                    <div class="address-checklist-line">
+                      <div class="checklist-label">Country</div>
+                      <input type="text" class="address-input-field" id="input-country" placeholder="Country">
+                      <div class="checklist-line-separator"></div>
+                      <div class="checkout-error-text" style="display: none;"></div>
+                    </div>
+                  </div>
+                  
+                  <!-- Local pick up option -->
+                  <div class="shipping-option-row" id="row-pickup">
+                    <div class="shipping-checkbox-rect" id="check-pickup"></div>
+                    <div class="shipping-label-text">Local pick up</div>
+                  </div>
+
+                  <!-- Local pick up Affiliated Hub selector (hidden by default) -->
+                  <div class="checkout-hub-block" id="checkout-hub-block" style="display: none;">
+                    <div class="select-hub-title">Select affiliated hub</div>
+                    <div class="affiliate-hub-section">
+                      <div class="affiliate-hub" id="hub-napoli">Napoli - Libreria Dispaccio</div>
+                      <div class="affiliate-hub" id="hub-milano">Milano - Frab’s Magazine</div>
+                      <div class="affiliate-hub" id="hub-roma">Roma - Edicola Erno</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Right Column: Order price summary & Payment details -->
+            <div class="order-checkout-section">
+              <div class="order-and-payment">
+                
+                <!-- Your order summary -->
+                <div class="your-order-summary">
+                  <div class="your-order-title">Your order</div>
+                  <div class="order-info">
+                    <!-- Issue line -->
+                    <div class="order-row issue-line">
+                      <div class="order-row-label">Issue 01</div>
+                      <div class="order-row-value prezzo-magazine">€40</div>
+                    </div>
+                    <!-- Shipping line -->
+                    <div class="order-row shipping-line">
+                      <div class="order-row-label">Shipping</div>
+                      <div class="order-row-value prezzo-spedizione" id="summary-shipping">—</div>
+                    </div>
+                    <!-- Total line -->
+                    <div class="order-row total-line">
+                      <div class="order-row-label">Total</div>
+                      <div class="order-row-value prezzo-totale" id="summary-total">€40</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Select Payment Method -->
+                <div class="select-your-payment-section">
+                  <div class="payment-title">Select your payment method</div>
+                  
+                  <div class="payment-options">
+                    <!-- Credit card -->
+                    <div class="payment-option-row" id="row-credit-card">
+                      <div class="shipping-checkbox-rect" id="check-credit-card"></div>
+                      <div class="payment-label-text">Credit or debit card</div>
+                    </div>
+
+                    <!-- Credit Card Details Form (hidden by default) -->
+                    <div class="checklist-debit-card" id="credit-card-details" style="display: none;">
+                      <div class="checklist-line-payment">
+                        <div class="checklist-label">Cardholder name</div>
+                        <div class="checklist-input-wrapper">
+                          <input type="text" class="checkout-field-input" id="input-cardname" placeholder="Cardholder name">
+                        </div>
+                        <div class="checklist-line-separator"></div>
+                        <div class="checkout-error-text" style="display: none;"></div>
+                      </div>
+                      <div class="checklist-line-payment">
+                        <div class="checklist-label">Card number</div>
+                        <div class="checklist-input-wrapper">
+                          <input type="text" class="checkout-field-input" id="input-cardnumber" placeholder="Card number">
+                        </div>
+                        <div class="checklist-line-separator"></div>
+                        <div class="checkout-error-text" style="display: none;"></div>
+                      </div>
+                      <div class="checklist-line-payment">
+                        <div class="checklist-label">Expiration date</div>
+                        <div class="checklist-input-wrapper">
+                          <input type="text" class="checkout-field-input" id="input-cardexp" placeholder="Expiration date">
+                        </div>
+                        <div class="checklist-line-separator"></div>
+                        <div class="checkout-error-text" style="display: none;"></div>
+                      </div>
+                      <div class="checklist-line-payment">
+                        <div class="checklist-label">CVV</div>
+                        <div class="checklist-input-wrapper">
+                          <input type="text" class="checkout-field-input" id="input-cardcvv" placeholder="CVV">
+                        </div>
+                        <div class="checklist-line-separator"></div>
+                        <div class="checkout-error-text" style="display: none;"></div>
+                      </div>
+                    </div>
+                    
+                    <!-- PayPal -->
+                    <div class="payment-option-row" id="row-paypal">
+                      <div class="shipping-checkbox-rect" id="check-paypal"></div>
+                      <div class="paypal-logo-placeholder">
+                        <span class="paypal-text-logo">PayPal</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Checkout Button -->
+              <div class="checkout-botton-container">
+                <button type="submit" class="checkout-submit-btn">Checkout</button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LOADER PAGE -->
+    <section id="loader-page" class="page-view">
+      <div class="loader-container">
+        <video id="loader-video" src="/loader.mp4" loop muted playsinline></video>
+      </div>
+    </section>
+
+    <!-- ORDER CONFIRMED PAGE -->
+    <section id="order-confirmed-page" class="page-view">
+      <div class="viewport-scaler">
+        <div class="canvas-container order-confirmed-canvas" data-original-height="1080" data-original-width="1920">
+          <div id="order-confirmed-lottie" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+
+          <!-- Logo button -->
+          <a href="#" id="confirmed-logo-btn" class="checkout-logo-container" style="z-index: 10000;">
+            <img class="checkout-logo-img" src="/logo_folt_definitivo.svg" alt="FØLT Logo">
+          </a>
+
+          <!-- HTML Order Confirmed Text to replace Lottie vector text -->
+          <h1 class="confirmed-title body_medium_texts">Order Confirmed</h1>
+
+          <!-- Overlay Join the community button at the center -->
+          <div class="confirmed-btn-overlay">
+            <a class="btn-text label_link_button_big_texts order-confirmed-join-btn" id="confirmed-join-btn">
+              <span>JOIN THE COMMUNITY</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAPERFACE PAGE -->
+    <section id="paperface-page" class="page-view" style="position: relative;">
+      <!-- Logo button -->
+      <a href="#" id="paperface-logo-btn" class="checkout-logo-container" style="position: absolute; left: 40px; top: 40px; z-index: 10000;">
+        <img class="checkout-logo-img" src="/logo_folt_definitivo.svg" alt="FØLT Logo">
+      </a>
+      <iframe id="paperface-iframe" src="about:blank" style="width: 100vw; height: 100vh; border: none;"></iframe>
+    </section>
+
+    <!-- VIDEO PAGE -->
+    <section id="video-page" class="page-view">
+      <div class="viewport-scaler">
+        <div class="canvas-container video-canvas" data-original-height="1116" data-original-width="1728">
+          
+          <!-- Video Page Content Wrapper (dimmed when key is requested) -->
+          <div id="video-page-content" class="video-page-content">
+            <!-- Video Element -->
+            <video id="main-video-player" class="main-video-player" autoplay playsinline></video>
+            
+            <!-- Bottom Bar -->
+            <div class="video-bottom-bar">
+              <!-- Back Button -->
+              <button type="button" class="btn-text" id="video-back-btn">
+                <span>Back</span>
+              </button>
+              
+              <!-- Nome opera - Nome Artista (Absolute Positioned) -->
+              <div class="video-info-text" id="video-info-text">Nome opera - Nome Artista</div>
+              
+              <!-- Next Button -->
+              <button type="button" class="btn-text" id="video-next-btn">
+                <span>Next</span>
+              </button>
+            </div>
           </div>
 
-          <form id="checkout-form" onsubmit="event.preventDefault(); alert('Ordine inviato con successo!');">
-            <div class="checkout-checklist">
-              <!-- Name -->
-              <div class="checklist-field">
-                <div class="checklist-label">FIRST NAME</div>
-                <div class="checklist-input-wrapper">
-                  <input type="text" class="checkout-field-input" placeholder="FIRST NAME" required>
-                </div>
-                <div class="checklist-line-separator"></div>
-              </div>
-              <!-- Last Name -->
-              <div class="checklist-field">
-                <div class="checklist-label">LAST NAME</div>
-                <div class="checklist-input-wrapper">
-                  <input type="text" class="checkout-field-input" placeholder="LAST NAME" required>
-                </div>
-                <div class="checklist-line-separator"></div>
-              </div>
-              <!-- Email -->
-              <div class="checklist-field">
-                <div class="checklist-label">EMAIL ADDRESS</div>
-                <div class="checklist-input-wrapper">
-                  <input type="email" class="checkout-field-input" placeholder="EMAIL ADDRESS" required>
-                </div>
-                <div class="checklist-line-separator"></div>
-              </div>
-              <!-- Phone -->
-              <div class="checklist-field">
-                <div class="checklist-label">PHONE NUMBER</div>
-                <div class="checklist-input-wrapper">
-                  <input type="tel" class="checkout-field-input" placeholder="PHONE NUMBER" required>
-                </div>
-                <div class="checklist-line-separator"></div>
-              </div>
-              <!-- Date of Birth -->
-              <div class="checklist-field">
-                <div class="checklist-label">DATE OF BIRTH</div>
-                <div class="checklist-input-wrapper">
-                  <input type="text" class="checkout-field-input" placeholder="DD/MM/YYYY" required>
-                </div>
-                <div class="checklist-line-separator"></div>
-              </div>
-            </div>
+          <!-- Top Left Difference Logo (always 100% opacity) -->
+          <a href="#" id="video-logo-btn" class="video-logo-container">
+            <img class="video-logo-img" src="/logo_folt_definitivo.svg" alt="FØLT Logo">
+          </a>
 
-            <!-- Fulfilment checkbox section -->
-            <div class="checkout-shipping-section">
-              <div class="shipping-title-block">Fulfilment selection</div>
-              <div class="shipping-options-sub">
-                <div class="shipping-option-row" id="row-home">
-                  <div class="shipping-checkbox-rect checked" id="check-home"></div>
-                  <div class="shipping-label-text">Home delivery</div>
+          <!-- Video Section Key Overlay -->
+          <div class="video-key-overlay" id="video-key-overlay">
+            <div class="key-components video-key-components selected" id="video-key-wrapper">
+              <!-- Trigger Label -->
+              <div class="key-trigger-btn label_link_button_small_texts" id="video-key-trigger-btn" style="cursor: default; pointer-events: none;">
+                <span style="color: var(--primitive-black);">insert the key to dip in</span>
+              </div>
+              
+              <!-- PIN Input Fields -->
+              <div class="pin-input-field" id="video-pin-input-field" style="display: flex;">
+                <div class="pin-input-slot" data-index="0">
+                  <span class="pin-digit"></span>
+                  <div class="pin-line"></div>
                 </div>
-                <div class="shipping-option-row" id="row-pickup">
-                  <div class="shipping-checkbox-rect" id="check-pickup"></div>
-                  <div class="shipping-label-text">Pick-up in Naples</div>
+                <div class="pin-input-slot" data-index="1">
+                  <span class="pin-digit"></span>
+                  <div class="pin-line"></div>
+                </div>
+                <div class="pin-input-slot" data-index="2">
+                  <span class="pin-digit"></span>
+                  <div class="pin-line"></div>
+                </div>
+                <div class="pin-input-slot" data-index="3">
+                  <span class="pin-digit"></span>
+                  <div class="pin-line"></div>
+                </div>
+                <div class="pin-input-slot" data-index="4">
+                  <span class="pin-digit"></span>
+                  <div class="pin-line"></div>
+                </div>
+                <div class="pin-input-slot" data-index="5">
+                  <span class="pin-digit"></span>
+                  <div class="pin-line"></div>
                 </div>
               </div>
-
-              <!-- Address details block -->
-              <div class="checkout-address-block" id="checkout-address-block">
-                <div class="address-checklist-line">
-                  <div class="checklist-label" style="font-size: 14px;">SHIPPING ADDRESS</div>
-                  <input type="text" class="address-input-field" placeholder="STREET NAME AND NUMBER">
-                  <div class="checklist-line-separator" style="width: 208px;"></div>
-                </div>
-                <div class="address-checklist-line">
-                  <div class="checklist-label" style="font-size: 14px;">ZIP CODE</div>
-                  <input type="text" class="address-input-field" placeholder="ZIP CODE">
-                  <div class="checklist-line-separator" style="width: 208px;"></div>
-                </div>
-                <div class="address-checklist-line">
-                  <div class="checklist-label" style="font-size: 14px;">CITY</div>
-                  <input type="text" class="address-input-field" placeholder="CITY">
-                  <div class="checklist-line-separator" style="width: 208px;"></div>
-                </div>
-              </div>
+              <!-- Error message -->
+              <div class="key-error-text" id="video-key-error-text" style="display: none;">key not valid</div>
+              <!-- Instruction text -->
+              <div class="video-key-info-text" id="video-key-info-text">The key is printed on the last page of the magazine</div>
             </div>
-
-            <!-- Place Order button -->
-            <div class="checkout-button-container" id="submit-order-btn">
-              <button type="submit" style="background:none; border:none; outline:none; cursor:pointer;" class="checkout-button-text">Checkout</button>
-            </div>
-          </form>
+          </div>
 
         </div>
       </div>

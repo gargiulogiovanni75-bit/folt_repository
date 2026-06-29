@@ -2,7 +2,7 @@
 
 position: relative;
 width: 1728px;
-height: 7022px;
+height: 7760px;
 overflow-y: scroll;
 
 background: #FFFFFF;
@@ -198,7 +198,7 @@ position: absolute;
 width: 424px;
 height: 94px;
 left: 625px;
-top: 6439px;
+top: 7179px;
 
 font-family: 'Helvetica Now Text';
 font-style: normal;

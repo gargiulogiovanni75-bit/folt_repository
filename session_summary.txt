@@ -87,23 +87,359 @@ Key Technical Achievements:
      - Configured the remote to `https://github.com/gargiulogiovanni75-bit/folt_repository.git` and successfully pushed the code to the private repository on the `main` branch.
      - Restored the remote URL to a clean configuration to protect the Personal Access Token from being stored in plaintext.
 
+ 14. Removal of the bottom black rectangle (Rectangle 4) & update to the Order Issue 01 Button styling:
+      - Removed `<div class="rectangle-4"></div>` from `index.html` and deleted the corresponding `.rectangle-4` style rule in `style.css`.
+      - Updated the `.order-issue` button layout in `style.css` using the layout CSS provided (flex row, width 380px, height 80px, left 674px, top 6612px).
+      - Configured `.order-issue` as a text_only button: default state has transparent background, no borders, and text color `var(--color-text-primary)` (black); hover state applies text-decoration: underline.
+      - Added `white-space: nowrap;` to prevent the button text from wrapping.
+      - Recompiled production assets successfully with `npm run build`.
+
+ 15. Integration of Figma Color Tokens:
+     - Parsed the `token_colore.json` file.
+     - Declared custom CSS variables in the `:root` block of `style.css` covering primitive colors, text states, icons, strokes, surfaces, and retro windows.
+     - Systematically replaced hardcoded hex colors throughout `style.css` (primary page, about page, community page, checkout page, and virus styles) with color token variables.
+     - Updated inline CSS colors in `virus.js` to reference the new CSS variables (such as `var(--color-surface-main)`, `var(--color-text-disabled)`, and `var(--color-text-primary)`).
+     - Successfully built the application and confirmed Vite bundling output.
+
+  16. Custom Sliding Underline Animations & Skip-Ink Baseline Positioning:
+      - Wrapped the text of the order button (`.order-issue`) and the contact links (`.contact-email-block a` and `.contact-insta-block a`) inside `<span>` tags in `index.html`.
+      - Created custom `::after` pseudo-elements on `.nav-link`, `.order-issue span`, and `.contact-email-block a span` / `.contact-insta-block a span`.
+      - **Baseline Alignment & Skip-Ink Effect**: Unified all custom underlines to sit exactly 4px below the typographic baseline (adjusted per font-size: small 20px texts to `bottom: -1px`, medium 32px to `bottom: 1px`, big 51px to `bottom: 5px`).
+      - **Descender Interruptions**: Added a horizontal `text-shadow` mask (`2px 0 0 var(--color-surface-main)`, etc.) to elements and spans while placing the absolute line element behind the text shadow (`z-index: -1`). This automatically cuts the underline 2px before and after descender characters (like g, j, p, q, y), keeping the letters legible and visually premium.
+      - Standardized the sliding underline animation (scaling horizontally from 0 to 1 with changing `transform-origin` left/right for an elegant entrance/exit transition).
+      - Set the underline background to `currentColor` so it matches the active text color.
+
+  17. Checkout Page Redesign & Page Switcher Routing Toggles:
+      - Wrapped the FØLT logo in the checkout page inside a link `<a href="#" id="checkout-logo-btn">`.
+      - Redesigned the checkout page layout in `index.html` and `style.css` using absolute canvas coordinates (`1728px` by `1090px`) split into a Left Column (personal details and fulfilment section) and Right Column (order summary, payment selectors, card fields, and submit button).
+      - Added CSS override rules to completely hide the header navigation bar (`.main-header`) when on the checkout page (`body[data-page="checkout"]`).
+      - Bound click listeners to `#checkout-logo-btn` to trigger `switchPage('primary-page')` and reset the page scroll position to the top.
+      - Implemented shipping options toggle logic: selecting Home delivery displays address fields and calculates price as €5 Shipping / €45 Total; selecting Local pickup displays affiliated hubs, sets price to €0 Shipping / €40 Total, and allows interactive hub selection.
+      - Added payment option toggle logic: selecting Credit card displays the card form fields and makes them required; selecting PayPal collapses the card block.
+      - Verified successful bundler compilation and asset outputs using Vite.
+
+  18. Global Interactive Particles Background Persistence:
+      - Moved the `<canvas id="particles-bg-canvas">` element in `index.html` out of the `#primary-page` scope, making it a direct child of `<body>` so it remains loaded across page switches.
+      - Simplified the visibility and opacity controller `updateCanvasVisibility()` in `main.js` so that the particles background does not fade out at the bottom of the primary page, and stays fully visible (opacity 1) on the checkout page.
+
+  19. Standardized Premium Checkbox Design & Default Unchecked State:
+      - Standardized all checkboxes (`.shipping-checkbox-rect`) on the Checkout page to use custom active unchecked, active checked, and disabled states.
+      - Applied a clean 18x18px bounding box with 2px borders and border-radius.
+      - Implemented unchecked/disabled borders using Figma color variables (`var(--color-stroke-primary)` and `var(--color-stroke-disabled)`).
+      - Added a vector-based checkmark SVG (`12px` by `9.4px`, `#FFFFFF`) centered inside a solid black background when active and checked.
+      - Configured all checkboxes to be unchecked (`active_unchecked` state) by default on page load.
+      - Set the default shipping summary to `—` and total price summary to `€40`.
+      - Hided dependent form sections (Address block, Card details form) by default (`display: none`), and removed their default required properties in `index.html`.
+      - Implemented form submit validation in `main.js` to ensure the user has selected both a shipping option and a payment option before allowing form submission, displaying informative alert messages.
+
+  20. Checkout Input Fields, Checkbox Toggles, and Form Validation Refinements:
+      - Added PASSWORD checklist field (Label: Password, Placeholder: Password, required) under the personal details section, placed after the Email Address field.
+      - Standardized all checklist input fields so that labels and placeholders match exactly (Name, Date of birth, Expiration date, etc.).
+      - Standardized input fields and placeholder typography to a font-size of 12px matching the Figma spec.
+      - Configured baseline divider separator border-color to #979797 by default, and implemented CSS focus-within behavior to dynamically change the border-color to black (#000000) when the input is focused.
+      - Refactored checkbox toggle logic so that clicking an already checked shipping or payment option unchecks it, collapses its sub-form, and resets price calculations.
+      - Implemented reactive form validation that disables the checkout button by default, enabling it only when a fulfilment option is selected, a payment option is selected, and all active/visible text inputs contain text.
+      - Defined styling for the disabled button container state (opacity: 0.5; pointer-events: none) and set white-space: nowrap to prevent checkout text wrapping.
+      - Removed the "Last name" input field from the personal details checklist.
+      - Changed all checkout text labels and placeholders from ALL CAPS to Sentence Case (e.g. "Name", "Email address", "Password").
+      - Repositioned the address and card details forms to expand dynamically inline directly below their respective checkbox row options, naturally pushing down subsequent rows (Local pick up and PayPal, respectively).
+      - Removed the credit card SVG icon from the Credit or debit card option.
+      - Configured payment option labels to use the standard "label_link_button_small_texts" typography styles.
+
+  21. Checkout Input Fields Gap & Fulfilment Section Position Update:
+      - Reduced and uniformed the gap between input fields to 20px (updated `.checkout-checklist`, `.checkout-address-block`, and `.checklist-debit-card` to `gap: 20px` in `style.css`).
+      - Moved the fulfilment section (`.checkout-shipping-section`) to coordinate x 225 (`left: 225px` in `style.css`), leaving the y coordinate unchanged at 705px.
+
+  22. Custom Crosshair Mouse Cursor Implementation:
+      - Embedded custom SVG cursor (plus/crosshair shape, 20x20px) globally by creating a fixed `#custom-cursor` element in `main.js` which tracks the mouse position.
+      - Applied `mix-blend-mode: difference;` and `fill="white"` to the SVG cursor path to ensure it is visible everywhere (displays as black on white surfaces, and white on black surfaces).
+      - Added CSS to hide the native system cursor globally (`cursor: none !important;`) on all elements.
+      - Ensured touch devices hide the custom cursor block using media query `@media (pointer: coarse)`.
+
+  23. Filled and Text-Only Button Styling Specifications:
+      - **Filled Buttons (`.btn-filled`)**: Defined states for filled buttons to invert colors on hover (background transitions to white, text to black) and transition the stroke border-color to `transparent` (ensuring no visible border stroke in hover state). Applied this to `.checkout-botton-container`.
+      - **Text-Only Buttons (`.btn-text`)**: Configured all text-only buttons (such as `#buy-button`, `.nav-link`, `.contact-email-block a`, and the retro "log in" button in the virus screen) to receive the custom sliding underline hover effect via `::after` scaling. Wrapped the virus "log in" text in `<span>` and assigned the class `btn-text` in `virus.js`.
+
+  24. Skip PIN overlay during Virus Attack (Key Components):
+      - Replaced the previous log in flow with a custom key PIN overlay skip component.
+      - **Trigger**: Shows a button "insert the key" in the top-right of the virus screen (`right: 40px; top: 39px;`), styled in small size (Helvetica, 20px, `#979797` medium_grey) with slide-in underline on hover/tapped, with no text-shadow outline.
+      - **Fixed Position**: The component is anchored in the top-right and expands downwards without shifting its layout position.
+      - **Input Slots**: When clicked, the trigger button opens a sequence of 6 pin input slots (`width: 23px`, `height: 23px`) each containing a placeholder asterisk `*` and an underline key line. An absolute close icon (`x`) is positioned at `left: -49px; top: 13px;` next to it.
+      - **PIN Checking Logic**: 
+        * Typing numbers (0-9) dynamically fills the slots from left to right.
+        * Pressing `Enter` verifies the pin against `"111223"`. If correct, it bypasses the virus screen immediately to the primary page; otherwise, the slots/lines turn red (`color: var(--color-text-error)`).
+        * Pressing `Backspace` deletes digits. Typing or deleting clears the error red state.
+        * Clicking the `x` close button collapses the component and resumes the normal virus attack.
+        * Standardized typing key blocking: when the PIN overlay is active (`pinActive` is true), global keydown events are captured exclusively by the PIN logic and do not leak into the background virus typing text.
+
+25. Header Link Visual Corruption Fix:
+    - Fixed the distorted/thick black outlines of the header navigation links ("Community", "About", "Shop") under `mix-blend-mode: difference`.
+    - Changed the `.nav-link` text shadow color from `var(--color-surface-main)` (white) to `#000000` (black). Because black acts as the identity element under difference blend-mode, it behaves cleanly over any backdrop color, creating the intended gap cutout for lines without text distortion.
+
+26. Post-PIN Bypass Blank Page and Scroll Lock Fix:
+    - Integrated clean coordination between `virus.js` and `main.js` via a custom `'virus-attack-finished'` event dispatched upon typing the correct PIN.
+    - Added a `'virus-attack-finished'` listener in `main.js` that:
+      * Resets scroll-locking variables (`isLocked = false`, `isReleasing = null`, `isProgrammaticScrolling = false`).
+      * Stops the scroll lock loop by cancelling the active `tick` animation frame.
+      * Restores body overflow style settings and removes the `virus-lock` lock class.
+      * Sets the Lottie animation scrub progress back to 0.
+      * Calls `switchPage('primary-page')` and scrolls to top `(0, 0)` to show the primary page correctly.
+      * Triggers recalculation of the scroll targets and scales the canvas viewport.
+
+27. Skip PIN Component Active Styling & Background Dimming:
+    - Implemented a 60% opacity reduction (setting opacity to 0.4) on all other virus screen sections (`#virus-header-left`, `#virus-cascade-layer`, `#virus-typing-layer`) when the skip PIN input is active, while keeping the key component wrapper fully highlighted at 100% opacity.
+    - Added the `.selected` class to the key components wrapper when active, which transitions the text color, PIN slot digit colors, input lines, and close button path stroke to solid black (`#000000`).
+
+28. Audio Autoplay / Safari Web Audio Lock Fix:
+    - Removed `mousemove` from the global `audioEvents` listener list. Instantiating the Web Audio `AudioContext` on mouse movement outside a valid user click/tap/keydown gesture is rejected by modern browsers and permanently blocks/mutes the AudioContext on iOS and macOS Safari.
+    - Restricting audio initialization events to actual user click/touch gestures (`mousedown`, `pointerdown`, `touchstart`, `keydown`) successfully enables beeps and pink noise breathing audio on user interaction.
+    - Added content-type checking during `/respiro.mp3` file fetches to cleanly fall back to synthesized pink noise, avoiding DOMException errors in the browser console when Vite returns `index.html` on a 404 response.
+
+29. Underline Alignment & Skip-Ink Standardization:
+    - Adjusted the `bottom` coordinates for custom underlines across the site to sit exactly 4px below the typographic baseline based on the font-size (bottom to `0px` for 20px font small texts, `2px` for 32px font medium texts, and `6px` for 51px font big texts).
+    - Removed any white text-shadow mask or outline from the skip PIN component trigger `.key-trigger-btn span`. It now has a solid grigio medio/black style (with a custom underline at 4px below baseline) and no text-shadow cutout.
+
+30. Skip PIN Redirect and Audio Loop Fixes:
+    - Added a double-initialization guard (`window.__virusAttackInitialized`) at the beginning of `initVirusAttack()` to prevent duplicate window keydown and mousemove event listeners when re-invoked (e.g. on hot reloading or double script loads).
+    - Silenced the Web Audio Context completely by adding and calling `audioSystem.suspend()` inside `finishVirusAttack()`.
+    - Cleared the active `typeInterval` typing animation loop inside `finishVirusAttack()` to prevent it from continuing to run and triggering `startInputPhase()` (which re-adds keydown handlers) in the background.
+    - Added `e.stopImmediatePropagation()` on the Enter key down inside the PIN input listener to prevent other key down listeners (like the input answer handler) from catching the same event and calling `finishVirusAttack()` twice.
+    - Replaced `window.scrollTo` with `startProgrammaticScroll(0, { behavior: 'instant' })` inside the `'virus-attack-finished'` listener in `main.js` to prevent the page from locking on scroll-lock triggers upon return from the virus screen.
+
+31. Skip PIN Slots Display Masking & Reset:
+    - Configured the PIN slots HTML in `virus.js` to be empty by default (no placeholder characters shown on load).
+    - Modified `updatePinDisplay()` in `virus.js` to display an asterisk (`*`) for every typed slot (masking the input) and an empty string (`""`) for untyped slots, keeping the actual validation PIN at `111223`.
+
+32. Navigation Link Underline Baseline Alignment & ORDER ISSUE 01 Offset:
+    - Wrapped text content of persistent navigation links (`Community`, `About`, `Shop`) in `<span>` tags.
+    - Updated CSS rules to target `.nav-link span` and `.nav-link span::after` instead of targeting the container directly. This bypasses the fixed wrapper heights.
+    - Adjusted the `.order-issue span::after` custom underline bottom property from `6px` to `1px`. This moves it 5px further away (downwards) from the font baseline, while keeping other links positioned at 4px below their baseline.
+
+33. Smooth Scroll Lock Release Transition:
+    - Fixed a loop bug in `tick()` where `requestAnimationFrame(tick)` was continuously scheduled in the background even after centering or release slides had finished. The loop now correctly terminates (`tickId = null`) when active scrolling animations finish.
+    - Sped up the automatic release slide ease factor from `0.08` to `0.2` inside `tick()` to make scroll unlocking faster.
+    - Updated `handleScrub()` to accept the user's manual scroll wheel/swipe inputs (`deltaY`) during the release phase. Moving the wheel in the direction of the release immediately increments `lockScrollY` (by `deltaY * 0.6`) and unlocks the page lock immediately if it crosses the release boundary, preventing the scroll from feeling frozen or stuck.
+
+34. Swap & Shift Paranoia and Digestive Images & Page Numbers:
+    - Inverted the positions of the `paranoia` and `digestive` image containers inside the circular input scroll scrubbing section, and shifted both downwards by a total of 130px (80px + 50px).
+    - Updated `.digestive-container` to start at `top: 4583px`, `left: 219px` (left column, top of the section).
+    - Updated `.page-num-41` (digestive page number) to sit at `top: 4965px`, aligned exactly to the left edge of the image at `left: 219px`.
+    - Updated `.paranoia-container` to start at `top: 5113px`, `left: 1152px` (right column, bottom of the section).
+    - Updated `.page-num-35` (paranoia page number) to sit at `top: 5750px`, aligned exactly to the left edge of the image at `left: 1152px`.
+
+35. Affiliate Hub Selector Typography & Colors:
+    - Updated `.affiliate-hub` styling in `style.css` so that the affiliate hub text elements (Napoli, Milano, Roma) are styled in medium grey (`var(--color-text-secondary)`) in their default state.
+    - Added the hover pseudo-class so that the texts change to primary black (`var(--color-text-primary)`) when hovered (`.affiliate-hub:hover`), as well as when active/selected (`.affiliate-hub.active`).
+    - Removed the `active` class from the Napoli hub (`#hub-napoli`) in `index.html` so that all 3 options start in the default medium grey state on initial page load.
+    - Implemented selection hiding in `main.js`: clicking an inactive hub selects it and hides the other two hubs (`display: none`). Clicking the already active hub deselects it and reveals all three options again (`display: ''`).
+    - Reset selection/visibility when switching fulfilment modes or unchecking "Local pick up".
+
+36. Video Player View & Playlist Controls:
+    - Added the HTML structure for `#video-page` inside `index.html` featuring a fullscreen `<video>` element, a top-left difference FØLT logo returning to the primary page, and a custom bottom bar overlay.
+    - Configured the page switcher in `main.js` to set the body's `data-page` attribute to `"video"` when the video page is active.
+    - Configured the background of `.video-canvas` to `var(--color-surface-main)` (white) in `style.css` so that when `#video-page-content` has its opacity reduced to 10%, the white background shines through, giving a faded white blending effect rather than a black screen.
+    - Programmed the key component in `main.js`: clicking the transparent particles logo button switches page to the video player, starts playing the first video immediately in the background, mutes the audio (`videoPlayer.muted = true`), dims the player elements behind the prompt to 10% opacity, and displays the centered PIN prompt with the custom label `"insert the key to dip in"`.
+    - Implemented keyboard interception: typing digits shows asterisks inside the 6 slots, Backspace deletes characters, and pressing Enter checks if the PIN equals `"111223"`.
+    - If correct, the key overlay is hidden, the background opacity goes back to 100%, the video is unmuted (`videoPlayer.muted = false`), and the user continues watching the video. 
+    - If incorrect, the asterisks disappear completely from the slots, the input keylines turn red (matching the `var(--color-stroke-error)` token, which is `#CD0000`), and a left-aligned supporting text message `"key not valid"` (Helvetica Now Text, size 12px, color `#CD0000`) appears exactly 15px below the input fields.
+    - Once the user begins typing new characters, all error indicators reset: the slots and keylines turn back to normal black, the error message is hidden, and the new digit's asterisk is rendered.
+    - Placed the top-left video FØLT logo (`#video-logo-btn`) outside of the `#video-page-content` wrapper so that it always remains at 100% opacity, unaffected when the player elements are dimmed to 10% opacity.
+    - Removed the close button "X" (`#video-key-close-btn`) from the HTML layout and assigned its exact exit/cancel functionality directly to the video page FØLT logo button (`#video-logo-btn`).
+    - Clicking the FØLT logo on the video page cancels the prompt, pauses the video player, clears inputs, hides the prompt overlay, and returns the user to their previously active section (`primary-page` or `checkout-page`).
+    - Fixed a query selector conflict in `virus.js`: scoped the `pinSlots` element query selection to `container.querySelectorAll('#pin-input-field .pin-input-slot')` instead of a global `document.querySelectorAll('.pin-input-slot')`. This resolved a bug where the dynamic virus attack PIN digits were being rendered inside the hidden video page PIN input slots (which were higher in the DOM tree) instead of the active virus container slots.
+    - Integrated the same error visual state logic inside the virus attack key component in `virus.js`: wrapped the slots in `.pin-input-wrapper` and added the `#virus-key-error-text` message. Upon entering an incorrect PIN, the asterisks disappear, the keylines turn red (using `var(--color-stroke-error)`), and `"key not valid"` (font-size 12px) appears left-aligned exactly 15px below the slots.
+    - Typing a new digit resets the virus page error state, turning lines back to black and hiding `"key not valid"`.
+    - Changed the trigger button text in the virus attack section from `"insert the key"` to `"insert the key to skip"`.
+    - Configured a completely invisible button `#transparent-particles-logo-btn` in `style.css` (`background: transparent`, `border: none`, `cursor: pointer`) to serve as the interactive click target for the background particles' rigid collision body.
+    - Programmed `#transparent-particles-logo-btn` inside `main.js` to calculate its dimensions and position (`width`, `height`, `left`, `top`) dynamically on window resize and scroll to exactly match the scale and centering of the offscreen canvas SVG mask.
+    - Programmed the button's display state (`display: block` vs `display: none`) to dynamically sync with whether the background particles canvas has an opacity greater than 0, preventing invisible button clicks from blocking standard content elements when particles are hidden.
+    - Bound `transparentParticlesLogoBtn` click event to trigger the video page navigation switcher, remember navigation history, and launch the centered key prompt.
+    - Restored `#header-logo-btn` and `#checkout-logo-btn` to their previous functions (returning to the top of the primary page).
+    - Implemented linear video playback loop: plays Chewingpiece (Caterina di Munzio), Untitled (Gaia Credentino), and Kuleshov (Erica Aurora M.) in order.
+    - Bound Back/Next buttons to skip to previous/next video, and registered ended event to autoplay the next video.
+
 CURRENT BUILD STATUS:
 ---------------------
-- Production bundling compiles successfully via "npm run build".
-- Vite dev server is running locally on port 5173 ("npm run dev").
+- Production bundling compiled and verified.
+- Vite dev server is running locally on port 5174 ("npm run dev").
 
 GOAL & NEXT STEPS FOR NEW SESSIONS:
 -----------------------------------
-1. Verify that the landing page loads directly to the primary page.
-2. Move the mouse to trigger the 1-second freeze lock followed by the virus cascade.
-3. Observe that "click to hear the sound" and "log in" are displayed in the top corners during the virus attack.
-4. Clicking anywhere (to interact with windows/typing) unlocks the audio context, unmuting the beeps and automatically dimming the "click to hear the sound" text.
-5. "log in" has a pointer cursor but does nothing when clicked.
-6. Scroll down to the `cosa_mi_consuma_gaia` image section and check that particles background trails pass cleanly behind/through the white portions of the illustration.
-7. Observe that "The process that overrides the result" text is no longer displayed on the primary page (it was previously positioned vertically at `left: 219px; top: 2712px;`).
-8. Verify that the "We don't want to tell stories..." text block at `top: 2712px` has been shifted to `left: 225px` and aligns left with the "Community" header link.
-9. Verify that the vertical "Each chapter of FØLT..." text starts with a 90px indentation (space) at the beginning of the first line.
-10. Confirm that the vertical texts `.manifesto-text` and `.each-chapter` are positioned at `left: 100px` so that their last line of text has its baseline aligned precisely with the `40px` logo gutter (remaining inside the content margin).
-11. Confirm that typography values are loaded dynamically via CSS variables (Helvetica uses weight 500 and -3% tracking everywhere).
-12. Keep the portraits folder "immagini/portraits/" ignored for now.
-===========================================================================
+1. Verify that hovering over the invisible rigid collision logo (the centered FØLT logo that background particles collide with) shows a cursor pointer, and clicking it enters the video player section, starting the video in the background muted and dimmed to 10% opacity, and displaying the centered key prompt ("insert the key to dip in").
+2. Verify that typing "111223" and pressing Enter dismisses the key overlay, restores background opacity to 100%, unmutes the audio, and lets the user continue watching the video from its current position.
+3. Verify that typing a wrong PIN in either the video key prompt or the virus attack key prompt clears all asterisks from the slots, turns the slot borders red (using var(--color-stroke-error)), and displays "key not valid" (font-size 12px) aligned to the left exactly 15px below the slots.
+4. Verify that typing any new number key in either section resets the red error color back to black and hides the "key not valid" message.
+5. Verify that clicking the top-left FØLT logo button on the video page (which always remains at 100% opacity) cancels the input, clears slots/errors, and returns the viewport back to the previously active section (e.g. primary page or checkout page).
+5. Verify that clicking the header FØLT logo or the checkout FØLT logo correctly returns the user to the top of the primary page.
+6. Verify that clicking Next/Back buttons slides underlines and skips through Chewingpiece, Untitled, and Kuleshov, displaying respective names in the bottom bar.
+7. Verify that once a video ends, the next video in order starts playing automatically.
+8. Verify that clicking the top-left logo in the video page stops playback and returns the user to the top of the primary page.
+9. Verify that selecting "Local pick up" displays the affiliated hubs list, with all three options starting in the medium grey state, and that hovering or clicking them turns the text to black.
+10. Verify that clicking one of the three hubs hides the other two options, leaving only the selected one visible, and clicking it again restores all options.
+11. Verify that the Digestive image is displayed on the left column (with Page Num .41 directly below it, aligned to its left edge) and the Paranoia image is displayed on the right column (with Page Num .35 directly below it, aligned to its left edge), both shifted down by 130px.
+12. Verify that the transition from Lottie circular scroll scrubbing back to normal page scrolling is smooth and does not lock/freeze the scroll momentum.
+13. Verify that the navigation links' underlines sit exactly at the same distance from the baseline as the "insert the key" button.
+14. Verify that the "ORDER ISSUE 01" button's underline is positioned 5px further away from the baseline (at bottom: 1px).
+
+37. Figma Keycard Layout & Error State Updates:
+    - Updated `.key-components.selected` layout to match the Figma CSS specifications: width `245px`, height `117px`, padding `26px`, gap `45px`, with a transparent background (removed solid `#FFFFFF` fill).
+    - Set `.pin-input-field` width to `193px`, height to `0px`, and gap to `11px` when active.
+    - Configured `.pin-input-slot` to width `23px`, height to `0px`, and positioned `.pin-digit` absolutely using `top: auto !important;` and `bottom: 8px;` to sit clearly on top of (above) the horizontal line.
+    - Positioned `.key-error-text` absolutely inside the card at coordinates `left: 26px`, `top: 98px`, width `67px`, height `12px`, font-size `12px`, color `#CD0000`.
+    - Removed the intermediate `.pin-input-wrapper` container from both `index.html` and `virus.js`.
+    - Refactored JS event handlers in `virus.js` to target `#pin-input-field` directly instead of the removed wrapper.
+    - Disabled the text link hover underline animation on the trigger button's span (specifically `#video-key-wrapper .key-trigger-btn span`) in selected/active states.
+    - Added the instruction text label `"The key is printed on the last page of the magazine"` absolutely positioned below the keylines in the video section overlay: width `260px`, height `40px`, `left: 26px` (left-aligned with component fields), `top: 156px` (shifted exactly `65px` lower than the keylines).
+
+38. Checkout Fields Validation & Error Styling:
+    - Added `<div class="checkout-error-text" style="display: none;"></div>` under all 14 checkout fields in `index.html` and assigned distinct `id` attributes to personal details inputs.
+    - Implemented `.checkout-error-text` styling in red (`var(--color-stroke-error)`) and set `.error` parent field wrappers to `height: auto !important;` to allow dynamic layout expansion.
+    - Colored invalid separator lines in red (`border-bottom-color: var(--color-stroke-error) !important;`) under `.error` wrappers.
+    - Added `validateInputField(input)` in `main.js` to check for empty values on active fields and validate email formats.
+    - Bound `blur` listeners to trigger field validations on focus out, and `input` listeners to reset error lines and labels immediately when the user starts typing.
+    - Added `clearFieldErrors(container)` helper to reset errors inside collapsible/switchable details blocks.
+    - Configured overall form submission to block when active fields are invalid and focus the first invalid input.
+39. Collettivo Names Layout & Biographies (11 members list):
+    - Wrote new collettivo_names CSS specifications to `community_page.txt`.
+    - Restructured the community section in `index.html` with 11 rows: Nicole Sciamanna, Giovanni Gargiulo, Aurora Erica M. - Envi, Caterina Di Munzio, Code.627, Lorenz Holzer, SIN, Michela Marcello, Federico Moretti, Gaia Credentino - Pho, and Rossella Starita.
+    - Updated each row to map to the correct portrait asset (like `lorenz_portrait.png`, `gaia_portrait.png`, etc.) and set biographies according to the specifications.
+    - Configured row layout properties in `style.css` (changed `.community-frame-30` top to 160px, left to 33px, gap to 5px, width to 2189px, and height to auto).
+    - Set `.artist-row-*` to `overflow: visible` and `height: auto`, letting rows adapt naturally to name box size + expanded biography.
+    - Set `.artist-name-*` elements to `height: 158px` and `overflow: visible` to act as spacing boxes. This ensures that with a 5px gap, names sit close together but never touch or overlap. The `212px` font overflows these boxes cleanly and is completely visible with absolutely zero vertical clipping.
+    - Configured the biography frames `.artist-frame-27` and `.artist-frame-28` with `max-height: 0px`, `overflow: hidden`, `opacity: 0`, and `margin-top: 0px` as the default collapsed state.
+    - Mapped hover effects to expand biography frame `max-height` to `300px`, `opacity` to `1`, `margin-top` to `40px` (gap between name and description/image to completely prevent overlap), and slide in using `transform: translateY(0)`, smoothly pushing down subsequent rows in the column.
+    - Set the community canvas width to `1728px` (in both HTML `data-original-width` and CSS) and set `overflow: visible` on `.community-canvas-mockup`. This stops the layout from scaling down, allowing the name texts to overflow the right side of the viewport exactly like in the Figma MacBook 16" design, while the header and bottom texts align perfectly to the screen bounds.
+    - Added `@font-face` declarations at the top of `style.css` to load the actual `Helvetica Now Display` fonts (Regular, Medium, and Bold) from the local repository, activating the exact display typography for `.community_names_text` with weight `500` (Medium).
+    - Removed the black border stroke (`border: none`) from portrait images (`.artist-image-12` and `.artist-image-13`).
+    - Configured the name rows `.artist-row-*` with `width: fit-content` (and `max-width` constraints) to ensure the hover trigger area exactly matches the width of the name text and doesn't span the empty space to the right of the screen.
+    - Extended the community canvas height to `3100px` (in both HTML `data-original-height` and CSS) and anchored the bottom text blocks to the bottom of the canvas, ensuring that the expanded list never overlaps with the footer texts.
+    - Removed the sentence *"If a copy has already been secured, please Log In."* from the bottom membership text inside `index.html`.
+    - Structured the *"join the community"* button with `btn-text` class and `<span>` tags in `index.html` so it inherits the slide-in underline hover animation of all other only-text buttons.
+    - Set `pointer-events: none` on `.community_names_text` and `pointer-events: auto` on `.artist-frame-*` inside `style.css`. This ignores the overlapping text curves for hover detection, making the hover trigger precise to the pixel based solely on the clean `158px` rectangular box boundaries.
+
+40. Shorten Primary Page Height & Anchor Buy Button:
+    - Reduced `.primary-canvas` and `.primary-canvas-mockup` height in `style.css` by 150px (from `7022px` to `6872px`).
+    - Adjusted the `.order-issue` button's absolute `top` property in `style.css` by 150px (from `6612px` to `6462px`) to maintain its exact distance from the bottom of the page.
+    - Updated `data-original-height` attribute on the primary page canvas in `index.html` from `7022` to `6872`.
+    - Modified the fallback height for the primary canvas container in `main.js` from `7022` to `6872`.
+    - Updated the primary page design height (to `6872px`) and the button `top` coordinates (to `6289px`) in `prymary_page.txt`.
+
+41. Shorten Primary Page Height & Anchor Buy Button (Additional 200px):
+    - Reduced `.primary-canvas` and `.primary-canvas-mockup` height in `style.css` by 200px (from `6872px` to `6672px`).
+    - Repositioned the `.order-issue` button absolute `top` property in `style.css` by 200px (from `6462px` to `6262px`), maintaining its exact distance of 410px from the bottom of the page.
+    - Updated the `data-original-height` attribute on the primary page canvas in `index.html` from `6872` to `6672`.
+    - Modified the fallback height for the primary canvas container in `main.js` from `6872` to `6672`.
+
+42. Add Hubs Coordinate Label to Primary Page:
+    - Added a div with the text content "HUBS: 40.8518° N (NA) // 45.4642° N (MI) // 41.8902° N (RM)" inside the primary page canvas in index.html.
+    - Added styling class .hubs-label in style.css, absolutely positioning it 40px from the bottom and 40px from the right boundary of the canvas container with right-aligned Helvetica styling.
+
+43. Add "The infection never truly leaves the system" Virus Trigger Button:
+    - Added a button element with class "virus-trigger-btn" and content "The infection never truly leaves the system" at the bottom-left of the primary page in index.html.
+    - Styled it with absolute positioning bottom: 40px, left: 40px (symmetrical to hubs-label) with plain Helvetica layout and completely static hover behavior.
+    - Updated initVirusAttack(force) in virus.js to support programmatic force-activation, immediately transitioning into the cascade and input phases.
+    - Handled return logic in main.js, ensuring that once the virus is solved/bypassed, if triggered by this button, the page scrolls back to the bottom of the primary page instead of the top.
+
+44. Loader, Order Confirmation, and Paperface Tool Integration:
+    - Configured paperface_tool sub-project in vite.config.ts to build output directly into the main website's public/paperface_tool/ directory.
+    - Updated App.tsx inside paperface_tool to communicate with the host site via window.parent.postMessage when Confirm is clicked.
+    - Added new HTML sections in index.html for #loader-page (fullscreen video loader.mp4), #order-confirmed-page (rendering Lottie animation and join the community button overlay), and #paperface-page (rendering the React app in a fullscreen iframe).
+    - Copied workspace root images/ directory to public/images/ so Lottie fetches portraits correctly at runtime.
+    - Modified main.js to intercept checkout form submits, show loader video for 1.5 seconds, load the order confirmed Lottie animation (modifying the JSON dynamically to hide the vector 'testi' text layer), route "join the community" clicks to the paperface iframe, and transition back to the community page of the normal website upon receiving 'paperface-confirm' message.
+    - Added CSS layouts in style.css to manage fullscreen iframe and video heights, align the confirmation button in the center of the canvas, and hide the main header on loader/confirmation/paperface flows.
+
+45. Order Confirmed Page Adjustments & Lottie Initialization:
+    - Disabled native browser HTML5 validation bubbles by adding the `novalidate` attribute to `#checkout-form` in `index.html`, letting the site rely solely on our custom input error UI.
+    - Replaced Lottie's vector "FOLT" text in the top-left of the order confirmed section with a real HTML SVG logo link matching the header, routing to the primary page when clicked.
+    - Hid Lottie's native "FOLT" (`Text Shape 3`) and "JOIN THE COMMUNITY" (`Text Shape`) vector shape layers dynamically in `main.js`.
+    - Removed the small redundant HTML "join the community" button, and converted Lottie's large center text into the interactive link button using `label_link_button_big_texts` typography, complete with hover underline styling.
+    - Deferred Lottie player initialization (`initOrderConfirmedLottie`) in `main.js` to run dynamically inside `switchPage` when the confirmed page becomes visible. This resolves bounds measuring issues inside hidden containers, bringing back the portrait carousel entry animations.
+
+46. Persistent FØLT Logo Button Across Custom Pages & Stacking Fixes:
+    - Added the FØLT SVG logo overlay buttons to the `#loader-page`, `#order-confirmed-page`, and `#paperface-page` sections in `index.html`.
+    - Set `style="z-index: 10000;"` on the logo buttons to prevent them from being hidden behind fullscreen video elements, Lottie SVG tags, and iframe contents.
+    - Combined all logo button event handling in `main.js` to dynamically clean up active states (pausing loader video and resetting paperface iframe source) before redirecting users to the primary page.
+
+47. Logo Variant and Loader Page Adjustments:
+    - Removed the FØLT logo button entirely from `#loader-page` inside `index.html` and cleaned up its listener in `main.js` so it is not visible during the loader video playback.
+    - Updated `.checkout-logo-container` in `style.css` to resize the logo on the checkout page, order confirmed page, and paperface tool page to the small header size (91.02px width and 29.53px height).
+
+48. Lottie Portrait Coordinates Centering & Continuous Looping:
+    - Shuffled the 11 portrait layers dynamically in `main.js` by shifting their coordinates (`offsetX: 1113.85`, `offsetY: 1148.12`) to center them horizontally and vertically inside the $1920 \times 1080$ canvas while preserving their exact Cavalry relative positioning.
+    - Truncated the Lottie animation out-point (`op`) dynamically to frame 28 in `main.js` at runtime, ensuring that the portraits appear and disappear continuously in a seamless 1.12-second loop rather than leaving the section blank for the remaining 9 seconds of the default 250-frame animation.
+
+49. Paperface Tool UI Styling Refactor:
+    - Added CSS rules inside `paperface_tool/src/index.css` for custom toggle switches, range sliders, and action window container layout using the Helvetica typography, matching the Figma specification coordinates and styling rules.
+    - Replaced the React slider UI layout inside `paperface_tool/src/App.tsx` with a refined controls layout (`selectors-section`, `slider-section`, and `operation-buttons-section`), while keeping all original hook events (value adjustments, seed generation, image download, and file uploads) fully functional.
+    - Rebuilt the `paperface_tool` sub-project to compile updated bundle files inside the root public assets directory (`public/paperface_tool/`).
+
+50. Hubs Coordinates Label Button & Direct Route:
+    - Converted the static coordinates text (`HUBS: 40.8518° N (NA) // 45.4642° N (MI) // 41.8902° N (RM)`) at the bottom of the primary page into an interactive anchor button (`#hubs-confirmed-btn`) inside `index.html`.
+    - Modified `.hubs-label` in `style.css` to enable pointer events (`pointer-events: auto;`) and show the cursor pointer (`cursor: pointer;`), while avoiding any visual state modifications on hover as per the user requirements.
+    - Added a click event listener in `main.js` to transition directly to the `#order-confirmed-page` view when the coordinates button is clicked.
+
+51. Order Confirmed Section Text Alignments & Outline Fixes:
+    - Adjusted the local coordinates of the 11 portrait name shape layers dynamically in `main.js` by setting `ks.p.x` to `-1118` (exactly left-aligned with the portrait image edge) and `ks.p.y` to `1200` (directly below the portrait frame).
+    - Removed the white text-shadow outline (which is applied to standard `.btn-text` tags) for the "JOIN THE COMMUNITY" button by setting `text-shadow: none !important;` on `.order-confirmed-join-btn span` in `style.css`.
+
+52. Portrait Name Positioning Coordinates Fix:
+    - Restored the original horizontal X coordinates for the 11 name shape layers in `main.js` to preserve the designer's manual horizontal alignments, and applied a positive relative offset of `+120` to the Y coordinates. This pushes the text outlines downwards below the portrait images while maintaining their exact left-edge alignments.
+
+53. Portrait Name Coordinates Origin Correction:
+    - Corrected the coordinates of the 11 name shape layers inside `main.js` by adding `+1118` to the local X coordinate and `+1250` to the local Y coordinate. This maps the coordinates from center-relative to top-left-relative (since the parent image layers have an anchor point of `[0,0,0]`), positioning the names cleanly below the bottom-left edge of the portraits.
+
+54. Order Confirmed Layout Scaling & Button Offset:
+    - Shifted the "JOIN THE COMMUNITY" button overlay vertically downwards by setting `top: calc(50% + 300px);` in `style.css`.
+    - Rescaled the entire portraits composition (`Composition 1`) to `70%` scale and re-centered its position to `(960 + 153.85 * 0.7, 540 + 608.12 * 0.7)` inside `main.js`. This prevents any bottom portraits or name shape layers from overflowing the browser viewport height bounds (especially on screens with shorter heights), avoiding clipping issues.
+
+55. Individual Portrait Scaling & Text Recovery:
+    - Restored `Composition 1` position `(0,0)` and scale `100%` inside `main.js` to ensure the "ORDER CONFIRMED" and "Check your email" header text shape layers (which are parented to `Composition 1`) stay in their original top-left canvas layout.
+    - Centered and scaled the 11 portrait layers individually in JavaScript by multiplying their scale factor by `0.85` and scaling their coordinate spacing relative to their center point `(-138.08, -608.12)` towards `(960, 540)` at `85%` scale. This keeps the layout spread out as designed, while avoiding bottom clippings and portrait overflows.
+
+56. Canvas Height Expansion & 100% Proportion Restoration:
+    - Increased canvas container height from `1080` to `1300` (`data-original-height="1300"`) inside `index.html`.
+    - Set Lottie height metadata `h` to `1300` and updated individual portrait centering coordinate Y to `650` (to match the center of the `1300px` height) inside `main.js`.
+    - Restored portrait layout spacing scale (`layoutScale = 1.0`) and image size scale (`portraitScale = 1.0`) to 100%, allowing them to spread out exactly as defined in the original `.json` specification.
+    - Adjusted the position of the "JOIN THE COMMUNITY" button overlay vertically to `top: calc(50% + 400px)` inside `style.css`.
+
+57. Lottie Text Alignment & SVG Overflow Restoration:
+    - Reverted the canvas container height to `1080` in `index.html` and reverted Lottie height to `1080` and centering coordinate Y to `540` in `main.js`, keeping the portraits at 100% scale and original spread.
+    - Left-aligned the texts "ORDER CONFIRMED" and "Check your email..." dynamically in `main.js` by setting their X coordinates to exactly `40` (aligning them perfectly with the FØLT HTML logo).
+    - Enabled visible overflow (`overflow: visible !important;`) and bypassed SVG group clipping (`clip-path: none !important;`) for `#order-confirmed-lottie` inside `style.css`. This prevents portraits and names extending below `1080px` from being clipped.
+    - Adjusted the position of the "JOIN THE COMMUNITY" button overlay to `top: calc(50% + 300px)` inside `style.css`.
+
+58. Canvas Height 1300 Expansion with 100% Proportions & Text Alignment:
+    - Re-increased the canvas container reference height to `1300` (`data-original-height="1300"`) in `index.html` and Lottie metadata height `h` to `1300` in `main.js` to natively prevent SVG clipping at the bottom of the viewport.
+    - Maintained portrait spacing layout (`layoutScale = 1.0`) and image size (`portraitScale = 1.0`) at 100% and centered Y coordinate to `540` in `main.js` so that the portraits occupy the page in a spread-out layout exactly as specified in the original `.json` file.
+    - Preserved left-alignment (`X = 40`) for the "ORDER CONFIRMED" and "Check your email..." header texts relative to the FØLT HTML logo.
+    - Adjusted the "JOIN THE COMMUNITY" button overlay to `top: calc(50% + 400px)` in `style.css`.
+
+59. Viewport Scaler parent overflow bypass:
+    - Modified `resizeCanvas()` function in `main.js` to conditionally keep `overflow: 'visible'` for the `.order-confirmed-canvas`'s parent `.viewport-scaler` element, preventing browser-level container clipping from truncating the bottom parts of the viewport canvas on narrower screens.
+
+60. Michela & Caterina Portrait Fine-Tune Shifts:
+    - Shifted `michela_portrait` to the left by `40px` dynamically inside the Lottie initialization loop in `main.js`.
+    - Shifted `caterina_portrait` to the left by `20px` and upwards by `40px` dynamically inside the Lottie initialization loop in `main.js`.
+    - The name labels (since they are parented to the respective portraits) automatically inherit the shifts and stay perfectly aligned relative to the frames.
+
+61. Caterina Portrait Vertical Fine-Tune:
+    - Increased `caterina_portrait` vertical shift from `-40px` to `-140px` inside `main.js`, moving the portrait and its name label 100px higher up to fit optimally.
+
+62. Paperface Tool UI Polish & Active Track Color:
+    - Changed all slider labels in `paperface_tool/src/App.tsx` from uppercase to sentence case (only initial letter capitalized: e.g. "Extrusion length", "Glitch fragments", "Fragment size", "Chaos & variance").
+    - Removed the "ALGORITHM: LINEAR_WARP_GAUSSIAN" footer text block completely from `paperface_tool/src/App.tsx`.
+    - Implemented a custom gradient background style inside the input range inputs, which updates dynamically using React CSS custom variables (`--value-percent`), coloring the active (left) side of the range slider track black and keeping the inactive (right) side grey.
+    - Set the "Confirm" button class to `.confirm-btn` with `color: #000000;`, zero opacity fade, and an underline anim hover effect matching all other text buttons in the window.
+
+63. Giovanni Portrait Fine-Tune Shifts:
+    - Shifted `giovanni_portrait` to the left by `70px` and upwards by `40px` dynamically inside the Lottie initialization loop in `main.js`.
+    - The name label parented to this portrait inherits the shifts automatically.
+
+64. HTML Order Confirmed Title & body_medium_texts styling:
+    - Hid the Lottie vector text layer `Text Shape 2` ("ORDER CONFIRMED") dynamically by setting its opacity to `0` inside `main.js`.
+    - Added a real HTML `h1` element containing "Order Confirmed" with class `body_medium_texts` and `confirmed-title` in `index.html`.
+    - Styled `.confirmed-title` in `style.css` using `position: absolute; left: 40px; top: 170.5px; z-index: 1000; text-transform: none !important;` to display it in sentence-case/title-case exactly under the FØLT logo.
+
+65. Confirmed Title Vertical Offset:
+    - Lowered the vertical position of `.confirmed-title` from `top: 170.5px` to `top: 200.5px` inside `style.css` to add 30px spacing under the FØLT logo.
+==========================================================================================

@@ -1,0 +1,3300 @@
+/* checkout */
+
+position: relative;
+width: 1728px;
+height: 1090px;
+overflow-y: scroll;
+
+background: #FFFFFF;
+
+
+/* logo */
+
+position: absolute;
+width: 165px;
+height: 54px;
+left: 40px;
+top: 40px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 78.85%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 59.03%;
+right: 21.08%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 19.84%;
+right: 43.48%;
+top: 0%;
+bottom: 0%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 74.66%;
+right: 0%;
+top: 2.15%;
+bottom: 2.15%;
+
+background: #000000;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* checkout_section */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 114px;
+
+position: absolute;
+width: 345px;
+height: 581px;
+left: 1152px;
+top: 187px;
+
+
+
+/* order_and_payment */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 71px;
+
+width: 263px;
+height: 415px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* your order */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 53px;
+
+width: 239px;
+height: 224px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Your order */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 148px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Your order */
+
+width: 148px;
+height: 32px;
+
+/* Helvetica Now Text/body_texts/body_medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 32px;
+line-height: 100%;
+/* identical to box height, or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* order_info */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 31px;
+
+width: 225px;
+height: 139px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 39 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 12px;
+
+width: 225px;
+height: 76px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* issue_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-end;
+padding: 0px;
+gap: 67px;
+
+width: 225px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Issue 01 */
+
+width: 118px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Issue 01 */
+
+position: absolute;
+left: 0%;
+right: 0.85%;
+top: 0%;
+bottom: 0%;
+
+/* Helvetica Now Text/body_texts/body_medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 32px;
+line-height: 100%;
+/* identical to box height, or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* prezzo_magazine */
+
+width: 40px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* €40 */
+
+position: absolute;
+left: 0%;
+right: 5%;
+top: 0%;
+bottom: 0%;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+
+/* shipping_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 59px;
+
+width: 212px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Shipping */
+
+width: 126px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Shipping */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* Helvetica Now Text/body_texts/body_medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 32px;
+line-height: 100%;
+/* identical to box height, or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* prezzo_spedizione */
+
+width: 27px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* €5 */
+
+position: absolute;
+left: 0%;
+right: 3.7%;
+top: 0%;
+bottom: 0%;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+
+/* total_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 116px;
+
+width: 225px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* totale */
+
+width: 69px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Total */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* Helvetica Now Text/body_texts/body_medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 32px;
+line-height: 100%;
+/* identical to box height, or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* prezzo_totale */
+
+width: 40px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* €45 */
+
+position: absolute;
+left: 0%;
+right: 5%;
+top: 0%;
+bottom: 0%;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+
+/* select_your_payment_section */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 31px;
+
+width: 263px;
+height: 120px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Select your payment method */
+
+width: 275px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Select your payment method */
+
+position: absolute;
+width: 275px;
+height: 20px;
+left: 0px;
+top: 0px;
+
+/* Helvetica Now Text/label_link_button/label_link_button_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* credit_or_debit_section/checkbox_payment */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 23px;
+
+width: 263px;
+height: 69px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* credit_or_debit_section */
+
+width: 263px;
+height: 23px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* credit_card_checkbox */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 16px;
+
+position: absolute;
+width: 211px;
+height: 20px;
+left: 0px;
+top: 0px;
+
+
+
+/* check_box */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 4px 3px 5px;
+gap: 10px;
+
+width: 18px;
+height: 18px;
+
+border: 1px solid #000000;
+border-radius: 2px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* icon */
+
+display: none;
+width: 12px;
+height: 9.4px;
+
+/* M3/sys/light/on-primary */
+background: #FFFFFF;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Credit or debit card */
+
+width: 177px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Credit or debit card */
+
+position: absolute;
+left: 0%;
+right: 3.39%;
+top: 0%;
+bottom: 0%;
+
+/* Helvetica Now Text/label_link_button/label_link_button_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* credit_or_debit_section/checklist_debit_card */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 12px;
+
+position: absolute;
+height: 188px;
+left: 30px;
+right: -30px;
+top: 40px;
+
+
+
+/* input_flield_owner_name */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 351.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* input_flield */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 5px;
+
+width: 351.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 50px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label */
+
+width: 114px;
+height: 20px;
+
+/* Helvetica Now Text/label_link_button/label_link_button_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+display: flex;
+align-items: center;
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Placeholder_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 64px;
+height: 12px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Placeholder */
+
+width: 69px;
+height: 12px;
+
+/* Helvetica Now Text/label_link_button/placeholder_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 100%;
+/* identical to box height, or 12px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* baseline_input_flied */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 351.5px;
+height: 0px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Line 2 */
+
+width: 351.5px;
+height: 0px;
+
+border: 1px solid #979797;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* input_flield_card_number */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 351.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* input_flield */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 5px;
+
+width: 351.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 50px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label */
+
+width: 116px;
+height: 20px;
+
+/* Helvetica Now Text/label_link_button/label_link_button_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+display: flex;
+align-items: center;
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Placeholder_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 64px;
+height: 12px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Placeholder */
+
+width: 128px;
+height: 12px;
+
+/* Helvetica Now Text/label_link_button/placeholder_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 100%;
+/* identical to box height, or 12px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* baseline_input_flied */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 351.5px;
+height: 0px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Line 2 */
+
+width: 351.5px;
+height: 0px;
+
+border: 1px solid #979797;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* input_flield_expiration_date */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 351.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* input_flield */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 5px;
+
+width: 351.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 50px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label */
+
+width: 134px;
+height: 20px;
+
+/* Helvetica Now Text/label_link_button/label_link_button_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+display: flex;
+align-items: center;
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Placeholder_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 64px;
+height: 12px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Placeholder */
+
+width: 44px;
+height: 12px;
+
+/* Helvetica Now Text/label_link_button/placeholder_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 100%;
+/* identical to box height, or 12px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* baseline_input_flied */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 351.5px;
+height: 0px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Line 2 */
+
+width: 351.5px;
+height: 0px;
+
+border: 1px solid #979797;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* input_flield_cvv */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 351.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* input_flield */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 5px;
+
+width: 351.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 50px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label */
+
+width: 41px;
+height: 20px;
+
+/* Helvetica Now Text/label_link_button/label_link_button_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+display: flex;
+align-items: center;
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Placeholder_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 64px;
+height: 12px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Placeholder */
+
+width: 23px;
+height: 12px;
+
+/* Helvetica Now Text/label_link_button/placeholder_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 100%;
+/* identical to box height, or 12px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* baseline_input_flied */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 351.5px;
+height: 0px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Line 2 */
+
+width: 351.5px;
+height: 0px;
+
+border: 1px solid #979797;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* paypal_checkbox */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 19px;
+
+width: 124px;
+height: 23px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* check_box */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 4px 3px 5px;
+gap: 10px;
+
+width: 18px;
+height: 18px;
+
+border: 1px solid #000000;
+border-radius: 2px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* icon */
+
+display: none;
+width: 12px;
+height: 9.4px;
+
+/* M3/sys/light/on-primary */
+background: #FFFFFF;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* PayPal_logo 1 */
+
+width: 87px;
+height: 23px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* g10 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* g12 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* path14 */
+
+position: absolute;
+left: 0%;
+right: 81.21%;
+top: 0.01%;
+bottom: 18.92%;
+
+background: #283B82;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* path16 */
+
+position: absolute;
+left: 17.63%;
+right: 64.1%;
+top: 25.69%;
+bottom: 17.62%;
+
+background: #283B82;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* path18 */
+
+position: absolute;
+left: 37.73%;
+right: 44.26%;
+top: 27.01%;
+bottom: 0%;
+
+background: #283B82;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* path20 */
+
+position: absolute;
+left: 55.48%;
+right: 25.73%;
+top: 0.01%;
+bottom: 18.92%;
+
+background: #469BDB;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* path22 */
+
+position: absolute;
+left: 73.12%;
+right: 8.62%;
+top: 25.69%;
+bottom: 17.62%;
+
+background: #469BDB;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* path24 */
+
+position: absolute;
+left: 91.92%;
+right: 0%;
+top: 0%;
+bottom: 18.92%;
+
+background: #469BDB;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* checkout_button */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 345px;
+height: 52px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checkout_button */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 345px;
+height: 52px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* buttons */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 345px;
+height: 52px;
+
+background: #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* button */
+
+width: 138px;
+height: 32px;
+
+/* Helvetica Now Text/body_texts/body_medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 32px;
+line-height: 100%;
+/* identical to box height, or 32px */
+letter-spacing: -0.03em;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Composition 4 1 */
+
+position: absolute;
+width: 1728px;
+height: 972px;
+left: 0px;
+top: calc(50% - 972px/2);
+
+background: url(Composition 4.png);
+mix-blend-mode: multiply;
+
+
+/* home_delivery_section/local_pickuo_section/checklist */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 23px;
+
+position: absolute;
+width: 621px;
+height: 333px;
+left: 40px;
+top: 187px;
+
+
+
+/* Sign in */
+
+width: 103px;
+height: 28px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Sign in */
+
+position: absolute;
+left: 0%;
+right: -59.79%;
+top: 0%;
+bottom: -59.38%;
+
+/* Helvetica Now Text/label_link_button/label_link_button_medium_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 32px;
+line-height: 100%;
+/* or 32px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* input_flield_name */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 535.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* input_flield */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 5px;
+
+width: 535.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 50px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label */
+
+width: 53px;
+height: 20px;
+
+/* Helvetica Now Text/label_link_button/label_link_button_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+display: flex;
+align-items: center;
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Placeholder_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 64px;
+height: 12px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Placeholder */
+
+width: 32px;
+height: 12px;
+
+/* Helvetica Now Text/label_link_button/placeholder_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 100%;
+/* identical to box height, or 12px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* baseline_input_flied */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 535.5px;
+height: 0px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 535.5px;
+height: 0px;
+
+border: 1px solid #979797;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* input_flield_date_of_birth */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 535.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* input_flield */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 5px;
+
+width: 535.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 50px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label */
+
+width: 110px;
+height: 20px;
+
+/* Helvetica Now Text/label_link_button/label_link_button_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+display: flex;
+align-items: center;
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Placeholder_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 64px;
+height: 12px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Placeholder */
+
+width: 44px;
+height: 12px;
+
+/* Helvetica Now Text/label_link_button/placeholder_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 100%;
+/* identical to box height, or 12px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* baseline_input_flied */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 535.5px;
+height: 0px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 535.5px;
+height: 0px;
+
+border: 1px solid #979797;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* input_flield_email */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 535.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* input_flield */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 5px;
+
+width: 535.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 50px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label */
+
+width: 50px;
+height: 20px;
+
+/* Helvetica Now Text/label_link_button/label_link_button_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+display: flex;
+align-items: center;
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Placeholder_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 64px;
+height: 12px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Placeholder */
+
+width: 30px;
+height: 12px;
+
+/* Helvetica Now Text/label_link_button/placeholder_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 100%;
+/* identical to box height, or 12px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* baseline_input_flied */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 535.5px;
+height: 0px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 535.5px;
+height: 0px;
+
+border: 1px solid #979797;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* input_flield_password */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 535.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+flex-grow: 0;
+
+
+/* input_flield */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 5px;
+
+width: 535.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 50px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label */
+
+width: 88px;
+height: 20px;
+
+/* Helvetica Now Text/label_link_button/label_link_button_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+display: flex;
+align-items: center;
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Placeholder_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 64px;
+height: 12px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Placeholder */
+
+width: 53px;
+height: 12px;
+
+/* Helvetica Now Text/label_link_button/placeholder_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 100%;
+/* identical to box height, or 12px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* baseline_input_flied */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 535.5px;
+height: 0px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 535.5px;
+height: 0px;
+
+border: 1px solid #979797;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* input_flield_phone_number */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 535.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 5;
+flex-grow: 0;
+
+
+/* input_flield */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 5px;
+
+width: 535.5px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 50px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label */
+
+width: 130px;
+height: 20px;
+
+/* Helvetica Now Text/label_link_button/label_link_button_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+display: flex;
+align-items: center;
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Placeholder_input_field */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 64px;
+height: 12px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Placeholder */
+
+width: 78px;
+height: 12px;
+
+/* Helvetica Now Text/label_link_button/placeholder_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 100%;
+/* identical to box height, or 12px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* baseline_input_flied */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 535.5px;
+height: 0px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 535.5px;
+height: 0px;
+
+border: 1px solid #979797;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* shipping_checkbox_section */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 38px;
+
+position: absolute;
+width: 240px;
+height: 131px;
+left: 225px;
+top: 629px;
+
+
+
+/* Fulfilment_selection */
+
+width: 180px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Fulfilment selection */
+
+position: absolute;
+left: 0%;
+right: 3.89%;
+top: 0%;
+bottom: 0%;
+
+/* Helvetica Now Text/label_link_button/label_link_button_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* shipping_checkbox */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 20px;
+
+width: 240px;
+height: 73px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* home_delivery_section */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 19px;
+
+width: 240px;
+height: 30px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Home_delivery_checkbox */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 160px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* check_box */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 4px 3px 5px;
+gap: 10px;
+
+width: 18px;
+height: 18px;
+
+border: 1px solid #000000;
+border-radius: 2px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* icon */
+
+display: none;
+width: 12px;
+height: 9.4px;
+
+/* M3/sys/light/on-primary */
+background: #FFFFFF;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Home delivery */
+
+width: 132px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Home delivery */
+
+position: absolute;
+left: 0%;
+right: 3.03%;
+top: 0%;
+bottom: 0%;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* check_list_home_delivery */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px 16px;
+gap: 6px;
+
+width: 240px;
+height: 229px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* checklist_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 208px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 208px;
+height: 20px;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 208px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 208px;
+height: 20px;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 208px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 208px;
+height: 20px;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 208px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 208px;
+height: 20px;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* checklist_line */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 3px;
+
+width: 208px;
+height: 41px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* X */
+
+width: 208px;
+height: 20px;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 491px;
+height: 18px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* X */
+
+width: 491px;
+height: 16px;
+
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 102%;
+/* or 16px */
+letter-spacing: -0.011em;
+
+color: #979797;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector 1 */
+
+width: 621px;
+height: 0px;
+
+border: 1px solid #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 37 */
+
+width: 240px;
+height: 23px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 36 */
+
+position: absolute;
+width: 188px;
+height: 40px;
+left: 0px;
+top: 0px;
+
+
+
+/* local_pickup_checkbox */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+position: absolute;
+width: 145px;
+height: 20px;
+left: 0px;
+top: 0px;
+
+
+
+/* check_box */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 4px 3px 5px;
+gap: 10px;
+
+width: 18px;
+height: 18px;
+
+border: 1px solid #000000;
+border-radius: 2px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* icon */
+
+display: none;
+width: 12px;
+height: 9.4px;
+
+/* M3/sys/light/on-primary */
+background: #FFFFFF;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Local pick up */
+
+width: 117px;
+height: 20px;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Select Affiliated Hub */
+
+position: absolute;
+height: 20px;
+left: 12px;
+right: -12px;
+top: 20px;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #000000;
+
+
+
+/* affiliate_hub_section */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 7px;
+
+position: absolute;
+height: 74px;
+left: 13px;
+right: -13px;
+top: 52px;
+
+
+
+/* affiliate_hub */
+
+width: 240px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Napoli - Libreria Dispaccio */
+
+position: absolute;
+left: 0%;
+right: 3.75%;
+top: 0%;
+bottom: 0%;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+
+/* affiliate_hub */
+
+width: 240px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Milano - Frab’s Magazine */
+
+position: absolute;
+left: 0%;
+right: 8.75%;
+top: 0%;
+bottom: 0%;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
+
+
+/* affiliate_hub */
+
+width: 240px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Roma - Edicola Erno */
+
+position: absolute;
+left: 0%;
+right: 25%;
+top: 0%;
+bottom: 0%;
+
+/* Helvetica Now Text/body_texts/body_small_texts */
+font-family: 'Helvetica Now Text';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 100%;
+/* identical to box height, or 20px */
+letter-spacing: -0.03em;
+
+color: #979797;
+
