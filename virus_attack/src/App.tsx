@@ -10,7 +10,46 @@ import { audioSystem } from './audio';
 
 type AppState = 'idle' | 'cascading' | 'typing' | 'input';
 
-const textBody = `-Noise.\n-flesh.\n-whisper.\n-fragments.\nthe skin becomes a screen, the mind a labyrinth of broken mirrors.\nlisten?\n-----------An irregular heartbeat, labored breathing,\nthe echo of that which dares not speak to itself.\nthere is no surface here. just falls, leaps into the void, sudden discards. fashion that scratches, art that screams silently, philosophy that slips into the folds of the soul. biting\nimages, deep blacks with living grain, secrets Unveiled Between Shadows. You're a navigator of restless spaces, a seeker of burning details, a soul that wants to know,\nfeel, expand beyond the confines of the skin.\nMusic guides you, a wave that collapses and rebuilds, a psychological journey made of bright splinters and pulsating darkness. It is not a journey for those who fear chaos,\nfor those looking for simple answers. it's a whirlwind, a tightrope dance, an exploration of the boundary between pleasure and annoyance, between desire and fear.\nHere you get lost to find yourself. here the raw becomes art, and art becomes life.`;
+const textBody = `{
+    "atmosphere": [
+        "Noise",
+        "flesh",
+        "whisper",
+        "fragments"
+    ],
+    "metaphor": "the skin becomes a screen, the mind a labyrinth of broken mirrors.",
+    "question": "listen?",
+    "symptoms": {
+        "heartbeat": "irregular",
+        "breathing": "labored",
+        "echo": "of that which dares not speak to itself"
+    },
+    "spatial_state": "there is no surface here. just falls, leaps into the void, sudden discards.",
+    "manifestations": {
+        "fashion": "that scratches",
+        "art": "that screams silently",
+        "philosophy": "that slips into the folds of the soul"
+    },
+    "visuals": {
+        "nature": "biting images",
+        "textures": "deep blacks with living grain",
+        "revelation": "secrets Unveiled Between Shadows"
+    },
+    "identity": {
+        "role": "a navigator of restless spaces, a seeker of burning details",
+        "desire": "a soul that wants to know, feel, expand beyond the confines of the skin"
+    },
+    "soundtrack": {
+        "nature": "Music guides you, a wave that collapses and rebuilds",
+        "composition": "a psychological journey made of bright splinters and pulsating darkness"
+    },
+    "warnings": [
+        "It is not a journey for those who fear chaos",
+        "for those looking for simple answers"
+    ],
+    "experience": "it's a whirlwind, a tightrope dance, an exploration of the boundary between pleasure and annoyance, between desire and fear.",
+    "conclusion": "Here you get lost to find yourself. here the raw becomes art, and art becomes life."
+}`;
 
 const questionBody = "what have you learned to hide to be accepted ?";
 

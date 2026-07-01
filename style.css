@@ -177,7 +177,7 @@
 
 /* --- FIGS TYPOGRAPHY UTILITY CLASSES --- */
 .community_names_text {
-  font-family: 'Helvetica Now Display', var(--font-family-helvetica);
+  font-family: 'Helvetica Now Display', sans-serif;
   font-size: var(--community_names_text-font-size);
   line-height: var(--community_names_text-line-height);
   letter-spacing: var(--community_names_text-letter-spacing);
@@ -2315,6 +2315,44 @@ html, body, *, *::before, *::after {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  mix-blend-mode: difference; /* Default blend mode for the entire component */
+}
+
+/* Restrict normal blending only when there is an error in the container */
+.key-components-container:has(.error) {
+  mix-blend-mode: normal !important;
+}
+
+/* When the container is in error mode, apply difference individually to non-error PIN elements */
+.key-components-container:has(.error) .pin-digit:not(.error),
+.key-components-container:has(.error) .pin-line:not(.error) {
+  mix-blend-mode: difference !important;
+}
+
+/* Force trigger button and close button to be normal black in error state */
+.key-components-container:has(.error) .key-trigger-btn,
+.key-components-container:has(.error) .key-close-btn {
+  mix-blend-mode: normal !important;
+}
+
+.key-components-container:has(.error) .key-trigger-btn span {
+  color: #000000 !important;
+}
+
+.key-components-container:has(.error) .key-close-btn svg path {
+  stroke: #000000 !important;
+}
+
+/* Ensure error states are normal (non-inverted) red */
+.pin-digit.error,
+.pin-line.error,
+.key-error-text {
+  mix-blend-mode: normal !important;
+  color: var(--primitive-feedback-red) !important;
+}
+
+.pin-line.error {
+  border-bottom: 1px solid var(--primitive-feedback-red) !important;
 }
 
 .key-components {
@@ -2359,7 +2397,7 @@ html, body, *, *::before, *::after {
   font-size: 20px;
   line-height: 100%;
   letter-spacing: -0.03em;
-  color: #979797;
+  color: var(--primitive-medium-grey);
   white-space: nowrap;
   transition: color 0.3s ease;
 }
@@ -2378,7 +2416,7 @@ html, body, *, *::before, *::after {
 }
 
 .key-trigger-btn:hover span {
-  color: var(--primitive-black) !important;
+  color: #ffffff !important;
 }
 
 .key-trigger-btn:hover span::after,
@@ -2469,12 +2507,12 @@ html, body, *, *::before, *::after {
 }
 
 .key-close-btn svg path {
-  stroke: #979797;
+  stroke: #ffffff;
   transition: stroke 0.3s ease;
 }
 
 .key-close-btn:hover svg path {
-  stroke: var(--color-text-primary);
+  stroke: #ffffff;
 }
 
 /* --- KEY COMPONENTS SELECTED & PIN-ACTIVE STYLES --- */
@@ -2494,18 +2532,18 @@ html, body, *, *::before, *::after {
   transition: opacity 0.3s ease;
 }
 
-/* In selected state, transform whole component elements from medium grey to black */
+/* In selected state, keep whole component elements exactly in the same position */
 .key-components.selected {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 26px;
-  gap: 45px;
+  padding: 0px;
+  gap: 18px;
   isolation: isolate;
 
   position: relative;
-  width: 245px;
-  height: 117px;
+  width: 183px;
+  height: auto;
   box-sizing: border-box;
 }
 
@@ -2514,9 +2552,9 @@ html, body, *, *::before, *::after {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 0px;
-  width: 193px;
-  height: 20px;
+  padding: 10px 0px;
+  width: 183px;
+  height: 40px;
   flex: none;
   order: 0;
   align-self: stretch;
@@ -2531,7 +2569,7 @@ html, body, *, *::before, *::after {
   font-size: 20px;
   line-height: 100%;
   letter-spacing: -0.03em;
-  color: #000000 !important;
+  color: #ffffff !important;
 }
 
 .key-components.selected .key-trigger-btn span::after {
@@ -2554,10 +2592,11 @@ html, body, *, *::before, *::after {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   padding: 0px;
   gap: 11px;
 
-  width: 193px;
+  width: 100%;
   height: 0px;
 
   flex: none;
@@ -2579,7 +2618,7 @@ html, body, *, *::before, *::after {
   position: absolute;
   left: 0;
   top: auto !important;
-  bottom: 8px;
+  bottom: -2px;
   width: 23px;
   height: 20px;
   display: flex;
@@ -2592,7 +2631,7 @@ html, body, *, *::before, *::after {
   font-size: 20px;
   line-height: 100%;
   letter-spacing: -0.03em;
-  color: var(--primitive-black) !important;
+  color: #ffffff !important;
 }
 
 .key-components.selected .pin-line {
@@ -2601,7 +2640,7 @@ html, body, *, *::before, *::after {
   right: 0%;
   bottom: 0%;
   height: 0px;
-  border-bottom: 1px solid var(--primitive-black) !important;
+  border-bottom: 1px solid #ffffff !important;
   transition: border-color 0.3s ease;
 }
 
@@ -2610,7 +2649,7 @@ html, body, *, *::before, *::after {
 }
 
 .key-components.selected .key-close-btn svg path {
-  stroke: var(--primitive-black) !important;
+  stroke: #ffffff !important;
 }
 
 /* --- VIDEO PAGE SPEC --- */
@@ -2750,8 +2789,8 @@ html, body, *, *::before, *::after {
   position: absolute;
   width: 67px;
   height: 12px;
-  left: 26px;
-  top: 98px;
+  left: -5px;
+  top: 66px;
 
   font-family: 'Helvetica Now Text', sans-serif;
   font-style: normal;
@@ -2762,6 +2801,11 @@ html, body, *, *::before, *::after {
   color: var(--color-stroke-error);
   z-index: 2;
   white-space: nowrap;
+}
+
+.video-key-components.selected .key-error-text {
+  left: 0 !important;
+  top: 66px !important;
 }
 
 .video-key-info-text {
@@ -2865,16 +2909,16 @@ body[data-page="loader"] .main-header {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #000;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
 }
 #loader-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
 }
 
 /* --- ORDER CONFIRMED PAGE STYLING --- */
@@ -2887,21 +2931,20 @@ body[data-page="order-confirmed"] .main-header {
   height: 1080px;
   background-color: #ffffff;
 }
-.confirmed-btn-overlay {
+
+
+#order-confirmed-lottie {
+  z-index: 2;
+}
+.confirmed-bg-testi {
   position: absolute;
-  top: calc(50% + 300px);
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.order-confirmed-join-btn {
-  cursor: pointer;
-}
-.order-confirmed-join-btn span {
-  text-shadow: none !important;
+  width: 120%;
+  height: auto;
+  transform: translate(calc(-50% - 200px), -50%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* Enable visible overflow and disable Lottie clipping for the order confirmed section */
@@ -2912,14 +2955,168 @@ body[data-page="order-confirmed"] .main-header {
   clip-path: none !important;
 }
 
-.confirmed-title {
+/* order_confirmed_join_texts */
+.order-confirmed-join-texts {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 519px;
+
   position: absolute;
   left: 40px;
-  top: 200.5px;
-  color: #000000;
+  top: 588px;
+  width: 1579px;
+  height: 67px;
   z-index: 1000;
-  text-transform: none !important;
+  pointer-events: none;
 }
+
+/* order_confirmed */
+.order-confirmed-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+
+  width: 300px;
+  height: 52px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  pointer-events: auto;
+}
+
+/* Order confirmed */
+.confirmed-title {
+  width: 300px;
+  height: 32px;
+
+  font-family: 'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #000000;
+  text-transform: none !important;
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 0;
+}
+
+/* Check your email for more details */
+.confirmed-subtitle {
+  width: 300px;
+  height: 20px;
+
+  font-family: 'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #979797;
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 0;
+}
+
+/* joint_section */
+.joint-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 47px;
+
+  width: 760px;
+  height: 67px;
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  pointer-events: auto;
+}
+
+/* join_the_community_big_button */
+.join-community-btn-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+
+  width: 536px;
+  height: 67px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* buttons */
+.order-confirmed-join-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 0px;
+  gap: 10px;
+
+  width: 536px;
+  height: 67px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* button */
+.order-confirmed-join-btn span {
+  width: 536px;
+  height: 51px;
+
+  font-family: 'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 51px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #000000;
+  text-shadow: none !important;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* Upload your portrait manipulate it */
+.upload-portrait-manipulate-text {
+  width: 177px;
+  height: 40px;
+
+  font-family: 'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #000000;
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+
 
 /* --- PAPERFACE PAGE STYLING --- */
 body[data-page="paperface"] .main-header {
@@ -2935,4 +3132,59 @@ body[data-page="paperface"] .main-header {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+/* --- VIDEO KEY COMPONENT CUSTOMIZATIONS (BLACK & LEFT-ALIGNED) --- */
+.video-key-components.selected {
+  width: 260px !important;
+  align-items: flex-start !important;
+}
+
+.video-key-components.selected .key-trigger-btn {
+  width: auto !important;
+  justify-content: flex-start !important;
+  padding-left: 0 !important;
+}
+
+.video-key-components.selected .key-trigger-btn span {
+  color: var(--primitive-black) !important;
+}
+
+.video-key-components.selected .pin-input-field {
+  justify-content: flex-start !important;
+  width: auto !important;
+  padding-left: 0 !important;
+}
+
+.video-key-components.selected .pin-digit {
+  color: var(--primitive-black) !important;
+}
+
+.video-key-components.selected .pin-line {
+  border-bottom: 1px solid var(--primitive-black) !important;
+}
+
+.video-key-components.selected .key-error-text {
+  left: 0 !important;
+  top: 66px !important;
+}
+
+.video-key-info-text {
+  left: 0 !important;
+  text-align: left !important;
+}
+
+/* Specific error state overrides for text and close button to render pure black on white background */
+.key-components-container:has(.error) .key-components.selected .key-trigger-btn span {
+  color: #000000 !important;
+  mix-blend-mode: normal !important;
+}
+
+.key-components-container:has(.error) .key-components.selected .key-close-btn svg path {
+  stroke: #000000 !important;
+  mix-blend-mode: normal !important;
+}
+
+.key-components-container:has(.error) .key-components.selected .key-close-btn {
+  mix-blend-mode: normal !important;
 }

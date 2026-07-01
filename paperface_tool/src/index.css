@@ -4,6 +4,10 @@
   --font-sans: "Helvetica Neue", Arial, sans-serif;
 }
 
+html, body, *, *::before, *::after {
+  cursor: none !important;
+}
+
 body {
   background-color: #ffffff;
   color: #1a1a1a;
@@ -27,7 +31,7 @@ body {
   height: 12px;
   border-radius: 50%;
   background: #000;
-  cursor: pointer;
+  cursor: none !important;
 }
 
 .theme-slider::-moz-range-thumb {
@@ -35,7 +39,7 @@ body {
   height: 12px;
   border-radius: 50%;
   background: #000;
-  cursor: pointer;
+  cursor: none !important;
   border: none;
 }
 
@@ -225,7 +229,7 @@ body {
   height: 9px;
   border-radius: 50%;
   background: #000000;
-  cursor: pointer;
+  cursor: none !important;
   margin-top: -3.5px; /* Centers the thumb on 2px height track */
   border: none;
   transition: transform 0.1s ease;
@@ -240,7 +244,7 @@ body {
   height: 9px;
   border-radius: 50%;
   background: #000000;
-  cursor: pointer;
+  cursor: none !important;
   border: none;
   transition: transform 0.1s ease;
 }
@@ -317,14 +321,14 @@ body {
   font-family: 'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 32px;
   line-height: 100%;
   letter-spacing: -0.03em;
   color: #000000;
   background: none;
   border: none;
   padding: 2px 0px;
-  margin: 0;
+  margin-top: 50px;
   cursor: pointer;
   position: relative;
   transition: none;
@@ -346,4 +350,122 @@ body {
 .confirm-btn:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+.confirmed-bg-testi {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 2400px;
+  width: 130%;
+  height: auto;
+  transform: translate(calc(-50% - 200px), -50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* --- UPLOADER CARD STYLING --- */
+.uploader-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 219px 64px;
+  gap: 27px;
+
+  position: absolute;
+  width: 446px;
+  height: 496px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  background: #FFFFFF;
+  border: 1px solid #979797;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.uploader-card:hover {
+  border-color: #000000;
+}
+
+/* icons */
+.uploader-icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+  width: 54px;
+  height: 43px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* Vector icon */
+.uploader-icon {
+  width: 54px !important;
+  height: 43px !important;
+  color: #979797;
+  transition: color 0.2s ease;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.uploader-card:hover .uploader-icon {
+  color: #000000;
+}
+
+/* text_uploader */
+.uploader-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 6px;
+  width: 237px;
+  height: 58px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+/* Upload a portrait */
+.uploader-title {
+  width: 237px;
+  height: 32px;
+  font-family: 'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #000000;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  text-align: left;
+}
+
+/* Click or drag here */
+.uploader-subtitle {
+  width: 237px;
+  height: 20px;
+  font-family: 'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #979797;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  text-align: left;
 }

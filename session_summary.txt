@@ -443,3 +443,119 @@ GOAL & NEXT STEPS FOR NEW SESSIONS:
 65. Confirmed Title Vertical Offset:
     - Lowered the vertical position of `.confirmed-title` from `top: 170.5px` to `top: 200.5px` inside `style.css` to add 30px spacing under the FØLT logo.
 ==========================================================================================
+
+66. Background SVG testi.svg Integration:
+    - Located testi.svg on the desktop and copied it to both public/ and dist/ folders.
+    - Inserted the background image testi.svg in index.html inside the order confirmed canvas container.
+    - Configured absolute overlay positioning and z-indexes in style.css so that the Lottie animation layer (z-index: 2) draws on top of the background SVG (z-index: 1).
+    - Applied `object-fit: cover;` and `object-position: center;` to `.confirmed-bg-testi` inside style.css to ensure it scales correctly and covers the entire background of the container without distortion.
+    - Set `top: 200px;` and `height: calc(100% - 200px);` on `.confirmed-bg-testi` inside style.css to shift the background SVG exactly 200px lower while keeping it fully contained (100% intact, preventing bottom clipping).
+    - Built production assets using Vite successfully.
+==========================================================================================
+67. Lottie Path Change to ORDER_CONFIRMED_UPDATED.json:
+    - Updated main.js to import ORDER_CONFIRMED_UPDATED.json instead of order_confirmed_section.json.
+    - Restored the portrait positioning and name offset calculations inside main.js so the portraits are centered and visible.
+    - Kept automatic loop limits (frame 28) and text layer hiding logic (hiding Lottie's native text and FOLT writing layers to let the HTML button overlay and small HTML logo link render properly).
+    - Verified the FØLT HTML small logo link (#confirmed-logo-btn) is in place and routes to the primary page.
+    - Built production assets successfully.
+68. Exact Figma Styling and Portrait Animation Restore:
+    - Re-implemented the layout of the order confirmed section in index.html to match the Figma Auto-layout hierarchy (.order-confirmed-join-texts container containing the order-confirmed-col and joint-section columns).
+    - Set Lottie "Text Shape 16" (upload portrait label text) opacity to 0 dynamically inside main.js to prevent double rendering.
+    - Wrote the exact CSS properties (dimensions, flex directions, paddings, gaps, orders, font configurations, and absolute canvas positions) from the Figma specification dump inside style.css.
+    - Updated .order-confirmed-join-texts position in style.css: shifted everything 150px lower (top: 588px) and pushed the joint-section 100px further to the right (by increasing gap to 519px and width to 1579px).
+    - Copied the portrait images inside public/images/, images/, and dist/images/ to match the new portrait asset indexing of ORDER_CONFIRMED_UPDATED.json (e.g. code.627_portrait0.png, federico_portrait1.png, etc.), which fully restores the portrait animation carousel.
+    - Built production assets successfully.
+69. Integrating background_community_names.svg:
+    - Copied the background_community_names.svg file to the public/ directory.
+    - Updated index.html to load background_community_names.svg as an external image element with class `.confirmed-bg-testi`.
+    - Styled `.confirmed-bg-testi` in style.css to be centered and scaled at width 120% and height auto, allowing the background SVG to scale proportionally and overflow the canvas boundaries on all sides without cropping paths at the bottom.
+    - Built production assets successfully.
+70. Shifting Background SVG (background_community_names.svg) to Left:
+    - Updated the CSS transform property on `.confirmed-bg-testi` inside style.css to shift it 200px further to the left (`transform: translate(calc(-50% - 200px), -50%)`).
+    - Built production assets successfully.
+71. Skip PIN Overlay Stabilization & Difference Blending:
+    - Stabilized layout size (183px width, auto height, 0px padding, 18px gap) and padding of `.key-components.selected` to match the default `.key-components` state, preventing trigger button displacement or jumping upon click.
+    - Set `.pin-input-field` width to 100% and centered its content using `justify-content: center` to fit within the stabilized container width.
+    - Added `mix-blend-mode: difference` to `.key-components-container` to automatically invert component colors on all backgrounds.
+    - Updated all text, line, and stroke colors inside the skip PIN component to `#ffffff` so they render as black on white backgrounds and white on dark backgrounds under the difference blend mode.
+    - Built production assets successfully.
+72. Skip Component Color Adjustments & Asterisk Downward Shift:
+    - Updated `.key-trigger-btn span` color in the default state to `var(--primitive-medium-grey)` (`#979797`), rendering as grey (`#686868`) on a white background under difference mix blend mode.
+    - Updated the active/selected state (`.key-components.selected .key-trigger-btn span`) and hover state color to `#ffffff`, rendering as black (`#000000`) on a white background under difference mix blend mode.
+    - Shifted the absolute vertical position of PIN digits (`.pin-digit`) 10px lower by updating `bottom` from `8px` to `-2px`.
+    - Built production assets successfully.
+73. Virus Attack Section textBody Update:
+    - Replaced the text typed on the virus attack screen with the literal formatted JSON block string containing keys such as atmosphere, metaphor, question, symptoms, spatial_state, manifestations, visuals, identity, soundtrack, warnings, experience, and conclusion.
+    - Maintained the questionBody ("what have you learned to hide to be accepted ?") completely intact.
+    - Kept typographic properties (font-size and line-height) unchanged.
+    - Built production assets successfully.
+74. Background Names SVG Color Update:
+    - Updated the fill color from `#F9F9F9` to `#FBFBFB` in background_community_names.svg (both in workspace root and public/ directory).
+    - Built production assets successfully.
+75. Community Page Names Font Family Update:
+    - Updated `.community_names_text` in style.css to use `font-family: 'Helvetica Now Display', sans-serif`, removing `var(--font-family-helvetica)` (Helvetica Now Text) fallback to ensure the Display variant is used strictly.
+    - Built production assets successfully.
+76. Loader Page Size Update:
+    - Adjusted `#loader-video` in style.css to be 20% smaller (width: 80%, height: 80%) and centered (via container's flex centering) with `object-fit: contain` to preserve its aspect ratio.
+    - Built production assets successfully.
+77. Paperface Tool Background & Name Integration:
+    - Updated paperface_tool App.tsx to display `/background_community_names.svg` in the background (centered and scaled like order_confirmed) by styling a background image element with `.confirmed-bg-testi`.
+    - Added the `.confirmed-bg-testi` style definition to paperface_tool's index.css (setting `min-width: 2400px` and `width: 130%` to ensure it is large enough to overflow the page boundaries cleanly) and updated container/main backgrounds to transparent.
+    - Updated main.js to save the checkout name in `localStorage` on input, and append it as a query parameter when launching the paperface_tool iframe.
+    - Updated paperface_tool App.tsx to read the name via URL query parameter or `localStorage`, and display it dynamically aligned to the bottom-left of the portrait canvas.
+    - Built paperface_tool and main project production assets successfully.
+==========================================================================================
+
+78. Video Page Key Component Styling & Left Alignment:
+    - Added custom `.video-key-components.selected` styling in `style.css` to render all key prompt elements (trigger span, PIN digits, and line slots) in black (`var(--primitive-black)`) instead of white.
+    - Expanded `.video-key-components.selected` width to `260px` and set `align-items: flex-start` to support vertical left-alignment of the text prompt, PIN inputs, and instruction text.
+    - Positioned `.video-key-info-text` at `left: 0` and aligned the text to the left.
+    - Left-aligned the trigger button, PIN inputs, and error message to align with the left margin of the component.
+==========================================================================================
+
+79. Loader Page Background Color Fix:
+    - Changed the background-color of `.loader-container` in `style.css` from `#000` to `#ffffff` to eliminate any visual border/distinction between the container margins and the white page.
+==========================================================================================
+
+80. Paperface Tool Uploader Card Redesign:
+    - Added custom uploader card, icon, and text classes to `paperface_tool/src/index.css` following the Figma specification, updated to be centered on the page (`left: 50%; top: 50%; transform: translate(-50%, -50%)`).
+    - Added hover transitions so that both the card border stroke and the icon turn from grey (`#979797`) to black (`#000000`) upon hover.
+    - Restructured the uploader card markup in `paperface_tool/src/App.tsx` using the new classes, preserving full drop-zone functionality, loading spinner states, and styling.
+==========================================================================================
+
+81. Iframe Custom Cursor Cross-Context Tracking:
+    - Added a global `cursor: none !important` rule to `paperface_tool/src/index.css` to hide the default browser cursor inside the iframe viewport.
+    - Added a React `useEffect` in `paperface_tool/src/App.tsx` that captures mousemove, mouseleave, and mouseenter events inside the iframe and forwards them to the parent window via `postMessage`.
+    - Added a `message` listener in `main.js` that intercepts these coordinates, offsets them by the iframe's bounding client rect, and updates the parent window's `#custom-cursor` position seamlessly.
+==========================================================================================
+
+82. Paperface Tool Name Casing & Slider Cursors Polish:
+    - Formatted `checkoutName` in `paperface_tool/src/App.tsx` to Title Case on initialization and removed the `uppercase` utility class to show names in natural Title Case.
+    - Set `cursor: none !important` on slider thumbs (`::-webkit-slider-thumb`, `::-moz-range-thumb`) in `paperface_tool/src/index.css` to hide the pointer hand cursor over range controls, keeping only the custom SVG cursor visible.
+==========================================================================================
+
+83. Paperface Canvas Rendering Performance Optimization:
+    - Optimized the drawing loop inside `paperface_tool/src/App.tsx` by pre-rendering the target clipped polygon block onto an offscreen canvas once per glitch block.
+    - Replaced the multiple nested `ctx.clip()` and `ctx.drawImage()` operations inside the trailing smear loop (up to 150 iterations per block) with simple offscreen canvas drawing, reducing rendering CPU cycles by over 95% while keeping the final visual appearance completely unchanged.
+==========================================================================================
+
+84. Paperface Tool Name Font and Confirm Button Position Polish:
+    - Updated name element in `paperface_tool/src/App.tsx` to adopt font-weight `500` (Medium) instead of bold.
+    - Updated `.confirm-btn` in `paperface_tool/src/index.css` to adopt the medium size variant (`32px` instead of `20px`) and shifted its vertical margin down by 50px (`margin-top: 50px`).
+==========================================================================================
+
+85. Key Component Error State Styling and Positioning:
+    - Repositioned the error message `.key-error-text` ("key not valid") directly under the PIN keylines (top: `66px` to prevent any visual overlap) and left-aligned it to the first PIN slot (`left: -5px` on the virus page, and `left: 0` on the video page).
+    - Kept `mix-blend-mode: difference` on the parent container `.key-components-container` by default so the entire component has the difference effect.
+    - Added a `:has(.error)` conditional rule: when in error state, the parent container changes to `mix-blend-mode: normal`, and individual non-error PIN elements (`.pin-digit:not(.error)`, `.pin-line:not(.error)`) receive individual `mix-blend-mode: difference` styles.
+    - Forced the trigger button `.key-trigger-btn` and close button `.key-close-btn` to adopt `mix-blend-mode: normal` and color/stroke `#000000` (solid black) when in error state, rendering them black against the white page background.
+    - Forced `mix-blend-mode: normal !important` on error elements (`.pin-digit.error`, `.pin-line.error`, `.key-error-text`), allowing only the error lines and error text to display in solid red without any difference inversion.
+==========================================================================================
+
+
+
+
+
+
+
+

@@ -32,6 +32,33 @@ const FACE_OVAL_INDICES = [
 export default function App() {
   const [originalImage, setOriginalImage] = useState<HTMLImageElement | null>(null);
   const [seed, setSeed] = useState(0);
+  const [checkoutName, setCheckoutName] = useState('');
+
+  useEffect(() => {
+    // 1. Try URL parameters
+    const params = new URLSearchParams(window.location.search);
+    let name = params.get('name');
+    
+    // 2. Try localStorage
+    if (!name) {
+      try {
+        name = localStorage.getItem('checkoutName');
+      } catch (e) {
+        console.warn('LocalStorage access blocked or failed', e);
+      }
+    }
+    
+    if (name) {
+      // Capitalize first letter of each word and lowercase the rest
+      const formattedName = name
+        .toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+      setCheckoutName(formattedName);
+    }
+  }, []);
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [params, setParams] = useState<GlitchParams>({
     extrusionEnabled: true,
@@ -69,6 +96,34 @@ export default function App() {
       }
     };
     loadModel();
+  }, []);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      window.parent.postMessage({
+        type: 'iframe-mousemove',
+        clientX: e.clientX,
+        clientY: e.clientY
+      }, '*');
+    };
+
+    const handleMouseLeave = () => {
+      window.parent.postMessage({ type: 'iframe-mouseleave' }, '*');
+    };
+
+    const handleMouseEnter = () => {
+      window.parent.postMessage({ type: 'iframe-mouseenter' }, '*');
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+    };
   }, []);
 
   useEffect(() => {
@@ -269,47 +324,50 @@ export default function App() {
         // Use capped steps to make the extrusion smooth and linear without freezing the browser
         const maxSteps = 150; 
         const steps = Math.min(maxSteps, Math.floor(dist / 2)); 
-        if (extIntensity > 0 && dist > 1) {
-            ctx.save();
-            ctx.globalAlpha = 1.0;
-            for (let s = 0; s <= steps; s++) {
-                const t = s / steps;
-                const tx = dx * t;
-                const ty = dy * t;
-                
+        // Pre-render the clipped polygon block onto an offscreen canvas to optimize rendering
+        const blockCanvas = document.createElement('canvas');
+        blockCanvas.width = Math.max(1, Math.ceil(bw));
+        blockCanvas.height = Math.max(1, Math.ceil(bh));
+        const bCtx = blockCanvas.getContext('2d');
+        if (bCtx) {
+            bCtx.beginPath();
+            bCtx.moveTo(p1.x, p1.y);
+            bCtx.lineTo(p2.x, p2.y);
+            bCtx.lineTo(p3.x, p3.y);
+            if (isQuad) bCtx.lineTo(p4.x, p4.y);
+            bCtx.closePath();
+            bCtx.clip();
+            bCtx.drawImage(glitchSource, bx, by, bw, bh, 0, 0, bw, bh);
+            
+            // Extrusion connection - trailing smear linking back to original face
+            if (extIntensity > 0 && dist > 1) {
                 ctx.save();
+                ctx.globalAlpha = 1.0;
+                for (let s = 0; s <= steps; s++) {
+                    const t = s / steps;
+                    const tx = dx * t;
+                    const ty = dy * t;
+                    ctx.drawImage(blockCanvas, bx + tx, by + ty);
+                }
+                ctx.restore();
+            }
+            
+            // Final Displaced Fragment at the end of the extrusion
+            ctx.save();
+            ctx.drawImage(blockCanvas, bx + dx, by + dy);
+            if (chaosFactor > 0.2) {
                 ctx.beginPath();
-                ctx.moveTo(bx + p1.x + tx, by + p1.y + ty);
-                ctx.lineTo(bx + p2.x + tx, by + p2.y + ty);
-                ctx.lineTo(bx + p3.x + tx, by + p3.y + ty);
-                if (isQuad) ctx.lineTo(bx + p4.x + tx, by + p4.y + ty);
+                ctx.moveTo(bx + p1.x + dx, by + p1.y + dy);
+                ctx.lineTo(bx + p2.x + dx, by + p2.y + dy);
+                ctx.lineTo(bx + p3.x + dx, by + p3.y + dy);
+                if (isQuad) ctx.lineTo(bx + p4.x + dx, by + p4.y + dy);
                 ctx.closePath();
                 ctx.clip();
-                
-                // Draw the original image shifted to simulate stretched pixels
-                ctx.drawImage(glitchSource, bx, by, bw, bh, bx + tx, by + ty, bw, bh);
-                ctx.restore();
+                ctx.fillStyle = `rgba(0, 0, 0, ${(random() * 0.15 * chaosFactor).toFixed(3)})`;
+                ctx.fill();
             }
             ctx.restore();
         }
-
-        // Final Displaced Fragment at the end of the extrusion
-        ctx.save();
-        ctx.beginPath();
-        ctx.moveTo(bx + p1.x + dx, by + p1.y + dy);
-        ctx.lineTo(bx + p2.x + dx, by + p2.y + dy);
-        ctx.lineTo(bx + p3.x + dx, by + p3.y + dy);
-        if (isQuad) ctx.lineTo(bx + p4.x + dx, by + p4.y + dy);
-        ctx.closePath();
-        ctx.clip();
-        
-        ctx.drawImage(glitchSource, bx, by, bw, bh, bx + dx, by + dy, bw, bh);
-        
-        if (chaosFactor > 0.2) {
-            ctx.fillStyle = `rgba(0, 0, 0, ${(random() * 0.15 * chaosFactor).toFixed(3)})`;
-            ctx.fill();
-        }
-        ctx.restore();
     }
   }, [originalImage, params, seed, faces]);
 
@@ -323,10 +381,13 @@ export default function App() {
 
   return (
     <div 
-      className="min-h-screen bg-[#ffffff] text-[#1a1a1a] font-sans flex flex-col relative"
+      className="min-h-screen bg-[#ffffff] text-[#1a1a1a] font-sans flex flex-col relative overflow-hidden"
       onDrop={onDrop}
       onDragOver={onDragOver}
     >
+      {/* Background SVG */}
+      <img className="confirmed-bg-testi" src="/background_community_names.svg" alt="Background Texts" />
+
       {originalImage && (
         <div className="paperface-action-window">
           {/* selectors_section */}
@@ -443,20 +504,20 @@ export default function App() {
         </div>
       )}
 
-      <main className="flex-grow flex items-center justify-center bg-[#ffffff] relative">
+      <main className="flex-grow flex items-center justify-center bg-transparent relative z-10">
         {!originalImage ? (
-          <div className="w-full max-w-md h-[500px] border border-[#e5e5e5] bg-[#fafafa] flex flex-col items-center justify-center gap-6 transition-colors cursor-pointer relative group rounded-sm"
+          <div className="uploader-card"
                onClick={() => document.getElementById('file-upload')?.click()}>
-            <div className="p-4 bg-white rounded shadow-[0_2px_8px_rgba(0,0,0,0.02)] group-hover:shadow-md transition-all border border-[#f5f5f5]">
+            <div className="uploader-icon-container">
               {isModelLoading ? (
-                <Loader2 size={24} className="text-[#888] animate-spin" />
+                <Loader2 className="uploader-icon animate-spin" />
               ) : (
-                <ImageIcon size={24} className="text-[#888] group-hover:text-black transition-colors" />
+                <ImageIcon className="uploader-icon" />
               )}
             </div>
-            <div className="text-center">
-              <h2 className="text-xs font-bold uppercase tracking-[0.1em] text-[#1a1a1a] mb-2">Upload a Portrait</h2>
-              <p className="text-[10px] uppercase tracking-[0.05em] text-[#888]">
+            <div className="uploader-text-container">
+              <h2 className="uploader-title">Upload a Portrait</h2>
+              <p className="uploader-subtitle">
                 {isModelLoading ? 'Loading AI Model...' : 'Click or drag here'}
               </p>
             </div>
@@ -474,11 +535,21 @@ export default function App() {
           </div>
         ) : (
           <div className="relative w-full h-full flex flex-col items-center justify-center gap-6 p-4 pb-12">
-            <div className="flex-1 flex items-center justify-center min-h-0 w-full relative pt-8">
-              <canvas 
-                ref={canvasRef}
-                className="max-w-full max-h-[75vh] object-contain drop-shadow-[0_4px_20px_rgba(0,0,0,0.05)]"
-              />
+            <div className="flex-grow flex flex-col items-center justify-center min-h-0 w-full relative pt-8">
+              <div className="relative flex flex-col items-start">
+                <canvas 
+                  ref={canvasRef}
+                  className="max-w-full max-h-[65vh] object-contain drop-shadow-[0_4px_20px_rgba(0,0,0,0.05)]"
+                />
+                {checkoutName && (
+                  <div 
+                    className="checkout-photo-name text-black tracking-[-0.03em] mt-2 select-none self-start"
+                    style={{ fontFamily: "'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: '20px', lineHeight: '100%', letterSpacing: '-0.03em', fontWeight: 500 }}
+                  >
+                    {checkoutName}
+                  </div>
+                )}
+              </div>
             </div>
             <button 
               onClick={() => {

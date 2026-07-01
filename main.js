@@ -3,7 +3,7 @@ import { initInteractiveParticles } from './particles.js';
 import { initVirusAttack } from './virus.js';
 import lottie from 'lottie-web';
 import animationData from './circular.input.json';
-import orderConfirmedAnimationDataRaw from './order_confirmed_section.json';
+import orderConfirmedAnimationDataRaw from './ORDER_CONFIRMED_UPDATED.json';
 
 // Hide the static 'testi', 'Text Shape' (JOIN THE COMMUNITY), and 'Text Shape 3' (FOLT) layers from the order confirmed animation so we can overlay real HTML buttons
 const orderConfirmedAnimationData = JSON.parse(JSON.stringify(orderConfirmedAnimationDataRaw));
@@ -30,7 +30,7 @@ if (orderConfirmedAnimationData && orderConfirmedAnimationData.layers) {
   const mainComp = orderConfirmedAnimationData.layers.find(l => l.ind === 1);
   if (mainComp) {
     mainComp.op = 28;
-    // Composition 1 remains at position (0,0) and scale 100% so that "ORDER CONFIRMED" and "Check your email" texts are positioned correctly.
+    // Composition 2 remains at position (0,0) and scale 100% so that "ORDER CONFIRMED" and "Check your email" texts are positioned correctly.
   }
 
   // Hide Lottie "ORDER CONFIRMED" title (Text Shape 2) so we can draw it as an HTML element
@@ -39,9 +39,19 @@ if (orderConfirmedAnimationData && orderConfirmedAnimationData.layers) {
     textShape2Layer.ks = textShape2Layer.ks || {};
     textShape2Layer.ks.o = { a: 0, k: 0 }; // Hide Lottie text shape
   }
+
+  // Hide Lottie "Check your email for more details" subtitle (Text Shape 4) so we can draw it as an HTML element
   const textShape4Layer = orderConfirmedAnimationData.layers.find(l => l.nm === 'Text Shape 4');
-  if (textShape4Layer && textShape4Layer.ks && textShape4Layer.ks.p && textShape4Layer.ks.p.x) {
-    textShape4Layer.ks.p.x.k = 40;
+  if (textShape4Layer) {
+    textShape4Layer.ks = textShape4Layer.ks || {};
+    textShape4Layer.ks.o = { a: 0, k: 0 }; // Hide Lottie subtitle shape
+  }
+
+  // Hide Lottie "upload your portrait / manipulate it" subtitle (Text Shape 16) so we can draw it as an HTML element
+  const textShape16Layer = orderConfirmedAnimationData.layers.find(l => l.nm === 'Text Shape 16');
+  if (textShape16Layer) {
+    textShape16Layer.ks = textShape16Layer.ks || {};
+    textShape16Layer.ks.o = { a: 0, k: 0 }; // Hide Lottie upload shape
   }
 
   // Center and scale the portraits individually, and adjust the name shape coordinates
@@ -53,7 +63,7 @@ if (orderConfirmedAnimationData && orderConfirmedAnimationData.layers) {
   const portraitScale = 1.0;    // Portrait image size at 100%
 
   orderConfirmedAnimationData.layers.forEach(l => {
-    // ty: 2 is image layers (portraits) parented to Composition 1
+    // ty: 2 is image layers (portraits) parented to Composition 1 (Composition 2 in new json, parent is 1)
     if (l.ty === 2 && l.parent === 1) {
       if (l.ks && l.ks.p) {
         if (l.ks.p.x && typeof l.ks.p.x.k === 'number') {
@@ -141,6 +151,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('mouseenter', () => {
     customCursor.style.display = 'block';
+  });
+
+  window.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'iframe-mousemove') {
+      const iframe = document.getElementById('paperface-iframe');
+      if (iframe) {
+        const rect = iframe.getBoundingClientRect();
+        const parentX = rect.left + event.data.clientX;
+        const parentY = rect.top + event.data.clientY;
+        customCursor.style.display = 'block';
+        customCursor.style.transform = `translate3d(${parentX}px, ${parentY}px, 0) translate(-50%, -50%)`;
+      }
+    } else if (event.data && event.data.type === 'iframe-mouseleave') {
+      customCursor.style.display = 'none';
+    } else if (event.data && event.data.type === 'iframe-mouseenter') {
+      customCursor.style.display = 'block';
+    }
   });
 
   // Initialize virus attack if it's the first visit
@@ -752,6 +779,9 @@ document.addEventListener('DOMContentLoaded', () => {
             errorText.textContent = '';
           }
         }
+        if (input.id === 'input-name') {
+          localStorage.setItem('checkoutName', input.value);
+        }
         updateCheckoutButtonState();
       });
     });
@@ -828,7 +858,9 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const iframe = document.getElementById('paperface-iframe');
       if (iframe) {
-        iframe.src = '/paperface_tool/index.html';
+        const nameInput = document.getElementById('input-name');
+        const name = nameInput ? nameInput.value : '';
+        iframe.src = `/paperface_tool/index.html?name=${encodeURIComponent(name)}`;
       }
       switchPage('paperface-page');
     });
@@ -840,7 +872,9 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const iframe = document.getElementById('paperface-iframe');
       if (iframe) {
-        iframe.src = '/paperface_tool/index.html';
+        const nameInput = document.getElementById('input-name');
+        const name = nameInput ? nameInput.value : '';
+        iframe.src = `/paperface_tool/index.html?name=${encodeURIComponent(name)}`;
       }
       switchPage('paperface-page');
     });
