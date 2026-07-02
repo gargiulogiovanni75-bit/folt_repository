@@ -619,6 +619,12 @@ GOAL & NEXT STEPS FOR NEW SESSIONS:
     - Verified a clean Vite build compilation.
 ==========================================================================================
 
+94. Checkout Page Height Dynamic Adjustment:
+    - Added a `setCheckoutCanvasHeight(height)` helper in `main.js` which dynamically updates the `data-original-height` attribute on the checkout canvas container and runs `resizeCanvas()` to scale the height of the viewport.
+    - Configured `selectMethod('home')` to expand the checkout canvas height to 1400px when "Home delivery" is checked, ensuring ample bottom space for scrolling the address form fields, and resets it to 1090px when unchecked.
+    - Verified a clean Vite build compilation.
+==========================================================================================
+
 
 
 

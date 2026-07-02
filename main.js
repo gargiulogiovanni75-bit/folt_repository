@@ -572,6 +572,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (checkHome && checkPickup && addressBlock && hubBlock) {
+    const setCheckoutCanvasHeight = (height) => {
+      const checkoutCanvas = document.querySelector('.checkout-canvas');
+      if (!checkoutCanvas) return;
+      checkoutCanvas.setAttribute('data-original-height', height);
+      checkoutCanvas.style.height = `${height}px`;
+      checkoutCanvas.dataset.originalHeight = height;
+      resizeCanvas();
+    };
+
     const selectMethod = (method) => {
       const isHomeChecked = checkHome.classList.contains('checked');
       const isPickupChecked = checkPickup.classList.contains('checked');
@@ -584,6 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
           clearFieldErrors(addressBlock);
           if (summaryShipping) summaryShipping.textContent = '—';
           if (summaryTotal) summaryTotal.textContent = '€40';
+          setCheckoutCanvasHeight(1090);
         } else {
           checkHome.classList.add('checked');
           checkPickup.classList.remove('checked');
@@ -592,6 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
           addressBlock.querySelectorAll('input').forEach(input => input.required = true);
           if (summaryShipping) summaryShipping.textContent = '€5';
           if (summaryTotal) summaryTotal.textContent = '€45';
+          setCheckoutCanvasHeight(1400);
           
           // Reset pickup hubs when switching to home delivery
           const hubsList = document.querySelectorAll('.affiliate-hub');
@@ -607,6 +618,7 @@ document.addEventListener('DOMContentLoaded', () => {
           clearFieldErrors(addressBlock);
           if (summaryShipping) summaryShipping.textContent = '—';
           if (summaryTotal) summaryTotal.textContent = '€40';
+          setCheckoutCanvasHeight(1090);
           
           // Reset pickup hubs when unchecking local pickup
           const hubsList = document.querySelectorAll('.affiliate-hub');
@@ -623,6 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
           clearFieldErrors(addressBlock);
           if (summaryShipping) summaryShipping.textContent = '€0';
           if (summaryTotal) summaryTotal.textContent = '€40';
+          setCheckoutCanvasHeight(1090);
         }
       }
       resizeCanvas();
