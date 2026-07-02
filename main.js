@@ -338,6 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (pageId === 'loader-page') bodyAttrValue = 'loader';
     else if (pageId === 'order-confirmed-page') bodyAttrValue = 'order-confirmed';
     else if (pageId === 'paperface-page') bodyAttrValue = 'paperface';
+    else if (pageId === 'community-login-page') bodyAttrValue = 'community-login';
 
     body.setAttribute('data-page', bodyAttrValue);
 
@@ -873,36 +874,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Join the community button click handlers ---
   const communityJoinBtn = document.querySelector('.community-join-btn');
-  const loginCard = document.getElementById('community-login-card');
+  const loginLogoBtn = document.getElementById('login-logo-btn');
   const loginCloseBtn = document.getElementById('login-close-btn');
   const loginInputEmail = document.getElementById('login-input-email');
   const loginInputPassword = document.getElementById('login-input-password');
   const loginConfirmBtn = document.getElementById('login-confirm-btn');
 
-  if (communityJoinBtn && loginCard) {
+  if (communityJoinBtn) {
     communityJoinBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      // Show the login card
-      loginCard.style.display = 'flex';
+      // Show the community login page view
+      switchPage('community-login-page');
       
       // Reset input fields
       if (loginInputEmail) loginInputEmail.value = '';
       if (loginInputPassword) loginInputPassword.value = '';
       
       // Clear errors
-      const fields = loginCard.querySelectorAll('.login-field');
-      fields.forEach(field => {
-        field.classList.remove('error');
-        const errText = field.querySelector('.login-error-text');
-        if (errText) errText.style.display = 'none';
-      });
+      const loginCard = document.getElementById('community-login-card');
+      if (loginCard) {
+        const fields = loginCard.querySelectorAll('.login-field');
+        fields.forEach(field => {
+          field.classList.remove('error');
+          const errText = field.querySelector('.login-error-text');
+          if (errText) errText.style.display = 'none';
+        });
+      }
     });
   }
 
-  // Handle close button click
-  if (loginCloseBtn && loginCard) {
-    loginCloseBtn.addEventListener('click', () => {
-      loginCard.style.display = 'none';
+  // Handle logo and close button click: return to community page
+  if (loginLogoBtn) {
+    loginLogoBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchPage('community-page');
+    });
+  }
+  if (loginCloseBtn) {
+    loginCloseBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchPage('community-page');
     });
   }
 
@@ -973,9 +984,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return;
       }
-
-      // Successful login: hide overlay and transition to paperface tool
-      if (loginCard) loginCard.style.display = 'none';
 
       const iframe = document.getElementById('paperface-iframe');
       if (iframe) {

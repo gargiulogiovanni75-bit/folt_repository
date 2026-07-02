@@ -625,11 +625,12 @@ GOAL & NEXT STEPS FOR NEW SESSIONS:
     - Verified a clean Vite build compilation.
 ==========================================================================================
 
-95. Community Join Login Validation Overlay:
-    - Added `#community-login-card` modal markup to the community page in `index.html` with figma-matching CSS layout and styling in `style.css`.
+95. Community Join Login Validation Page and Routing:
+    - Added a new `#community-login-page` standalone page view section in `index.html` featuring a blank white background, top-left logo, and centered `#community-login-card`.
     - Integrated logic in `main.js` to save credentials (`checkoutEmail`, `checkoutPassword`) to `localStorage` during the checkout input stage.
-    - Configured the community page "Join the community" button to require login by opening the `#community-login-card` modal.
-    - Handled input focus highlights, input error clearing, field validation, close button, and credentials verification (raising error "account not found" if checkout wasn't completed or credentials mismatch) before loading the Paperface tool.
+    - Updated `switchPage(pageId)` in `main.js` to support the new `community-login-page` routing layout.
+    - Programmed "Join the community" button to direct users to the login page view, and configured both the logo button and the card's close "X" button to redirect back to `community-page`.
+    - Handled input focus highlights, input error clearing, field validation, and credentials verification (raising error "account not found" if checkout wasn't completed or credentials mismatch) before launching the Paperface portrait upload tool.
     - Verified a clean Vite build compilation.
 ==========================================================================================
 

@@ -3225,6 +3225,13 @@ body[data-page="paperface"] .main-header {
 }
 
 /* --- COMMUNITY LOGIN CARD OVERLAY --- */
+.login-canvas {
+  width: 1728px;
+  height: 1090px;
+  position: relative;
+  background: var(--color-surface-main);
+}
+
 .community-login-card {
   box-sizing: border-box;
   display: flex;
@@ -3238,7 +3245,7 @@ body[data-page="paperface"] .main-header {
   width: 425px;
   height: 452px;
   left: 651px;
-  top: 333px;
+  top: 319px;
 
   background: #FFFFFF;
   border: 1px solid #979797;

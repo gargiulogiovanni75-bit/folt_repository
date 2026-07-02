@@ -192,47 +192,6 @@
     <section id="community-page" class="page-view">
       <div class="viewport-scaler">
         <div class="canvas-container community-canvas" data-original-height="3100" data-original-width="1728">
-          <!-- Login Card (hidden by default) -->
-          <div id="community-login-card" class="community-login-card" style="display: none;">
-            <!-- Close btn -->
-            <div class="login-close-btn" id="login-close-btn">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13.5 4.5L4.5 13.5M4.5 4.5L13.5 13.5" stroke="#979797" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-
-            <!-- Title -->
-            <div class="login-title">Log in</div>
-
-            <!-- Fields -->
-            <div class="login-checklist">
-              <!-- Email -->
-              <div class="login-field" id="login-field-email">
-                <div class="login-field-label">Email</div>
-                <div class="login-input-wrapper">
-                  <input type="email" class="login-field-input" id="login-input-email" placeholder="Email">
-                </div>
-                <div class="login-line-separator"></div>
-                <div class="login-error-text" style="display: none;">account not found</div>
-              </div>
-
-              <!-- Password -->
-              <div class="login-field" id="login-field-password">
-                <div class="login-field-label">Password</div>
-                <div class="login-input-wrapper">
-                  <input type="password" class="login-field-input" id="login-input-password" placeholder="Password">
-                </div>
-                <div class="login-line-separator"></div>
-                <div class="login-error-text" style="display: none;"></div>
-              </div>
-            </div>
-
-            <!-- Confirm Button -->
-            <div class="login-confirm-container">
-              <button type="button" class="login-confirm-btn" id="login-confirm-btn">Confirm</button>
-            </div>
-          </div>
-          
           <div class="community-frame-30">
             <!-- Nicole Sciamanna -->
             <div class="artist-row-nicole artist-row">
@@ -353,6 +312,61 @@
           <a class="btn-text community-join-btn">
             <span>join the community</span>
           </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY LOGIN PAGE -->
+    <section id="community-login-page" class="page-view">
+      <div class="viewport-scaler">
+        <div class="canvas-container login-canvas" data-original-height="1090" data-original-width="1728">
+          
+          <!-- Logo button -->
+          <a href="#" id="login-logo-btn" class="checkout-logo-container">
+            <img class="checkout-logo-img" src="/logo_folt_definitivo.svg" alt="FØLT Logo">
+          </a>
+
+          <!-- Login Card -->
+          <div id="community-login-card" class="community-login-card">
+            <!-- Close btn -->
+            <div class="login-close-btn" id="login-close-btn">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.5 4.5L4.5 13.5M4.5 4.5L13.5 13.5" stroke="#979797" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <!-- Title -->
+            <div class="login-title">Log in</div>
+
+            <!-- Fields -->
+            <div class="login-checklist">
+              <!-- Email -->
+              <div class="login-field" id="login-field-email">
+                <div class="login-field-label">Email</div>
+                <div class="login-input-wrapper">
+                  <input type="email" class="login-field-input" id="login-input-email" placeholder="Email">
+                </div>
+                <div class="login-line-separator"></div>
+                <div class="login-error-text" style="display: none;">account not found</div>
+              </div>
+
+              <!-- Password -->
+              <div class="login-field" id="login-field-password">
+                <div class="login-field-label">Password</div>
+                <div class="login-input-wrapper">
+                  <input type="password" class="login-field-input" id="login-input-password" placeholder="Password">
+                </div>
+                <div class="login-line-separator"></div>
+                <div class="login-error-text" style="display: none;"></div>
+              </div>
+            </div>
+
+            <!-- Confirm Button -->
+            <div class="login-confirm-container">
+              <button type="button" class="login-confirm-btn" id="login-confirm-btn">Confirm</button>
+            </div>
+          </div>
 
         </div>
       </div>
