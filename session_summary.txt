@@ -630,6 +630,9 @@ GOAL & NEXT STEPS FOR NEW SESSIONS:
     - Integrated logic in `main.js` to save credentials (`checkoutEmail`, `checkoutPassword`) to `localStorage` during the checkout input stage.
     - Updated `switchPage(pageId)` in `main.js` to support the new `community-login-page` routing layout.
     - Programmed "Join the community" button to direct users to the login page view, and configured both the logo button and the card's close "X" button to redirect back to `community-page`.
+    - Resolved double/overlapping logo glitch by adding the `community-login` page view to the main header hide selector lists in `style.css`.
+    - Aligned login input field sizes, labels, placeholders, and active focus highlights to match the checkout page style by mapping checkout typographic variables in `style.css`.
+    - Repositioned supporting error texts below the input fields and separator lines (using `order: 3` in flex layout), removing absolute positioning to matches the checkout page's error-shifting behavior.
     - Handled input focus highlights, input error clearing, field validation, and credentials verification (raising error "account not found" if checkout wasn't completed or credentials mismatch) before launching the Paperface portrait upload tool.
     - Verified a clean Vite build compilation.
 ==========================================================================================
