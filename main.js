@@ -797,6 +797,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (input.id === 'input-name') {
           localStorage.setItem('checkoutName', input.value);
+        } else if (input.id === 'input-email') {
+          localStorage.setItem('checkoutEmail', input.value);
+        } else if (input.id === 'input-password') {
+          localStorage.setItem('checkoutPassword', input.value);
         }
         updateCheckoutButtonState();
       });
@@ -869,14 +873,113 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Join the community button click handlers ---
   const communityJoinBtn = document.querySelector('.community-join-btn');
-  if (communityJoinBtn) {
+  const loginCard = document.getElementById('community-login-card');
+  const loginCloseBtn = document.getElementById('login-close-btn');
+  const loginInputEmail = document.getElementById('login-input-email');
+  const loginInputPassword = document.getElementById('login-input-password');
+  const loginConfirmBtn = document.getElementById('login-confirm-btn');
+
+  if (communityJoinBtn && loginCard) {
     communityJoinBtn.addEventListener('click', (e) => {
       e.preventDefault();
+      // Show the login card
+      loginCard.style.display = 'flex';
+      
+      // Reset input fields
+      if (loginInputEmail) loginInputEmail.value = '';
+      if (loginInputPassword) loginInputPassword.value = '';
+      
+      // Clear errors
+      const fields = loginCard.querySelectorAll('.login-field');
+      fields.forEach(field => {
+        field.classList.remove('error');
+        const errText = field.querySelector('.login-error-text');
+        if (errText) errText.style.display = 'none';
+      });
+    });
+  }
+
+  // Handle close button click
+  if (loginCloseBtn && loginCard) {
+    loginCloseBtn.addEventListener('click', () => {
+      loginCard.style.display = 'none';
+    });
+  }
+
+  // Clear validation errors on typing
+  if (loginInputEmail && loginInputPassword) {
+    [loginInputEmail, loginInputPassword].forEach(input => {
+      input.addEventListener('input', () => {
+        const field = input.closest('.login-field');
+        if (field) {
+          field.classList.remove('error');
+          const errText = field.querySelector('.login-error-text');
+          if (errText) errText.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  // Handle credentials confirmation
+  if (loginConfirmBtn) {
+    loginConfirmBtn.addEventListener('click', () => {
+      const email = loginInputEmail ? loginInputEmail.value.trim() : '';
+      const password = loginInputPassword ? loginInputPassword.value.trim() : '';
+      let hasError = false;
+
+      // Validate inputs are filled
+      if (!email) {
+        const field = document.getElementById('login-field-email');
+        if (field) {
+          field.classList.add('error');
+          const errText = field.querySelector('.login-error-text');
+          if (errText) {
+            errText.textContent = 'email is required';
+            errText.style.display = 'block';
+          }
+        }
+        hasError = true;
+      }
+      if (!password) {
+        const field = document.getElementById('login-field-password');
+        if (field) {
+          field.classList.add('error');
+          const errText = field.querySelector('.login-error-text');
+          if (errText) {
+            errText.textContent = 'password is required';
+            errText.style.display = 'block';
+          }
+        }
+        hasError = true;
+      }
+
+      if (hasError) return;
+
+      // Check against stored credentials
+      const savedEmail = localStorage.getItem('checkoutEmail');
+      const savedPassword = localStorage.getItem('checkoutPassword');
+      const savedName = localStorage.getItem('checkoutName') || '';
+
+      // If credentials do not match or checkout was never completed
+      if (!savedEmail || !savedPassword || email !== savedEmail.trim() || password !== savedPassword.trim()) {
+        const field = document.getElementById('login-field-email');
+        if (field) {
+          field.classList.add('error');
+          const errText = field.querySelector('.login-error-text');
+          if (errText) {
+            errText.textContent = 'account not found';
+            errText.style.display = 'block';
+          }
+        }
+        return;
+      }
+
+      // Successful login: hide overlay and transition to paperface tool
+      if (loginCard) loginCard.style.display = 'none';
+
       const iframe = document.getElementById('paperface-iframe');
       if (iframe) {
-        const nameInput = document.getElementById('input-name');
-        const name = nameInput ? nameInput.value : '';
-        iframe.src = `/paperface_tool/index.html?name=${encodeURIComponent(name)}`;
+        iframe.src = `/paperface_tool/index.html?name=${encodeURIComponent(savedName)}`;
       }
       switchPage('paperface-page');
     });

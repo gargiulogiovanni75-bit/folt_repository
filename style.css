@@ -3223,3 +3223,217 @@ body[data-page="paperface"] .main-header {
 .key-components-container:has(.error) .key-components.selected .key-close-btn {
   mix-blend-mode: normal !important;
 }
+
+/* --- COMMUNITY LOGIN CARD OVERLAY --- */
+.community-login-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 90px 40px;
+  gap: 60px;
+  isolation: isolate;
+
+  position: absolute;
+  width: 425px;
+  height: 452px;
+  left: 651px;
+  top: 333px;
+
+  background: #FFFFFF;
+  border: 1px solid #979797;
+  z-index: 10000;
+}
+
+.login-close-btn {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 376px;
+  top: 27px;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.login-close-btn:hover svg path {
+  stroke: #000000;
+}
+
+.login-title {
+  width: 87px;
+  height: 32px;
+  font-family: 'Helvetica Now Text', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.03em;
+  color: #000000;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.login-checklist {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 12px;
+  width: 345px;
+  height: 88px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  z-index: 1;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 5px;
+  width: 345px;
+  height: 38px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  position: relative;
+}
+
+#login-field-password {
+  order: 1;
+}
+
+.login-field-label {
+  width: 88px;
+  height: 20px;
+  font-family: 'Helvetica Now Text', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.03em;
+  color: #000000;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+#login-field-email .login-field-label {
+  width: 50px;
+}
+
+.login-input-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+  width: 345px;
+  height: 16px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.login-field-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 345px;
+  height: 16px;
+  font-family: 'Helvetica Now Text', sans-serif;
+  font-size: 16px;
+  color: #000000;
+  padding: 0;
+  margin: 0;
+}
+
+.login-field-input::placeholder {
+  font-family: 'Helvetica Now Text', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #979797;
+}
+
+.login-line-separator {
+  width: 345px;
+  height: 0px;
+  border: 1px solid #979797;
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+  transition: border-color 0.3s ease;
+}
+
+.login-field:focus-within .login-line-separator {
+  border-color: var(--color-stroke-focus);
+}
+
+.login-field.error .login-line-separator {
+  border-color: var(--primitive-feedback-red);
+}
+
+.login-error-text {
+  position: absolute;
+  left: 0;
+  top: 43px;
+  font-family: 'Helvetica Now Text', sans-serif;
+  font-size: 11px;
+  color: var(--primitive-feedback-red);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Confirm Button */
+.login-confirm-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  width: 345px;
+  height: 40px;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+  z-index: 2;
+}
+
+.login-confirm-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  width: 345px;
+  height: 40px;
+  background: #000000;
+  border: 1px solid #000000;
+  font-family: 'Helvetica Now Text', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.login-confirm-btn:hover {
+  background: #FFFFFF;
+  border-color: #000000;
+  color: #000000;
+}
