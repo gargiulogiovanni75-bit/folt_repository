@@ -649,6 +649,9 @@ export function initVirusAttack(force = false) {
         currentIdx += 4;
         if (currentIdx > textBody.length) currentIdx = textBody.length;
         if (textDiv) textDiv.textContent = textBody.substring(0, currentIdx);
+        if (typingLayer) {
+          typingLayer.scrollTop = typingLayer.scrollHeight;
+        }
       } else {
         clearInterval(typeInterval);
         startInputPhase();
@@ -666,18 +669,22 @@ export function initVirusAttack(force = false) {
   function startInputPhase() {
     appState = 'input';
     const textDiv = document.getElementById('virus-typing-text');
+    const typingLayer = document.getElementById('virus-typing-layer');
     
     if (textDiv) {
       const inputBlock = document.createElement('div');
       inputBlock.className = 'input-block';
       inputBlock.innerHTML = `
-        <div>${questionBody}</div>
+        <div style="color: var(--color-text-primary);">${questionBody}</div>
         <div style="margin-top: 1vh; display: flex; align-items: center; break-all; flex-wrap: wrap;">
           <span id="virus-input-value" style="white-space: pre-wrap; color: var(--color-text-primary);"></span>
           <span class="blink-cursor"></span>
         </div>
       `;
       textDiv.appendChild(inputBlock);
+      if (typingLayer) {
+        typingLayer.scrollTop = typingLayer.scrollHeight;
+      }
     }
 
     const valueSpan = document.getElementById('virus-input-value');
@@ -697,6 +704,10 @@ export function initVirusAttack(force = false) {
       } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
         inputValue += e.key;
         if (valueSpan) valueSpan.textContent = inputValue;
+      }
+
+      if (typingLayer) {
+        typingLayer.scrollTop = typingLayer.scrollHeight;
       }
     };
 

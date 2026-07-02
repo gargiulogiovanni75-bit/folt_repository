@@ -359,8 +359,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Run scaling calculations for the newly showing page canvas
     resizeCanvas();
 
-    // Reset scroll position to top
+     // Reset scroll position to top
     window.scrollTo({ top: 0, behavior: 'instant' });
+    
+    if (pageId === 'community-page') {
+      updateCommunityParallax();
+    }
     
     // Update particles visibility
     updateCanvasVisibility();
@@ -458,7 +462,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const summaryShipping = document.getElementById('summary-shipping');
   const summaryTotal = document.getElementById('summary-total');
 
-  const checkoutBtnContainer = document.querySelector('.checkout-botton-container');
   const checkoutSubmitBtn = document.querySelector('.checkout-submit-btn');
 
   function validateInputField(input) {
@@ -557,13 +560,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateCheckoutButtonState() {
-    if (!checkoutBtnContainer || !checkoutSubmitBtn) return;
+    if (!checkoutSubmitBtn) return;
     const isValid = validateCheckoutForm();
     if (isValid) {
-      checkoutBtnContainer.classList.remove('disabled');
+      checkoutSubmitBtn.classList.remove('disabled');
       checkoutSubmitBtn.disabled = false;
     } else {
-      checkoutBtnContainer.classList.add('disabled');
+      checkoutSubmitBtn.classList.add('disabled');
       checkoutSubmitBtn.disabled = true;
     }
   }
@@ -880,14 +883,99 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Helper to add new confirmed portraits dynamically ---
+  function addNewConfirmedPortrait(image, name) {
+    const canvasContainer = document.querySelector('.community-canvas');
+    if (!canvasContainer) return;
+
+    // Count how many cards are currently on the page
+    const existingCards = canvasContainer.querySelectorAll('.extra-card');
+    const index = existingCards.length;
+
+    // Calculate layout coordinates
+    let left;
+    if (index === 0) {
+      left = 225;
+    } else if (index === 1) {
+      left = 963;
+    } else {
+      const positions = [594, 410, 778];
+      left = positions[(index - 2) % positions.length];
+    }
+    const top = 2260 + (index * 220);
+
+    // Create the wrapper card
+    const card = document.createElement('div');
+    card.className = 'extra-card parallax-card';
+    card.style.left = `${left}px`;
+    card.style.top = `${top}px`;
+
+    // Create image element
+    const imgEl = document.createElement('div');
+    imgEl.className = 'extra-portrait-image';
+    imgEl.style.backgroundImage = `url(${image})`;
+
+    // Create name element
+    const nameEl = document.createElement('div');
+    nameEl.className = 'extra-portrait-name caption_texts';
+    nameEl.textContent = name;
+
+    // Append elements
+    card.appendChild(imgEl);
+    card.appendChild(nameEl);
+
+    // Append before membership text so layout is preserved in DOM flow
+    const membershipText = canvasContainer.querySelector('.community-membership-text');
+    if (membershipText) {
+      canvasContainer.insertBefore(card, membershipText);
+    } else {
+      canvasContainer.appendChild(card);
+    }
+
+    // Dynamic height scaling of canvas container
+    const cardBottom = top + 250;
+    const originalHeightAttr = parseFloat(canvasContainer.getAttribute('data-original-height')) || 3100;
+    if (cardBottom > originalHeightAttr - 300) {
+      const newHeight = cardBottom + 300;
+      canvasContainer.setAttribute('data-original-height', newHeight);
+      canvasContainer.style.height = `${newHeight}px`;
+      canvasContainer.dataset.originalHeight = newHeight;
+      resizeCanvas();
+    }
+    
+    // Update parallax on the newly created card
+    updateCommunityParallax();
+  }
+
+  // --- Helper to update parallax on community portraits ---
+  function updateCommunityParallax() {
+    const isCommunityActive = document.getElementById('community-page').classList.contains('active');
+    if (!isCommunityActive) return;
+
+    const scrollY = getScrollTop();
+    const cards = document.querySelectorAll('.parallax-card');
+    cards.forEach((card, index) => {
+      const factor = (index % 2 === 0) ? -0.07 : 0.07;
+      const offset = (scrollY - 1800) * factor;
+      card.style.transform = `translate3d(0, ${offset}px, 0)`;
+    });
+  }
+
   // --- Listen to confirm message from Paperface Tool iframe ---
   window.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'paperface-confirm') {
+      const { image, name } = event.data;
+      if (image && name) {
+        addNewConfirmedPortrait(image, name);
+      }
+
       const iframe = document.getElementById('paperface-iframe');
       if (iframe) {
         iframe.src = 'about:blank';
       }
       switchPage('community-page');
+      // Trigger initial parallax on page switch
+      setTimeout(updateCommunityParallax, 50);
     }
   });
 
@@ -1098,6 +1186,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Intercept window scroll event to trigger locks
   window.addEventListener('scroll', () => {
     updateCanvasVisibility();
+    updateCommunityParallax();
 
     const currentScrollY = getScrollTop();
     const isPrimaryActive = document.getElementById('primary-page').classList.contains('active');
@@ -1408,5 +1497,52 @@ document.addEventListener('DOMContentLoaded', () => {
       updateVideoPinDisplay();
     });
   }
+
+  // --- Community Page Typewriter / Custom Hovers ---
+  function initCommunityHovers() {
+    const artistRows = document.querySelectorAll('.artist-row');
+    artistRows.forEach(row => {
+      const bioEl = row.querySelector('.artist-bio');
+      if (!bioEl) return;
+      
+      // Store the original text to type it dynamically, and clear the element's default text
+      bioEl._fullText = bioEl.textContent.trim();
+      bioEl.textContent = '';
+      bioEl._typeInterval = null;
+
+      row.addEventListener('mouseenter', () => {
+        // Clear any previous interval to prevent overlapping triggers
+        if (bioEl._typeInterval) {
+          clearInterval(bioEl._typeInterval);
+        }
+        bioEl.textContent = '';
+        let currentIdx = 0;
+        const textBody = bioEl._fullText;
+        
+        bioEl._typeInterval = setInterval(() => {
+          if (currentIdx < textBody.length) {
+            currentIdx += 8; // Twice as fast digital writing
+            if (currentIdx > textBody.length) currentIdx = textBody.length;
+            bioEl.textContent = textBody.substring(0, currentIdx);
+          } else {
+            clearInterval(bioEl._typeInterval);
+            bioEl._typeInterval = null;
+          }
+        }, 10);
+      });
+
+      row.addEventListener('mouseleave', () => {
+        if (bioEl._typeInterval) {
+          clearInterval(bioEl._typeInterval);
+          bioEl._typeInterval = null;
+        }
+        // Instantly empty the text so the collapsed state has no visible leftovers
+        bioEl.textContent = '';
+      });
+    });
+  }
+
+  // Run the community hovers initialization
+  initCommunityHovers();
 
 });

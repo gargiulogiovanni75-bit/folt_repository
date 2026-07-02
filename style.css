@@ -131,6 +131,11 @@
   --virus_body_texts-font-size: 20px;
   --virus_body_texts-line-height: 100%;
 
+  --caption-font-size: 12pt;
+  --caption-line-height: 100%;
+  --caption-letter-spacing: -0.03em;
+  --caption-font-weight: 500;
+
   /* --- FIGMA COLOR TOKENS --- */
   /* Primitive Colors */
   --primitive-white: #FFFFFF;
@@ -299,6 +304,14 @@
   font-family: var(--font-family-pixel);
   font-size: var(--virus_body_texts-font-size);
   line-height: var(--virus_body_texts-line-height);
+}
+
+.caption_texts {
+  font-family: var(--font-family-helvetica);
+  font-size: var(--caption-font-size);
+  line-height: var(--caption-line-height);
+  letter-spacing: var(--caption-letter-spacing);
+  font-weight: var(--caption-font-weight);
 }
 
 /* --- GENERIC BUTTON STYLES --- */
@@ -1475,19 +1488,18 @@ html, body {
   /* Collapsed state by default */
   max-height: 0px;
   overflow: hidden;
-  opacity: 0;
+  opacity: 1; /* Always opaque - no fade effect */
   margin-top: 0px;
   transform: translateY(20px);
   
-  /* Smooth multi-property transition */
+  /* Smooth multi-property transition (excluding opacity) */
   transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-              opacity 0.5s ease,
               margin-top 0.5s cubic-bezier(0.25, 1, 0.5, 1),
               transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .artist-frame-27 {
-  align-items: center;
+  align-items: flex-start;
   gap: 11px;
 }
 
@@ -1516,6 +1528,15 @@ html, body {
   border: none; /* Removed black stroke border */
 }
 
+/* Custom Image Mask Opening Effect */
+.artist-image {
+  clip-path: inset(0 50% 0 50%); /* Start collapsed horizontally from center out */
+  transition: clip-path 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.artist-row:hover .artist-image {
+  clip-path: inset(0 0 0 0); /* Open completely */
+}
+
 /* Bio elements */
 .artist-bio-nicole,
 .artist-bio-giovanni,
@@ -1538,14 +1559,13 @@ html, body {
   color: var(--color-text-primary);
 }
 
-/* Hover expansions */
+/* Hover expansions (without opacity changes) */
 .artist-row-nicole:hover .artist-frame-27,
 .artist-row-aurora:hover .artist-frame-27,
 .artist-row-code:hover .artist-frame-27,
 .artist-row-lorenz:hover .artist-frame-27,
 .artist-row-gaia:hover .artist-frame-27 {
   max-height: 300px;
-  opacity: 1;
   margin-top: 40px; /* Increased to 40px to completely prevent overlap with name text above */
   transform: translateY(0);
 }
@@ -1557,9 +1577,38 @@ html, body {
 .artist-row-federico:hover .artist-frame-28,
 .artist-row-rossella:hover .artist-frame-28 {
   max-height: 300px;
-  opacity: 1;
   margin-top: 40px; /* Increased to 40px to completely prevent overlap with name text above */
   transform: translateY(0);
+}
+
+/* Extra Portraits in Community Page */
+.extra-card {
+  position: absolute;
+  width: 165px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  will-change: transform;
+}
+
+.extra-portrait-image {
+  width: 165px;
+  height: 167px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.extra-portrait-name {
+  font-family: var(--font-family-helvetica);
+  font-size: var(--caption-font-size);
+  line-height: var(--caption-line-height);
+  letter-spacing: var(--caption-letter-spacing);
+  font-weight: var(--caption-font-weight);
+  color: #000000;
+  margin-top: 7px;
+  white-space: nowrap;
 }
 
 /* Bottom Text Elements styling */
@@ -2082,7 +2131,7 @@ body[data-page="video"] .main-header {
 }
 
 /* Bottom checkout submit button */
-.checkout-botton-container {
+.checkout-submit-btn {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -2096,43 +2145,29 @@ body[data-page="video"] .main-header {
   border: 1px solid var(--color-surface-primary);
   box-sizing: border-box;
   outline: none;
-  transition: background 0.3s ease, border-color 0.3s ease;
   margin-top: 125px; /* Raised to align with bottom of Fulfilment selection text */
-}
-
-.checkout-botton-container:hover {
-  background: var(--primitive-white);
-  border-color: transparent;
-}
-
-.checkout-botton-container:hover .checkout-submit-btn {
-  color: var(--primitive-black);
-}
-
-.checkout-botton-container.disabled {
-  background: var(--color-surface-disabled);
-  border-color: var(--color-surface-disabled);
-  pointer-events: none;
-}
-
-.checkout-submit-btn {
-  background: none;
-  border: none;
-  outline: none;
-  cursor: pointer;
+  
   font-family: var(--label_link_button_medium_texts-font-family);
   font-size: var(--label_link_button_medium_texts-font-size);
   font-weight: var(--label_link_button_medium_texts-font-weight);
   line-height: var(--label_link_button_medium_texts-line-height);
   letter-spacing: var(--label_link_button_medium_texts-letter-spacing);
   color: var(--color-text-on-primary);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   white-space: nowrap;
-  transition: color 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.checkout-submit-btn:hover {
+  background: var(--primitive-white);
+  border-color: transparent;
+  color: var(--primitive-black);
+}
+
+.checkout-submit-btn.disabled, .checkout-submit-btn:disabled {
+  background: var(--color-surface-disabled);
+  border-color: var(--color-surface-disabled);
+  color: var(--primitive-white);
+  pointer-events: none;
 }
 
 

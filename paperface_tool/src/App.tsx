@@ -554,8 +554,16 @@ export default function App() {
             <button 
               onClick={() => {
                 downloadImage();
+                let imageDataUrl = "";
+                if (canvasRef.current) {
+                  imageDataUrl = canvasRef.current.toDataURL('image/png');
+                }
                 if (window.parent && window.parent !== window) {
-                  window.parent.postMessage({ type: 'paperface-confirm' }, '*');
+                  window.parent.postMessage({ 
+                    type: 'paperface-confirm',
+                    image: imageDataUrl,
+                    name: checkoutName
+                  }, '*');
                 }
               }}
               className="confirm-btn"

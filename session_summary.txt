@@ -552,6 +552,68 @@ GOAL & NEXT STEPS FOR NEW SESSIONS:
     - Forced `mix-blend-mode: normal !important` on error elements (`.pin-digit.error`, `.pin-line.error`, `.key-error-text`), allowing only the error lines and error text to display in solid red without any difference inversion.
 ==========================================================================================
 
+86. Community Section Custom Hover Transitions & Typewriter Animation:
+    - Added generic helper classes (`.artist-row`, `.artist-name`, `.artist-frame`, `.artist-image`, `.artist-bio`) to all the corresponding artist items in `index.html` for clean JS and CSS targeting.
+    - Updated `.artist-frame-27` and `.artist-frame-28` in `style.css` to keep `opacity: 1` by default and removed `opacity` from their hover/collapse transitions to prevent fade-in/fade-out.
+    - Configured a horizontally centered mask opening effect using `clip-path: inset(0 50% 0 50%)` on `.artist-image` which expands to `clip-path: inset(0 0 0 0)` on hover via a smooth `0.6s cubic-bezier(0.19, 1, 0.22, 1)` transition.
+    - Implemented a fast typewriter/digital writing effect in `main.js` using `initCommunityHovers()`. On hover, the artist bio text prints out dynamically (4 characters every 10ms, matching the virus attack section speed). When hover ends, it instantly resets to empty so the details collapse cleanly.
+    - Built production assets successfully.
+==========================================================================================
+
+87. Extra Portrait Additions at the Bottom of Community Page:
+    - Added HTML markup in `index.html` for two extra portraits at the end of the community section (Marco Palumbo and Carmine Ercolino) referencing the pre-loaded image files `/immagini/extra_portraits/Marco_palumbo.png` and `/immagini/extra_portraits/carmine_ercolino.png`.
+    - Added CSS selectors (`.extra-portrait-marco`, `.extra-name-marco`, `.extra-portrait-carmine`, `.extra-name-carmine`) in `style.css` matching Figma proportions (165px x 167px).
+    - Shifted the Y coordinates down further (Marco image to `top: 2260px` / name to `top: 2444px`, and Carmine image to `top: 2480px` / name to `top: 2664px`) to guarantee ample buffer spacing when upper list elements expand on hover.
+    - Set the exact same distance (17px gap) between the portraits and names for both new cards.
+    - Doubled the speed of the digital typing animation in `main.js` (typing 8 characters per tick instead of 4) for faster, snappier readability.
+    - Updated Nicole Sciamanna's description bio text in `index.html` with her new introspective and philosophy-focused text.
+    - Updated Michela Marcello's description bio text in `index.html` with her new typography and layout-focused text.
+    - Aligned all biographies to the top edge of their portrait images globally (by changing `.artist-frame-27` to `align-items: flex-start` in `style.css`).
+    - Updated Aurora Erica's description bio text in `index.html` with her new environmental-design-focused text.
+    - Updated code.627's description bio text in `index.html` with their new visual experimentation and grunge design-focused text.
+    - Updated Lorenz Holzer's description bio text in `index.html` with his new photography and visual design-focused text.
+    - Updated Gaia Credentino's description bio text in `index.html` with her new experimental photography and mixed media-focused text.
+    - Updated Rossella Starita's description bio text in `index.html` with her new psychology and writing-focused text.
+    - Verified a clean Vite build compilation.
+==========================================================================================
+
+88. Paperface Tool Confirmation Flow & Community Parallax Integration:
+    - Modified `paperface_tool/src/App.tsx` to extract the glitched canvas image as a dataURL and forward it along with `checkoutName` in the `postMessage` confirm payload.
+    - Updated `index.html` to wrap the pre-existing extra portraits (Marco and Carmine) into a unified `.extra-card.parallax-card` structure.
+    - Created general CSS classes (`.extra-card`, `.extra-portrait-image`, `.extra-portrait-name`) in `style.css` to handle position, layout sizing, and typography.
+    - Implemented `addNewConfirmedPortrait(image, name)` in `main.js` to dynamically create, coordinate, and append new cards to the community page upon confirmation.
+    - Added dynamic height-scaling in `main.js` to expand the `.community-canvas` container dimensions automatically if appended cards exceed bounds, allowing the absolute membership items to slide down natively.
+    - Added `updateCommunityParallax()` in `main.js` to translate left/right cards in opposite directions based on scroll speed (`factor: +/- 0.07`), creating a clean, staggered parallax scrolling effect.
+    - Re-built both the `paperface_tool` subproject and the main project production bundles successfully.
+==========================================================================================
+
+89. Virus Attack Typing Phase Auto-Scroll:
+    - Updated `startTypingPhase()`, `startInputPhase()`, and `handleInputKeyDown` in `virus.js` to automatically scroll the `#virus-typing-layer` (`.typing-container`) to the bottom as the typewriter effect prints or as the user enters characters.
+    - Verified a clean Vite build compilation.
+==========================================================================================
+
+90. Caption Typography Style Integration:
+    - Added CSS variables (`--caption-font-size: 12pt`, `--caption-line-height: 100%`, `--caption-letter-spacing: -0.03em`, `--caption-font-weight: 500`) to `:root` in `style.css`.
+    - Declared `.caption_texts` styling class in `style.css` matching specified typography rules (Helvetica Now Text font family, 12pt size, 100% line height, and -3% tracking).
+    - Applied `.caption_texts` to `.extra-portrait-name` in `style.css` to format all community bottom portrait names.
+    - Updated `index.html` and `main.js` to explicitly assign the `.caption_texts` class to static and dynamically created extra portrait names.
+    - Verified a clean Vite build compilation.
+==========================================================================================
+
+91. Dynamic Community Portrait Alignment and Spacing Refinement:
+    - Updated `addNewConfirmedPortrait(image, name)` in `main.js` to assign intermediate staggered X positions (594px, 410px, 778px) for all paperface-confirmed user portraits (index >= 2) so they don't align with the existing columns of Marco (225px) and Carmine (963px).
+    - Reduced spacing between portrait images and names in bottom community cards by changing `margin-top` from `17px` to `7px` in the `.extra-portrait-name` class in `style.css`.
+    - Verified a clean Vite build compilation.
+==========================================================================================
+
+92. Checkout Submit Button Event Area Refactor:
+    - Replaced the nested `.checkout-botton-container` div wrapper in `index.html` with a direct `<button type="submit" class="checkout-submit-btn">Checkout</button>` tag, ensuring that clicking anywhere on the background fill triggers form submission.
+    - Merged layout and spacing properties of the old container class into `.checkout-submit-btn` in `style.css`.
+    - Simplified selectors and class toggling inside `updateCheckoutButtonState` in `main.js` to target `.checkout-submit-btn` directly.
+    - Solved checkout button text visibility bug when disabled by changing color to `var(--primitive-white)` in `style.css` (previously both background and text were mapped to the same light grey, hiding the text).
+    - Verified a clean Vite build compilation.
+==========================================================================================
+
 
 
 
