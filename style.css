@@ -2961,17 +2961,35 @@ body[data-page="loader"] .main-header {
 body[data-page="order-confirmed"] .main-header {
   display: none;
 }
+
+#order-confirmed-page.active {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .order-confirmed-canvas {
   position: relative;
   width: 1920px;
   height: 1080px;
-  background-color: #ffffff;
+  background: transparent;
 }
-
 
 #order-confirmed-lottie {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: 2;
+  pointer-events: none;
 }
+
 .confirmed-bg-testi {
   position: absolute;
   top: 50%;
@@ -2981,6 +2999,15 @@ body[data-page="order-confirmed"] .main-header {
   transform: translate(calc(-50% - 200px), -50%);
   z-index: 1;
   pointer-events: none;
+}
+
+#confirmed-logo-btn {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  width: 91.02px;
+  height: 29.53px;
+  z-index: 10000;
 }
 
 /* Enable visible overflow and disable Lottie clipping for the order confirmed section */
@@ -3038,17 +3065,19 @@ body[data-page="order-confirmed"] .main-header {
   color: #000000;
   text-transform: none !important;
 
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
+  position: absolute;
+  left: 40px;
+  top: 551px;
   margin: 0;
+  z-index: 1000;
 }
 
-/* Check your email for more details */
 .confirmed-subtitle {
-  width: 300px;
-  height: 20px;
+  position: absolute;
+  width: 560px;
+  height: 111px;
+  left: 40px;
+  top: 603px;
 
   font-family: 'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-style: normal;
@@ -3056,13 +3085,37 @@ body[data-page="order-confirmed"] .main-header {
   font-size: 20px;
   line-height: 100%;
   letter-spacing: -0.03em;
-  color: #979797;
-
-  flex: none;
-  order: 1;
-  align-self: stretch;
-  flex-grow: 0;
+  color: #000000;
   margin: 0;
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.confirmed-subtitle .order-id {
+  display: block;
+  line-height: 100%;
+}
+
+.confirmed-subtitle .order-details {
+  display: flex;
+  flex-direction: column;
+  padding-left: 110px;
+  line-height: 100%;
+}
+
+.confirmed-subtitle .order-choice,
+.confirmed-subtitle .order-address,
+.confirmed-subtitle .order-est {
+  display: block;
+}
+
+.confirmed-subtitle .order-check-email {
+  display: block;
+  margin-top: 11px;
+  color: #979797;
+  line-height: 100%;
 }
 
 /* joint_section */

@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Upload, SlidersHorizontal, RefreshCw, Download, Image as ImageIcon, X, Loader2 } from 'lucide-react';
+import { Upload, SlidersHorizontal, RefreshCw, Download, X, Loader2 } from 'lucide-react';
 import { FaceLandmarker, FilesetResolver } from "@mediapipe/tasks-vision";
 
 interface GlitchParams {
@@ -512,7 +512,19 @@ export default function App() {
               {isModelLoading ? (
                 <Loader2 className="uploader-icon animate-spin" />
               ) : (
-                <ImageIcon className="uploader-icon" />
+                <svg 
+                  width="54" 
+                  height="43" 
+                  viewBox="0 0 54 43" 
+                  fill="none" 
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="uploader-icon"
+                >
+                  <path 
+                    d="M54 5.375H27L21.6 0C14.409 0 7.21802 -1.35649e-05 0.0270264 6.80797e-06L0 43C18 43 36 43 54 43V5.375ZM48.6 37.625H5.40002V10.75H48.6V37.625ZM16.2 24.2144L20.007 28.0038L24.3 23.7575V34.9375H29.7V23.7575L33.993 28.0306L37.8 24.2144L27.027 13.4375L16.2 24.2144Z" 
+                    fill="currentColor"
+                  />
+                </svg>
               )}
             </div>
             <div className="uploader-text-container">

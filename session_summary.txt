@@ -637,6 +637,35 @@ GOAL & NEXT STEPS FOR NEW SESSIONS:
     - Verified a clean Vite build compilation.
 ==========================================================================================
 
+96. Order Confirmation Dynamic Details & Height-Responsive Backgrounds:
+    - Updated `index.html` to move background Lottie animation, names SVG background, and the FØLT logo button outside `.viewport-scaler` directly under `#order-confirmed-page`.
+    - Structured the `.confirmed-subtitle` text block in `index.html` with nested spans (`.order-id`, `.order-choice`, `.order-address`, `.order-est`, `.order-check-email`) to achieve the exact indentation and visual layout matching the mockup.
+    - Updated `style.css` to define `#order-confirmed-page` as a flexbox container with 100vh height to center the canvas vertically.
+    - Set the canvas background to transparent and repositioned the backgrounds Lottie (z-index: 2, height: 100vh) and names SVG (z-index: 1, original 120% scale/centering) to adapt to the page viewport height.
+    - Anchored `#confirmed-logo-btn` to the top-left of the viewport with a 40px top and left margin in `style.css`.
+    - Implemented `updateOrderConfirmedDetails()` in `main.js` to compile the order choice and address details dynamically based on checkout selection, and hook it in `switchPage()`.
+    - Added local pickup hub validation in `main.js` to require selecting a hub before the checkout button is active.
+    - Re-configured Lottie's `preserveAspectRatio` option to `'xMidYMid slice'` to make the animation fill the window height.
+    - Verified Vite build compiles correctly.
+==========================================================================================
+
+97. Lottie Confirmation Portraits Vertical Offset Adjustment:
+    - Updated `main.js` to shift the Lottie animation layer coordinates for `caterina_portrait`, `lorenz_portrait`, and `aurora_portrait` up by an additional `200px` (total of -340px for Caterina, and -200px for Lorenz and Aurora) to refine portrait centering and prevent layout crowding.
+    - Verified Vite build compiles correctly.
+==========================================================================================
+
+98. Fixed CSS Display Bug on Order Confirmed Page:
+    - Updated `#order-confirmed-page` selector to `#order-confirmed-page.active` in `style.css` so that its `display: flex;` property does not override the default `.page-view { display: none; }` when the page is inactive. This prevents an extra `100vh` of blank space from being appended to the end of the primary page.
+    - Restored primary canvas design height back to its original `6672px` specifications.
+    - Verified Vite build compiles correctly.
+==========================================================================================
+
+99. Lottie Confirmation Portraits Fine-Tuning Shifts:
+    - Updated `main.js` to shift Aurora's portrait down by `50px` (y-axis from -200px to -150px).
+    - Shifted Lorenz's portrait right by `30px` (x-axis +30px).
+    - Verified Vite build compiles correctly.
+==========================================================================================
+
 
 
 

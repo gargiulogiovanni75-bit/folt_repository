@@ -74,12 +74,18 @@ if (orderConfirmedAnimationData && orderConfirmedAnimationData.layers) {
             l.ks.p.x.k -= 20; // Shift left by 20px
           } else if (l.nm === 'giovanni_portrait') {
             l.ks.p.x.k -= 70; // Shift left by 70px
+          } else if (l.nm === 'lorenz_portrait') {
+            l.ks.p.x.k += 30; // Shift right by 30px
           }
         }
         if (l.ks.p.y && typeof l.ks.p.y.k === 'number') {
           l.ks.p.y.k = targetY + (l.ks.p.y.k - centerY) * layoutScale;
           if (l.nm === 'caterina_portrait') {
-            l.ks.p.y.k -= 140; // Shift up by 140px total (40px original + 100px additional)
+            l.ks.p.y.k -= 340; // Shift up by 340px (140px original + 200px additional)
+          } else if (l.nm === 'lorenz_portrait') {
+            l.ks.p.y.k -= 200; // Shift up by 200px
+          } else if (l.nm === 'aurora_portrait') {
+            l.ks.p.y.k -= 150; // Shift up by 150px (was -200px, shifted down by 50px)
           } else if (l.nm === 'giovanni_portrait') {
             l.ks.p.y.k -= 40; // Shift up by 40px
           }
@@ -190,16 +196,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentProgress = 0;
   let targetScrollY = 0;
   let lastScrollY = getScrollTop();
-  
+
   // Nav Links
   const headerLogoBtn = document.getElementById('header-logo-btn');
   const navCommunity = document.getElementById('nav-community');
   const navAbout = document.getElementById('nav-about');
   const navShop = document.getElementById('nav-shop');
-  
+
   // Custom Actions
   const buyButton = document.getElementById('buy-button');
-  
+
   // Shipping Conditional UI Elements
   const checkHome = document.getElementById('check-home');
   const checkPickup = document.getElementById('check-pickup');
@@ -213,10 +219,10 @@ document.addEventListener('DOMContentLoaded', () => {
     containers.forEach(container => {
       const originalWidth = parseFloat(container.dataset.originalWidth) || 1728;
       const originalHeight = parseFloat(container.dataset.originalHeight) || (container.classList.contains('header-content-inner') ? 92.53 : 6672);
-      
+
       // Calculate scale factor to fit current window size
       const scale = window.innerWidth / originalWidth;
-      
+
       if (window.innerWidth < originalWidth) {
         container.style.transform = `scale(${scale})`;
         if (!container.classList.contains('header-content-inner')) {
@@ -237,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
-    
+
     updateCanvasVisibility();
   }
 
@@ -274,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!canvasElement) return;
     const isPrimaryActive = document.getElementById('primary-page').classList.contains('active');
     const isCheckoutActive = document.getElementById('checkout-page').classList.contains('active');
-    
+
     let opacity = 0;
     if (isCheckoutActive) {
       opacity = 1;
@@ -354,19 +360,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize Lottie dynamic rendering once the page is fully active and layout is calculated
     if (pageId === 'order-confirmed-page') {
+      updateOrderConfirmedDetails();
       initOrderConfirmedLottie();
     }
 
     // Run scaling calculations for the newly showing page canvas
     resizeCanvas();
 
-     // Reset scroll position to top
+    // Reset scroll position to top
     window.scrollTo({ top: 0, behavior: 'instant' });
-    
+
     if (pageId === 'community-page') {
       updateCommunityParallax();
     }
-    
+
     // Update particles visibility
     updateCanvasVisibility();
   }
@@ -377,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function startProgrammaticScroll(targetY, options = { behavior: 'smooth' }) {
     isProgrammaticScrolling = true;
     window.scrollTo({ top: targetY, ...options });
-    
+
     let scrollTimeout;
     const checkScrollEnd = () => {
       clearTimeout(scrollTimeout);
@@ -411,9 +418,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Shop Click: switch to primary page and scroll to order issue section
   navShop.addEventListener('click', (e) => {
     e.preventDefault();
-    
+
     const isAlreadyPrimary = document.getElementById('primary-page').classList.contains('active');
-    
+
     if (!isAlreadyPrimary) {
       switchPage('primary-page');
       setTimeout(scrollToBuyButton, 100);
@@ -549,6 +556,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // Check local pickup hub selection if pickup is checked
+    if (isPickup) {
+      const activeHub = document.querySelector('.affiliate-hub.active');
+      if (!activeHub) return false;
+    }
+
     // Check credit card details if card payment is checked
     if (isCard) {
       const cardInputs = document.querySelectorAll('#credit-card-details .checkout-field-input');
@@ -604,7 +617,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (summaryShipping) summaryShipping.textContent = '€5';
           if (summaryTotal) summaryTotal.textContent = '€45';
           setCheckoutCanvasHeight(1400);
-          
+
           // Reset pickup hubs when switching to home delivery
           const hubsList = document.querySelectorAll('.affiliate-hub');
           hubsList.forEach(h => {
@@ -620,7 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (summaryShipping) summaryShipping.textContent = '—';
           if (summaryTotal) summaryTotal.textContent = '€40';
           setCheckoutCanvasHeight(1090);
-          
+
           // Reset pickup hubs when unchecking local pickup
           const hubsList = document.querySelectorAll('.affiliate-hub');
           hubsList.forEach(h => {
@@ -846,19 +859,59 @@ document.addEventListener('DOMContentLoaded', () => {
       autoplay: true,
       animationData: orderConfirmedAnimationData,
       rendererSettings: {
-        preserveAspectRatio: 'xMidYMid meet'
+        preserveAspectRatio: 'xMidYMid slice'
       }
     });
+  }
+
+  // --- Update Order Confirmed Details ---
+  function updateOrderConfirmedDetails() {
+    const choiceEl = document.querySelector('.confirmed-subtitle .order-choice');
+    const addressEl = document.querySelector('.confirmed-subtitle .order-address');
+    if (!choiceEl || !addressEl) return;
+
+    const isHome = checkHome && checkHome.classList.contains('checked');
+    const isPickup = checkPickup && checkPickup.classList.contains('checked');
+
+    let shippingChoice = 'local pickup';
+    let shippingAddress = '-Libreria Dispaccio-Via Luigi Settembrini, 33, 80138 Napoli NA'; // default fallback
+
+    if (isHome) {
+      shippingChoice = 'home delivery';
+      const street = document.getElementById('input-street')?.value.trim() || '';
+      const zip = document.getElementById('input-zip')?.value.trim() || '';
+      const city = document.getElementById('input-city')?.value.trim() || '';
+      const state = document.getElementById('input-state')?.value.trim() || '';
+      const country = document.getElementById('input-country')?.value.trim() || '';
+      shippingAddress = [street, zip, city, state, country].filter(Boolean).join(', ');
+      if (!shippingAddress) {
+        shippingAddress = 'N/A';
+      }
+    } else if (isPickup) {
+      shippingChoice = 'local pickup';
+      if (document.getElementById('hub-napoli')?.classList.contains('active')) {
+        shippingAddress = '-Libreria Dispaccio-Via Luigi Settembrini, 33, 80138 Napoli NA';
+      } else if (document.getElementById('hub-milano')?.classList.contains('active')) {
+        shippingAddress = '-Frab’s Magazine-Via Giuseppe Sirtori, 11, 20129 Milano MI';
+      } else if (document.getElementById('hub-roma')?.classList.contains('active')) {
+        shippingAddress = '-Edicola Erno-Piazza Americo Capponi, 00193 Roma RM';
+      }
+    }
+
+    choiceEl.textContent = shippingChoice;
+    addressEl.textContent = shippingAddress;
   }
 
   // Logo buttons routing back to primary page (for checkout, confirmed, and paperface pages)
   const logoBtns = [
     { id: 'checkout-logo-btn' },
     { id: 'confirmed-logo-btn' },
-    { id: 'paperface-logo-btn', cleanup: () => {
-      const iframe = document.getElementById('paperface-iframe');
-      if (iframe) iframe.src = 'about:blank';
-    }}
+    {
+      id: 'paperface-logo-btn', cleanup: () => {
+        const iframe = document.getElementById('paperface-iframe');
+        if (iframe) iframe.src = 'about:blank';
+      }
+    }
   ];
   logoBtns.forEach(btnConfig => {
     const btn = document.getElementById(btnConfig.id);
@@ -885,11 +938,11 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       // Show the community login page view
       switchPage('community-login-page');
-      
+
       // Reset input fields
       if (loginInputEmail) loginInputEmail.value = '';
       if (loginInputPassword) loginInputPassword.value = '';
-      
+
       // Clear errors
       const loginCard = document.getElementById('community-login-card');
       if (loginCard) {
@@ -1066,7 +1119,7 @@ document.addEventListener('DOMContentLoaded', () => {
       canvasContainer.dataset.originalHeight = newHeight;
       resizeCanvas();
     }
-    
+
     // Update parallax on the newly created card
     updateCommunityParallax();
   }
@@ -1335,7 +1388,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isLocked = true;
       lockScrollY = currentScrollY;
       document.documentElement.style.overflow = 'hidden';
-      
+
       const excessDelta = currentScrollY - targetScrollY;
       targetProgress = 0;
       currentProgress = 0;
@@ -1348,7 +1401,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isLocked = true;
       lockScrollY = currentScrollY;
       document.documentElement.style.overflow = 'hidden';
-      
+
       const excessDelta = currentScrollY - targetScrollY;
       targetProgress = 1;
       currentProgress = 1;
@@ -1371,22 +1424,22 @@ document.addEventListener('DOMContentLoaded', () => {
     currentProgress = 0;
     targetScrollY = 0;
     lastScrollY = 0;
-    
+
     if (tickId) {
       cancelAnimationFrame(tickId);
       tickId = null;
     }
-    
+
     // Unlock scroll settings
     document.documentElement.style.overflow = '';
     document.body.classList.remove('virus-lock');
-    
+
     // Update Lottie animation to start
     updateAnimation(0);
-    
+
     // Reset page view to primary-page
     switchPage('primary-page');
-    
+
     if (window.__virusTriggeredByButtons) {
       window.__virusTriggeredByButtons = false;
       // Scroll to the bottom of the primary page
@@ -1398,7 +1451,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       startProgrammaticScroll(0, { behavior: 'instant' });
     }
-    
+
     // Recalculate target scroll position
     calculateTargetScroll();
     resizeCanvas();
@@ -1480,10 +1533,10 @@ document.addEventListener('DOMContentLoaded', () => {
     videoPinSlots.forEach((slot, index) => {
       const digitSpan = slot.querySelector('.pin-digit');
       const lineDiv = slot.querySelector('.pin-line');
-      
+
       digitSpan.classList.remove('error');
       lineDiv.classList.remove('error');
-      
+
       if (index < enteredVideoPin.length) {
         digitSpan.textContent = "*";
       } else {
@@ -1543,14 +1596,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (enteredVideoPin.length === 6) {
         if (enteredVideoPin === "111223") {
           videoPinActive = false;
-          
+
           const videoPage = document.getElementById('video-page');
           const videoKeyOverlay = document.getElementById('video-key-overlay');
           if (videoPage && videoKeyOverlay) {
             videoPage.classList.remove('key-prompt-active');
             videoKeyOverlay.style.display = 'none';
           }
-          
+
           if (videoPlayer) {
             videoPlayer.muted = false;
           }
@@ -1571,23 +1624,23 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       e.stopPropagation();
       videoPinActive = false;
-      
+
       const videoPage = document.getElementById('video-page');
       const videoKeyOverlay = document.getElementById('video-key-overlay');
       if (videoPage && videoKeyOverlay) {
         videoPage.classList.remove('key-prompt-active');
         videoKeyOverlay.style.display = 'none';
       }
-      
+
       enteredVideoPin = "";
       clearVideoPinErrorState();
       updateVideoPinDisplay();
-      
+
       if (videoPlayer) {
         videoPlayer.pause();
         videoPlayer.src = "";
       }
-      
+
       switchPage(previousPage);
     });
   }
@@ -1600,22 +1653,22 @@ document.addEventListener('DOMContentLoaded', () => {
       if (activePage && activePage.id !== 'video-page') {
         previousPage = activePage.id;
       }
-      
+
       switchPage('video-page');
-      
+
       // Start the video in the background under the key prompt, muted
       playVideoAtIndex(0);
       if (videoPlayer) {
         videoPlayer.muted = true;
       }
-      
+
       const videoPage = document.getElementById('video-page');
       const videoKeyOverlay = document.getElementById('video-key-overlay');
       if (videoPage && videoKeyOverlay) {
         videoPage.classList.add('key-prompt-active');
         videoKeyOverlay.style.display = 'flex';
       }
-      
+
       videoPinActive = true;
       enteredVideoPin = "";
       updateVideoPinDisplay();
@@ -1628,7 +1681,7 @@ document.addEventListener('DOMContentLoaded', () => {
     artistRows.forEach(row => {
       const bioEl = row.querySelector('.artist-bio');
       if (!bioEl) return;
-      
+
       // Store the original text to type it dynamically, and clear the element's default text
       bioEl._fullText = bioEl.textContent.trim();
       bioEl.textContent = '';
@@ -1642,7 +1695,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bioEl.textContent = '';
         let currentIdx = 0;
         const textBody = bioEl._fullText;
-        
+
         bioEl._typeInterval = setInterval(() => {
           if (currentIdx < textBody.length) {
             currentIdx += 8; // Twice as fast digital writing

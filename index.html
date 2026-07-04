@@ -621,25 +621,24 @@
 
     <!-- ORDER CONFIRMED PAGE -->
     <section id="order-confirmed-page" class="page-view">
+      <div id="order-confirmed-lottie"></div>
+
+      <!-- Background SVG -->
+      <img class="confirmed-bg-testi" src="/background_community_names.svg" alt="Background Texts">
+
+      <!-- Logo button -->
+      <a href="#" id="confirmed-logo-btn">
+        <img class="checkout-logo-img" src="/logo_folt_definitivo.svg" alt="FØLT Logo">
+      </a>
+
       <div class="viewport-scaler">
         <div class="canvas-container order-confirmed-canvas" data-original-height="1080" data-original-width="1920">
-          <div id="order-confirmed-lottie" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
-
-          <!-- Background SVG -->
-          <img class="confirmed-bg-testi" src="/background_community_names.svg" alt="Background Texts">
-
-
-          <!-- Logo button -->
-          <a href="#" id="confirmed-logo-btn" class="checkout-logo-container" style="z-index: 10000;">
-            <img class="checkout-logo-img" src="/logo_folt_definitivo.svg" alt="FØLT Logo">
-          </a>
 
           <!-- HTML Order Confirmed and Join Section Group -->
           <div class="order-confirmed-join-texts">
             <!-- order_confirmed -->
             <div class="order-confirmed-col">
-              <h1 class="confirmed-title">Order confirmed</h1>
-              <p class="confirmed-subtitle">Check your email for more details</p>
+              <!-- Spacer for flex layout -->
             </div>
             <!-- joint_section -->
             <div class="joint-section">
@@ -654,6 +653,17 @@
                 upload your portrait<br>manipulate it
               </div>
             </div>
+          </div>
+
+          <h1 class="confirmed-title">Order confirmed</h1>
+          <div class="confirmed-subtitle" id="confirmed-subtitle-details">
+            <span class="order-id">Order #FLT-11123343674936</span>
+            <div class="order-details">
+              <span class="order-choice">scelta spedizione</span>
+              <span class="order-address">indirizzo spedizione</span>
+              <span class="order-est">Estimated delivery: October 24, 2026.</span>
+            </div>
+            <span class="order-check-email">Check your email for more details</span>
           </div>
 
         </div>
