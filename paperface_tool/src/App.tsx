@@ -505,6 +505,18 @@ export default function App() {
       )}
 
       <main className="flex-grow flex items-center justify-center bg-transparent relative z-10">
+        {!originalImage && (
+          <a
+            href="#"
+            className="login-back-btn btn-text"
+            onClick={(e) => {
+              e.preventDefault();
+              window.parent.postMessage({ type: 'paperface-back' }, '*');
+            }}
+          >
+            <span>Back</span>
+          </a>
+        )}
         {!originalImage ? (
           <div className="uploader-card"
                onClick={() => document.getElementById('file-upload')?.click()}>

@@ -1388,13 +1388,13 @@ html, body {
 /* --- COMMUNITY PAGE FIGMA SPEC --- */
 .community-canvas {
   width: 1728px;
-  height: 3100px;
+  height: 3860px;
 }
 
 .community-canvas-mockup {
   position: relative;
   width: 1728px;
-  height: 3100px;
+  height: 3860px;
   overflow: visible; /* Let giant names overflow the canvas boundaries cleanly to the right */
 }
 
@@ -1528,13 +1528,18 @@ html, body {
   border: none; /* Removed black stroke border */
 }
 
-/* Custom Image Mask Opening Effect */
+/* Custom Image Mask Opening Effect (Curtain top-to-bottom) */
 .artist-image {
-  clip-path: inset(0 50% 0 50%); /* Start collapsed horizontally from center out */
-  transition: clip-path 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  clip-path: inset(0 0 100% 0); /* Start collapsed vertically from top */
+  opacity: 0;
+  transition: clip-path 0.2s cubic-bezier(0.19, 1, 0.22, 1) 0s,
+              opacity 0.15s ease-out 0s;
 }
 .artist-row:hover .artist-image {
-  clip-path: inset(0 0 0 0); /* Open completely */
+  clip-path: inset(0 0 0 0); /* Open completely downwards */
+  opacity: 1;
+  transition: clip-path 0.6s cubic-bezier(0.19, 1, 0.22, 1) 0.15s,
+              opacity 0.2s ease-out 0.15s;
 }
 
 /* Bio elements */
@@ -1581,34 +1586,68 @@ html, body {
   transform: translateY(0);
 }
 
-/* Extra Portraits in Community Page */
-.extra-card {
+/* --- COMMUNITY GRID SYSTEM --- */
+.community-grid {
   position: absolute;
-  width: 165px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  will-change: transform;
+  width: 1585px;
+  height: 1098px; /* 4 rows by default: 28 cards */
+  left: 40px;
+  top: 2305px;
 }
 
-.extra-portrait-image {
-  width: 165px;
-  height: 167px;
+.community-cell {
+  position: absolute;
+  width: 195px;
+  height: 270px;
+}
+
+.community-portrait {
+  width: 195px;
+  height: 270px;
   background-size: cover;
   background-position: center;
-  flex-shrink: 0;
 }
 
-.extra-portrait-name {
-  font-family: var(--font-family-helvetica);
-  font-size: var(--caption-font-size);
-  line-height: var(--caption-line-height);
-  letter-spacing: var(--caption-letter-spacing);
-  font-weight: var(--caption-font-weight);
+.community-numbers {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 195px;
+  margin-top: 5px;
+}
+
+.community-num {
+  font-family: 'Helvetica Now Text', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
   color: #000000;
-  margin-top: 7px;
-  white-space: nowrap;
+}
+
+.community-name {
+  font-family: 'Helvetica Now Text', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #000000;
+}
+
+.community-archival-text {
+  position: absolute;
+  width: 1098px;
+  left: 1688px;
+  top: 2305px;
+  transform: rotate(90deg);
+  transform-origin: left top;
+  font-family: 'Helvetica Now Text', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: -0.03em;
+  color: #000000;
 }
 
 /* Bottom Text Elements styling */
@@ -3292,7 +3331,7 @@ body[data-page="paperface"] .main-header {
   flex-direction: column;
   align-items: flex-start;
   padding: 90px 40px;
-  gap: 60px;
+  gap: 121px;
   isolation: isolate;
 
   position: absolute;
@@ -3300,25 +3339,11 @@ body[data-page="paperface"] .main-header {
   height: auto;
   min-height: 452px;
   left: 651px;
-  top: 319px;
+  top: 178px;
 
   background: #FFFFFF;
-  border: 1px solid #979797;
+  border: none;
   z-index: 10000;
-}
-
-.login-close-btn {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  left: 376px;
-  top: 27px;
-  cursor: pointer;
-  z-index: 3;
-}
-
-.login-close-btn:hover svg path {
-  stroke: #000000;
 }
 
 .login-title {
@@ -3487,7 +3512,7 @@ body[data-page="paperface"] .main-header {
   width: 345px;
   height: 40px;
   background: #000000;
-  border: 1px solid #000000;
+  border: none;
   font-family: 'Helvetica Now Text', sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -3497,11 +3522,81 @@ body[data-page="paperface"] .main-header {
   color: #FFFFFF;
   cursor: pointer;
   box-sizing: border-box;
-  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-.login-confirm-btn:hover {
+.login-confirm-btn:disabled {
+  background: var(--primitive-light-grey);
+  color: #FFFFFF;
+  cursor: default;
+}
+
+.login-confirm-btn:hover:not(:disabled) {
   background: #FFFFFF;
-  border-color: #000000;
   color: #000000;
 }
+
+/* Bottom Info description text on login page */
+.login-description-text {
+  position: absolute;
+  width: 510px;
+  height: 24px;
+  left: 517px;
+  top: 846px;
+  font-family: 'Helvetica Now Text', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+/* Small Order Button on login page */
+.login-order-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 0px;
+  gap: 10px;
+  position: absolute;
+  width: 155px;
+  height: 24px;
+  left: 1056px;
+  top: 846px;
+}
+
+.login-order-btn {
+  width: 155px;
+  height: 20px;
+  font-family: 'Helvetica Now Text', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #000000;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  text-decoration: none;
+}
+
+.login-back-btn {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  font-family: 'Helvetica Now Text', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: #000000;
+  text-decoration: none;
+  z-index: 10001;
+}
+
+

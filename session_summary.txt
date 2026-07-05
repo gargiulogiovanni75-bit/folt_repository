@@ -666,6 +666,358 @@ GOAL & NEXT STEPS FOR NEW SESSIONS:
     - Verified Vite build compiles correctly.
 ==========================================================================================
 
+100. Lenis Smooth Scroll Integration:
+     - Installed `lenis` to support buttery-smooth virtualized scrolling.
+     - Declared and initialized `lenisInstance` in `main.js` inside the `DOMContentLoaded` listener, updating it via a `requestAnimationFrame` render loop.
+     - Refactored scroll lock mechanics to use `lenisInstance.stop()` and `lenisInstance.start()` instead of toggling `document.documentElement.style.overflow`. This eliminates visual layout shifting, scrollbar hiding/showing, and provides smooth, continuous scrolling transitions.
+     - Updated `startProgrammaticScroll` and `switchPage` to leverage Lenis's smooth `.scrollTo()` API when active.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+101. Login Confirm Button Disabled State and Style Adjustments:
+     - Removed the black border (stroke) from the community login card's "Confirm" button (`.login-confirm-btn`) in `style.css`.
+     - Set the button to `disabled` by default in `index.html` since inputs start empty.
+     - Styled the `:disabled` state in `style.css` to have a light grey background (`var(--primitive-light-grey)`) and white text.
+     - Implemented dynamic credential check in `main.js`: when inputs are edited, `updateLoginButtonState` updates the disabled state of the confirm button, enabling it only when both fields have text.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+102. Login Confirm Button Hover State Adjustments:
+     - Updated `.login-confirm-btn` active hover styles in `style.css` so that, when enabled, hovering turns the background white, text black, and adds a black border.
+     - Added a transparent border by default on `.login-confirm-btn` to prevent layout shifts upon hover outline insertion.
+     - Confirmed standard browser click support registers on the entire button surface (both text and fill background).
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+103. Confirm Button Border Removal on Hover:
+     - Removed the border completely (`border: none;`) from `.login-confirm-btn` across all states (including hover) in `style.css`.
+     - Retained the transition of background color to white and text color to black when the button is enabled and hovered.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+104. Continuous Scroll-Bound Scrubbing:
+     - Reverted the temporary parallax transformations from the previous prompt.
+     - Removed the scroll locking/hijacking loop (`lockScroll`, `unlockScroll` and overflow body classes) entirely from `main.js`.
+     - Removed `'wheel'`, `'touchstart'`, `'touchmove'`, and `'keydown'` event intercepts that froze and hijacked user scrolling.
+     - Updated the window `'scroll'` event listener in `main.js` to calculate Lottie progress directly from the window's scroll position (active from `targetScrollY - 400px` to `targetScrollY + 400px`).
+     - Refactored `tick()` loop to LERP `currentProgress` to `targetProgress` without programmatically altering the viewport scroll.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+105. Inertial Scroll Damping and Damped Scrubbing:
+     - Implemented `'wheel'` and `'touchmove'` event intercepts in `main.js` that activate when the viewport is within `480px` of Lottie's `targetScrollY`.
+     - Virtualized the scroll coordinates inside the active range using `virtualScrollY` and scaled the wheel/touch delta using a smooth cosine ease-in-out curve.
+     - At the center, the scroll multiplier is reduced to `0.015` (1.5% speed), making the page feel almost still for highly detailed circular Lottie scrubbing.
+     - Replaced immediate scroll updates in the gesture handlers with an inertial scroll LERP coordinate interpolation inside the `tick()` animation loop. The page glides to its destination by `12%` of the delta per frame.
+     - Synchronized Lottie progress calculations in the window `'scroll'` event listener over the exact same range of `480px` (`targetScrollY +/- 480px`).
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+106. Animation Start Delay and Rotation Speed Up:
+     - Narrowed the Lottie progress mapping range to `[targetScrollY - 200px, targetScrollY + 200px]` (a span of 400px total).
+     - This creates a start delay: the page scroll decelerates early (damping starts at targetScrollY - 480px) but the circles remain stationary until the page is close to the center.
+     - Speeds up rotation scrubbing speed relative to scrolling ticks, completing the full Lottie timeline quicker and more dynamically.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+107. Scroll Jitter and Tremors Resolution:
+     - Increased minimum scroll speed multiplier at the center from `0.015` (1.5%) to `0.07` (7%) to prevent subpixel rounding rendering tremors and page jitter.
+     - Tightened scroll LERP interpolation inside the `tick()` animation loop from `0.12` to `0.18` (18% catch-up per frame) to prevent float/bounce drift effects.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+108. Dynamic Scroll LERP Ease (Entry Smoothness):
+     - Implemented dynamic `lerpFactor` calculations in `tick()` based on distance to the center.
+     - Eases the scroll LERP factor from `1.0` (boundaries) to `0.18` (center) using a cosine ease-in-out curve.
+     - Resolves the sudden speed drop when entering the damping zone, making the transition symmetric and perfectly smooth.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+109. Increased Animation Start Delay on Entry:
+     - Changed Lottie animation start coordinate from `targetScrollY - 200px` to `targetScrollY - 100px`.
+     - Ensures that the concentric circles remain stationary at progress `0` for `380px` of the damped scroll, starting to rotate only when very close to the center.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+110. Linear Rotation Progress Adjustment:
+     - Increased the Lottie progress LERP factor inside the `tick()` loop in `main.js` from `0.08` to `0.25` (25% catch-up per frame).
+     - Reduces visual lag between scroll positions and rotation states, making circles respond more directly and linearly to wheel inputs while keeping a subtle ease cushion.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+111. Proportional Rotation Speed Reduction:
+     - Expanded Lottie animation scroll mapping range to `[targetScrollY - 130px, targetScrollY + 250px]` (total window of 380px).
+     - Causes the concentric circles to rotate 20% slower in proportion to each unit of physical wheel scroll or touch swipe, creating a more relaxed, elegant transition.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+112. Linear Scroll Speed Damping (Exit Easing Optimization):
+     - Changed the scroll speed multiplier and LERP catch-up calculations to scale linearly (`t = distance / range`) instead of using a cosine S-curve.
+     - Resolves exit acceleration bursts, making speed changes uniform and preventing sudden visual lunging.
+     - Lowered minimum scroll multiplier at the center to `0.05` (5% speed) for a slower crawl, keeping movements stable and tremor-free.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+113. 20% Slower Rotation Speed Mapping:
+     - Expanded Lottie animation scroll mapping range to `[targetScrollY - 150px, targetScrollY + 310px]` (total window of 460px).
+     - Reduces rotation speed of concentric circles by exactly 20% in proportion to each unit of physical wheel scroll or touch swipe.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+114. Slower Scroll and Rotation Damping Adjustments:
+     - Reduced minimum scroll speed multiplier at the center to `0.035` (3.5% speed) in `wheel` and `touchmove` event handlers for a slower vertical crawl.
+     - Expanded Lottie animation scroll mapping range to `[targetScrollY - 200px, targetScrollY + 380px]` (total window of 580px) to slow down circle rotation speed in proportion to wheel/touch.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+115. Cosine Animation Progress Easing (Start/End Deceleration):
+     - Applied a cosine ease-in-out curve to the Lottie progress calculation inside `main.js`.
+     - Slows down the rotation at the start and end of the circular input timeline, keeping the rotation speed correct and responsive at the center.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+116. Symmetric Animation Range Mapping:
+     - Set the Lottie animation range map to be perfectly symmetric at `[targetScrollY - 260px, targetScrollY + 260px]` (total range of 520px) around the center.
+     - Resolves the rotation speed asymmetry between the entry and exit halves, making ease-in and ease-out speeds identical and perfectly balanced.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+117. Input Delta Clamping (Anti-Acceleration Limit):
+     - Clamped the raw delta input values in the `wheel` and `touchmove` listeners inside `main.js` to a maximum limit of `35` pixels per event.
+     - Caps the maximum speed at which the user can push the virtual scroll coordinate, keeping the animation rotation slow and controlled even during rapid scrolling.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+118. Strict 5px Input Delta Clamping:
+     - Reduced input delta clamping threshold from `35` to `5` in `wheel` and `touchmove` listeners inside `main.js`.
+     - Completely prevents speed spikes under rapid mouse wheel spins or swipes, ensuring slow-motion animation play-out.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+119. Balanced 15px Input Delta Clamping:
+     - Increased input delta clamping threshold from `5` to `15` in `wheel` and `touchmove` listeners inside `main.js`.
+     - Resolves subpixel layout rounding tremors and stickiness at the center of the animation while keeping fast scrolling capped at a slow, controlled rate.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+120. Dynamic Parallax Centering Compensation:
+     - Implemented `updateCircularParallax()` inside `main.js` to translate `.container-generale` vertically in the opposite direction of the scroll.
+     - Peaked the centering compensation at an 85% locking factor at the center, easing down to 0% at the active boundaries (480px) to prevent layout jumps.
+     - Keeps the concentric orbits almost perfectly still in the viewport without reducing actual scroll increments to jitter-inducing levels.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+121. Synchronized Dynamic Centering & Jitter Fix:
+     - Shifted `updateCircularParallax()` execution inside the `tick()` animation loop (requestAnimationFrame) directly after scroll changes, eliminating sub-frame render lag (jitter).
+     - Narrowed active parallax range to `260px` and applied cubic decay `Math.pow(1 - t, 3)` to the lock factor.
+     - Prevents early "rising" or "pulling" offsets at boundaries, ensuring the container locks ("aggancia") cleanly only when very close to the center.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+122. Additional 50px Animation Delay & Jitter Fix Optimization:
+     - Narrowed symmetric Lottie progress range mapping to `[targetScrollY - 210px, targetScrollY + 210px]`, delaying the start of orbits by another 50px on entry.
+     - Removed `updateCircularParallax()` call from the window `scroll` listener to eliminate asynchronous thread conflicts and prevent sub-pixel tremors.
+     - Added a safe reset check inside the scroll listener to clear the transform attribute when scrolling natively outside damping.
+     - Verified Vite build compiles correctly.
+==========================================================================================
+
+123. ReferenceError 'virtualDistance' Bug Fix:
+     - Fixed a ReferenceError: Can't find variable: virtualDistance at main.js:1236.
+     - Defined virtualDistance as Math.abs(virtualScrollY - targetScrollY) inside the tick() animation loop when virtual scroll damping is active.
+     - Verified Vite build compiles correctly.
+================================================================================================================================
+
+124. Circular Input Animation Damping and Speed Optimization:
+     - Declared a centralized `DAMPING_RANGE` constant of `380` (pixels) to extend the active scroll-scrubbing range from 210px to 380px.
+     - Slower scroll-to-animation ratio: The wider range means the Lottie progress updates more slowly in response to physical scroll inputs.
+     - Reduced progress interpolation ease factor from `0.25` to `0.08` inside the `tick()` animation loop to create a highly smooth, inertia-driven, and delicate rotation lag behind the scroll.
+     - Verified Vite build compiles correctly.
+================================================================================================================================
+
+125. Community Page Layout Redesign (28-Cell Portrait Grid & Typewriter Hovers):
+     - Increased community canvas height from `3100px` to `3500px` in `index.html`, `style.css` and `main.js` to ensure the grid fits perfectly without footer text overlaps.
+     - Removed the old two `.extra-card` elements for Carmine and Marco.
+     - Created and styled a new absolute-positioned `.community-grid` container (`1464px` by `1098px`) at coordinates `left: 40px`, `top: 2106px` containing 28 `.community-cell` items (4 rows by 7 columns).
+     - Applied exact background image mapping to local portrait paths (`/immagini/portraits/` and `/immagini/extra_portraits/`) and aligned numeric identifiers correctly based on their original primal core indexing (e.g. Lorenz as `06`, Giovanni as `02`, etc.) and negative numbering for expanded community members (`-01` to `-014`).
+     - Added the rotated vertical `.community-archival-text` rotated 90 degrees at `left: 1625px`, `top: 2107px`.
+     - Implemented dynamic hover name-typing handlers: when a grid cell is hovered, the default label `"Name Surname"` types out character-by-character into the actual person's name (with a realistic mix of foreign first name and surnames for the 14 acquirers); when the mouse leaves, it types back to `"Name Surname"`.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+126. Community Grid Spacing & Rotated Archival Text Fine-tuning:
+     - Increased community canvas height from `3500px` to `3800px` in `index.html`, `style.css` and `main.js` to allocate wider margins between content blocks.
+     - Shifted `.community-grid` down from `top: 2106px` to `top: 2350px` to ensure a larger gap from the preceding big name texts.
+     - Updated `.community-archival-text` coordinates: shifted `top` to `2350px` (aligning it vertically with the grid) and shifted `left` to `1688px` to align its baseline exactly with the right 40px margin of the 1728px canvas wrapper.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+127. Community Grid Typewriter Transition Optimization (Blank Default & Erasing Effect):
+     - Removed the default `"Name Surname"` placeholder text in `index.html` (making grid cells completely blank beside the numbers by default).
+     - Rewrote `initCommunityGridHovers()` in `main.js` to support forward/backward typewriter transitions: hovering types out the actual name forward from its current length; mouse leaving erases the name backward character-by-character back to an empty string.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+128. Community Cell Number & Name Offset Fine-Tuning:
+     - Added `margin-top: 5px;` to `.community-numbers` inside `style.css` to shift the numbers and hovered typed name labels exactly 5px lower below the portrait images, improving structural layout breathing room.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+129. Name Label Translation Offset Adjustment:
+     - Added `transform: translateY(8px);` to `.community-name` in `style.css` to lower the hovered typed name labels by an additional 8px relative to their baseline, while keeping the cell numbers in their exact original horizontal position.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+130. Community Section Spacing Balance & Symmetric Alignment:
+     - Shifted `.community-grid` and `.community-archival-text` up from `top: 2350px` to `top: 2275px` in `style.css`.
+     - Standardized and balanced spacing layout: This leaves an identical gap of exactly `327px` between the big name texts block and the grid, and between the bottom grid row and the bottom membership footer.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+131. Community Section Gaps Enlargement (+30px):
+     - Increased community canvas height from `3800px` to `3860px` in `index.html`, `style.css` and `main.js`.
+     - Shifted `.community-grid` and `.community-archival-text` from `top: 2275px` to `top: 2305px` in `style.css`.
+     - This increases both top and bottom margins around the grid by exactly 30px, standardizing the gap symmetrically at exactly `357px` from the big names above and the membership footer below.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+132. Big Name Portrait Hover Animation Tweak (Top-to-Bottom Curtain Mask):
+     - Replaced the horizontal `clip-path` inset mask (`inset(0 50% 0 50%)`) on `.artist-image` inside `style.css` with a vertical inset mask (`inset(0 0 100% 0)`).
+     - This creates a smooth curtain reveal that opens vertically from top to bottom on hover.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+133. Checkout Confirmation Grid Portrait Integration & Smooth Auto-Scroll:
+     - Refactored `addNewConfirmedPortrait(image, name)` in `main.js` to dynamically calculate coordinates for new cells inside the 7-column `.community-grid` block (using `left = (index % 7) * 235`, `top = Math.floor(index / 7) * 342`).
+     - Automated layout growth: Automatically updates the grid container height (`gridHeight = totalRows * 342 - 270`) and community canvas height if the newly added row overflows, preserving balanced margins.
+     - Auto-assigned next negative index string (e.g. index 28 -> `-015`).
+     - Added local forward/backward typewriter hover listeners to each dynamically generated cell.
+     - Updated postMessage listener: switches active page to the community section and triggers `startProgrammaticScroll` to smoothly scroll the viewport down, centering on the newly created portrait.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+134. Big Name Portrait Hover Animation Overlap Fix:
+     - Added a `transition-delay: 0.15s;` to `.artist-image` on hover in `style.css` (`.artist-row:hover .artist-image`).
+     - Added a `transition: clip-path 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0s;` for the collapse state to ensure immediate collapse without delay when mouse leaves.
+     - This delays the curtain opening reveal until the biography frame has expanded and moved downwards, completely preventing any visual overlap with the giant text names.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+135. Big Name Portrait Hover Animation Snap & Fade-Out Polish:
+     - Configured `opacity` transition on `.artist-image` inside `style.css` (`opacity: 0` default, transitioning to `opacity: 1` on hover with a `0.15s` delay).
+     - Configured fast fade out (`opacity 0.15s ease-out 0s`) and fast clip-path collapse (`clip-path 0.2s cubic-bezier(0.19, 1, 0.22, 1) 0s`) on mouseleave.
+     - This guarantees the image disappears completely within 150ms on mouseleave, ensuring there is zero visible overlap with the giant text names during rapid row switching.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+136. Revert Login Page Refactor & Restore Community Page Grid:
+     - Reverted login card modifications: restored the close button (`x`), default `60px` elements gap, and the solid outline border on `.community-login-card`.
+     - Removed `.login-description-text` and `.login-order-container` elements and styles.
+     - Restored `.community-canvas` and `.community-canvas-mockup` height `3860px`, `.community-grid` layout container and styling rules, vertical rotated archival text, and the Vertical delayed curtain hover mask with fade-out transitions.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+137. Community Grid Columns Width Adjustment (Narrowed by 20px):
+     - Updated column horizontal left offsets in `index.html` (shifting from `0px, 235px, 470px, 705px, 940px, 1175px, 1410px` to `0px, 231px, 462px, 694px, 926px, 1158px, 1390px`).
+     - This shifts the 7th column to end at exactly `1390 + 195 = 1585px`, maintaining a clean 20px gap from the vertical rotated text at `left: 1688px` (whose lines wrap and take up roughly 42px width to the left of the baseline).
+     - Updated `.community-grid` container width to `1585px` in `style.css`.
+     - Refactored `addNewConfirmedPortrait(image, name)` dynamic offset array in `main.js` to match the new coordinates.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+138. Community Grid Portrait Name Typo Reveal Adjustments (Vertical Rise & Span Reveal):
+     - Removed `transform: translateY(8px);` from `.community-name` in `style.css` to raise the name 8px vertically back to the default horizontal alignment line next to the numbers.
+     - Refactored typewriter animation in `main.js` (`initCommunityGridHovers` and `addNewConfirmedPortrait`) to wrap the target name inside individual `span` tags for each character on load.
+     - Initialized the spans with `opacity: 0`. During hover, the spans are revealed sequentially from left to right (`opacity: 1`), and hidden from right to left (`opacity: 0`) on mouseleave.
+     - This ensures the letters type out smoothly in place from left to right without any layout width shifting, keeping the final letter of the name perfectly anchored to the right boundary of the portrait card.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+139. Community Login Page Refactor (No Border & 121px Gap):
+     - Removed the close button (`.login-close-btn` / `x`) from the login card in `index.html`.
+     - Removed the border stroke (`border: none`) from `.community-login-card` in `style.css` so that it blends in with the background.
+     - Updated the vertical elements gap of the login card to exactly `121px` (separating the title, grouped input fields container, and confirm button).
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+140. Community Login Confirm Button Stroke Removal:
+     - Removed `border: 1px solid #000000;` and changed to `border: none;` on `.login-confirm-btn` in `style.css`.
+     - Removed the hover border-color change on `.login-confirm-btn:hover` in `style.css` to completely eliminate outlines in both states.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+141. Community Login Card Vertically Shifted:
+     - Shifted `.community-login-card` top position from `top: 319px` to `top: 219px` in `style.css`.
+     - This shifts the card's vertical center up by exactly `100px` (positioning its center 100px above the vertical center of the page).
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+142. Community Login Page Layout Alignments & Footer Elements:
+     - Shifted `.community-login-card` top position to `top: 178px` in `style.css` so that the baseline of the "Log in" title is positioned exactly `300px` from the top of the page.
+     - Inserted `.login-description-text` div at `left: 517px; top: 819px;` containing the physical ownership disclaimer text.
+     - Inserted `.login-order-container` at `left: 1056px; top: 819px;` containing a text-only `ORDER ISSUE 01` button utilizing the standard `.btn-text` underline animations.
+     - Added a click event listener in `main.js` for the new `login-order-btn` that transitions the view to the checkout page.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+143. Community Login Footer Elements Shifted (150px Gap):
+     - Shifted `.login-description-text` and `.login-order-container` top position from `top: 819px` to `top: 846px` in `style.css`.
+     - This creates exactly `150px` of vertical space from the bottom edge of the Confirm button (`696px`) to the top of the description text and order button.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+144. Community Login Confirm Button Disabled Styling:
+     - Defined `.login-confirm-btn:disabled` in `style.css` with a light grey fill background (`var(--primitive-light-grey)`) and white text (`#FFFFFF`), with `cursor: default;`.
+     - Restricted confirm button hover properties (`.login-confirm-btn:hover:not(:disabled)`) to only apply when active, preventing hover state color transitions while disabled.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+145. Shop Navigation Header Link Update:
+     - Modified `navShop` click event handler in `main.js` to trigger a smooth programmatic scroll directly to the very bottom of the primary page (`document.documentElement.scrollHeight`) instead of the intermediate buy button.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+146. Community Login Back Button Addition:
+     - Added text-only `Back` button element `.login-back-btn` inside the login canvas container in `index.html`.
+     - Positioned `.login-back-btn` at the top right corner of the page with exact `right: 40px; top: 40px;` coordinates in `style.css` to respect the 40px margins.
+     - Registered click handler inside `main.js` that redirects users to the `community-page` view and programmatically scrolls to the bottom of the page.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+147. Back Button Capitalization Update:
+     - Updated `.login-back-btn` span text from "back" to "Back" inside `index.html`.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+148. Paperface Tool Back Button Addition:
+     - Added text-only `Back` button element `.login-back-btn` to the initial "Upload a Portrait" screen of the React/TypeScript `paperface_tool` inside `App.tsx`.
+     - Appended `.btn-text` hover underline transition classes and `.login-back-btn` position rules (`right: 40px; top: 40px;`) to `paperface_tool/src/index.css`.
+     - Configured the Back button click handler to post a `paperface-back` message to the parent window.
+     - Registered message listener in `main.js` to intercept `paperface-back` events, clean up the iframe's source, and redirect to the saved originating page (`paperfacePreviousPage`).
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+149. Font Matching inside Paperface Tool Iframe:
+     - Imported all Helvetica Now Text `@font-face` declarations at the beginning of `paperface_tool/src/index.css` and added `"Helvetica Now Text"` to Tailwind's `--font-sans` theme config.
+     - This unifies font rendering metrics inside the iframe, correcting the baseline alignment of the text-only Back button so its hover underline shares the exact same vertical spacing proportion as all other text-only buttons on the site.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

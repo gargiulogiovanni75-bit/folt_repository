@@ -2,6 +2,7 @@
 import { initInteractiveParticles } from './particles.js';
 import { initVirusAttack } from './virus.js';
 import lottie from 'lottie-web';
+import Lenis from 'lenis';
 import animationData from './circular.input.json';
 import orderConfirmedAnimationDataRaw from './ORDER_CONFIRMED_UPDATED.json';
 
@@ -136,6 +137,32 @@ window.addEventListener('error', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  let lenisInstance = null;
+  let paperfacePreviousPage = 'checkout-page';
+  try {
+    lenisInstance = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      if (lenisInstance) {
+        lenisInstance.raf(time);
+      }
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  } catch (err) {
+    console.error("Lenis failed to initialize:", err);
+  }
+
   // Initialize custom cursor
   const customCursor = document.createElement('div');
   customCursor.id = 'custom-cursor';
@@ -173,6 +200,12 @@ document.addEventListener('DOMContentLoaded', () => {
       customCursor.style.display = 'none';
     } else if (event.data && event.data.type === 'iframe-mouseenter') {
       customCursor.style.display = 'block';
+    } else if (event.data && event.data.type === 'paperface-back') {
+      const iframe = document.getElementById('paperface-iframe');
+      if (iframe) {
+        iframe.src = 'about:blank';
+      }
+      switchPage(paperfacePreviousPage);
     }
   });
 
@@ -188,14 +221,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const pageViews = document.querySelectorAll('.page-view');
   const canvasElement = document.getElementById('particles-bg-canvas');
   let isProgrammaticScrolling = false;
-  let isLocked = false;
   let previousPage = 'primary-page';
-  let isReleasing = null;
-  let releaseTargetScrollY = 0;
   let targetProgress = 0;
   let currentProgress = 0;
   let targetScrollY = 0;
   let lastScrollY = getScrollTop();
+  let isDampingActive = false;
+  let virtualScrollY = 0;
+  const DAMPING_RANGE = 380;
 
   // Nav Links
   const headerLogoBtn = document.getElementById('header-logo-btn');
@@ -330,6 +363,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Page Switcher ---
   function switchPage(pageId) {
+    // Reset Lenis multipliers on page switch to ensure default scroll speed on other pages
+    if (lenisInstance) {
+      lenisInstance.options.wheelMultiplier = 1.0;
+      lenisInstance.options.touchMultiplier = 2.0;
+    }
+
     // Track previous page before switching
     const activePage = Array.from(pageViews).find(view => view.classList.contains('active'));
     if (activePage && activePage.id !== 'video-page') {
@@ -368,7 +407,11 @@ document.addEventListener('DOMContentLoaded', () => {
     resizeCanvas();
 
     // Reset scroll position to top
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (lenisInstance) {
+      lenisInstance.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
 
     if (pageId === 'community-page') {
       updateCommunityParallax();
@@ -383,17 +426,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // Helper to scroll programmatically while bypassing scroll lock
   function startProgrammaticScroll(targetY, options = { behavior: 'smooth' }) {
     isProgrammaticScrolling = true;
-    window.scrollTo({ top: targetY, ...options });
-
-    let scrollTimeout;
-    const checkScrollEnd = () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        isProgrammaticScrolling = false;
-        window.removeEventListener('scroll', checkScrollEnd);
-      }, 100);
-    };
-    window.addEventListener('scroll', checkScrollEnd);
+    if (lenisInstance) {
+      lenisInstance.scrollTo(targetY, {
+        duration: options.behavior === 'instant' ? 0 : 1.2,
+        immediate: options.behavior === 'instant',
+        onComplete: () => {
+          isProgrammaticScrolling = false;
+        }
+      });
+    } else {
+      window.scrollTo({ top: targetY, ...options });
+      let scrollTimeout;
+      const checkScrollEnd = () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          isProgrammaticScrolling = false;
+          window.removeEventListener('scroll', checkScrollEnd);
+        }, 100);
+      };
+      window.addEventListener('scroll', checkScrollEnd);
+    }
   }
 
   // Logo: return to top of primary page
@@ -415,7 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
     switchPage('community-page');
   });
 
-  // Shop Click: switch to primary page and scroll to order issue section
+  // Shop Click: switch to primary page and scroll to bottom
   navShop.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -423,27 +475,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!isAlreadyPrimary) {
       switchPage('primary-page');
-      setTimeout(scrollToBuyButton, 100);
+      setTimeout(scrollToPrimaryBottom, 100);
     } else {
-      scrollToBuyButton();
+      scrollToPrimaryBottom();
     }
   });
 
-  function scrollToBuyButton() {
-    const buyBtn = document.getElementById('buy-button');
-    if (buyBtn) {
-      // Calculate scaled position of the buy button
-      const rect = buyBtn.getBoundingClientRect();
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const targetY = rect.top + scrollTop - 150; // offset a bit for padding
-      startProgrammaticScroll(targetY);
-    }
+  function scrollToPrimaryBottom() {
+    const targetY = document.documentElement.scrollHeight;
+    startProgrammaticScroll(targetY);
   }
 
   // Buy Button at bottom of primary page
   if (buyButton) {
     buyButton.addEventListener('click', () => {
       switchPage('checkout-page');
+    });
+  }
+
+  // Order Button at bottom of login page
+  const loginOrderBtn = document.getElementById('login-order-btn');
+  if (loginOrderBtn) {
+    loginOrderBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchPage('checkout-page');
+    });
+  }
+
+  // Back Button at top right of login page (returns to bottom of community page)
+  const loginBackBtn = document.getElementById('login-back-btn');
+  if (loginBackBtn) {
+    loginBackBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchPage('community-page');
+      setTimeout(() => {
+        const targetY = document.documentElement.scrollHeight;
+        startProgrammaticScroll(targetY);
+      }, 100);
     });
   }
 
@@ -933,6 +1001,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginInputPassword = document.getElementById('login-input-password');
   const loginConfirmBtn = document.getElementById('login-confirm-btn');
 
+  function updateLoginButtonState() {
+    if (!loginConfirmBtn || !loginInputEmail || !loginInputPassword) return;
+    const emailVal = loginInputEmail.value.trim();
+    const passVal = loginInputPassword.value.trim();
+    loginConfirmBtn.disabled = (!emailVal || !passVal);
+  }
+
   if (communityJoinBtn) {
     communityJoinBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -942,6 +1017,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Reset input fields
       if (loginInputEmail) loginInputEmail.value = '';
       if (loginInputPassword) loginInputPassword.value = '';
+
+      // Reset button state to disabled
+      updateLoginButtonState();
 
       // Clear errors
       const loginCard = document.getElementById('community-login-card');
@@ -970,7 +1048,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Clear validation errors on typing
+
+
+  // Clear validation errors on typing and update confirm button state
   if (loginInputEmail && loginInputPassword) {
     [loginInputEmail, loginInputPassword].forEach(input => {
       input.addEventListener('input', () => {
@@ -980,6 +1060,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const errText = field.querySelector('.login-error-text');
           if (errText) errText.style.display = 'none';
         }
+        updateLoginButtonState();
       });
     });
   }
@@ -1042,6 +1123,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (iframe) {
         iframe.src = `/paperface_tool/index.html?name=${encodeURIComponent(savedName)}`;
       }
+      paperfacePreviousPage = 'community-login-page';
       switchPage('paperface-page');
     });
   }
@@ -1056,6 +1138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = nameInput ? nameInput.value : '';
         iframe.src = `/paperface_tool/index.html?name=${encodeURIComponent(name)}`;
       }
+      paperfacePreviousPage = 'order-confirmed-page';
       switchPage('paperface-page');
     });
   }
@@ -1063,65 +1146,123 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Helper to add new confirmed portraits dynamically ---
   function addNewConfirmedPortrait(image, name) {
     const canvasContainer = document.querySelector('.community-canvas');
-    if (!canvasContainer) return;
+    if (!canvasContainer) return 0;
 
-    // Count how many cards are currently on the page
-    const existingCards = canvasContainer.querySelectorAll('.extra-card');
-    const index = existingCards.length;
+    const grid = canvasContainer.querySelector('.community-grid');
+    if (!grid) return 0;
 
-    // Calculate layout coordinates
-    let left;
-    if (index === 0) {
-      left = 225;
-    } else if (index === 1) {
-      left = 963;
-    } else {
-      const positions = [594, 410, 778];
-      left = positions[(index - 2) % positions.length];
+    const index = grid.querySelectorAll('.community-cell').length;
+
+    // Calculate layout coordinates inside the 7-column grid
+    const colOffsets = [0, 231, 462, 694, 926, 1158, 1390];
+    const left = colOffsets[index % 7];
+    const top = Math.floor(index / 7) * 342;
+
+    // Format negative number string: e.g. index 28 -> -015
+    const numStr = `-${String(index - 13).padStart(2, '0')}`;
+
+    // Create the cell
+    const cell = document.createElement('div');
+    cell.className = 'community-cell';
+    cell.style.left = `${left}px`;
+    cell.style.top = `${top}px`;
+    cell.setAttribute('data-name', name);
+
+    // Create portrait
+    const portrait = document.createElement('div');
+    portrait.className = 'community-portrait';
+    portrait.style.backgroundImage = `url(${image})`;
+    cell.appendChild(portrait);
+
+    // Create numbers / name wrapper
+    const numbers = document.createElement('div');
+    numbers.className = 'community-numbers';
+
+    const numEl = document.createElement('span');
+    numEl.className = 'community-num';
+    numEl.textContent = numStr;
+    numbers.appendChild(numEl);
+
+    const nameEl = document.createElement('span');
+    nameEl.className = 'community-name';
+    
+    // Populate spans for character-by-character animation
+    const chars = [];
+    for (let i = 0; i < name.length; i++) {
+      const span = document.createElement('span');
+      span.textContent = name[i];
+      span.style.opacity = '0';
+      span.style.transition = 'opacity 0.05s ease';
+      nameEl.appendChild(span);
+      chars.push(span);
     }
-    const top = 2260 + (index * 220);
+    numbers.appendChild(nameEl);
 
-    // Create the wrapper card
-    const card = document.createElement('div');
-    card.className = 'extra-card parallax-card';
-    card.style.left = `${left}px`;
-    card.style.top = `${top}px`;
+    cell.appendChild(numbers);
 
-    // Create image element
-    const imgEl = document.createElement('div');
-    imgEl.className = 'extra-portrait-image';
-    imgEl.style.backgroundImage = `url(${image})`;
+    // Register typewriter hover events specifically on the new cell
+    cell.addEventListener('mouseenter', () => {
+      if (nameEl._typeInterval) clearInterval(nameEl._typeInterval);
+      
+      let currentIdx = 0;
+      chars.forEach((span, idx) => {
+        if (span.style.opacity === '1') {
+          currentIdx = idx + 1;
+        }
+      });
 
-    // Create name element
-    const nameEl = document.createElement('div');
-    nameEl.className = 'extra-portrait-name caption_texts';
-    nameEl.textContent = name;
+      nameEl._typeInterval = setInterval(() => {
+        if (currentIdx < chars.length) {
+          chars[currentIdx].style.opacity = '1';
+          currentIdx++;
+        } else {
+          clearInterval(nameEl._typeInterval);
+          nameEl._typeInterval = null;
+        }
+      }, 20);
+    });
 
-    // Append elements
-    card.appendChild(imgEl);
-    card.appendChild(nameEl);
+    cell.addEventListener('mouseleave', () => {
+      if (nameEl._typeInterval) clearInterval(nameEl._typeInterval);
+      
+      let currentIdx = chars.length - 1;
+      chars.forEach((span, idx) => {
+        if (span.style.opacity === '1') {
+          currentIdx = idx;
+        }
+      });
 
-    // Append before membership text so layout is preserved in DOM flow
-    const membershipText = canvasContainer.querySelector('.community-membership-text');
-    if (membershipText) {
-      canvasContainer.insertBefore(card, membershipText);
-    } else {
-      canvasContainer.appendChild(card);
-    }
+      nameEl._typeInterval = setInterval(() => {
+        if (currentIdx >= 0) {
+          chars[currentIdx].style.opacity = '0';
+          currentIdx--;
+        } else {
+          clearInterval(nameEl._typeInterval);
+          nameEl._typeInterval = null;
+        }
+      }, 15);
+    });
 
-    // Dynamic height scaling of canvas container
-    const cardBottom = top + 250;
-    const originalHeightAttr = parseFloat(canvasContainer.getAttribute('data-original-height')) || 3100;
-    if (cardBottom > originalHeightAttr - 300) {
-      const newHeight = cardBottom + 300;
-      canvasContainer.setAttribute('data-original-height', newHeight);
-      canvasContainer.style.height = `${newHeight}px`;
-      canvasContainer.dataset.originalHeight = newHeight;
+    // Append to grid
+    grid.appendChild(cell);
+
+    // Dynamic grid size scaling
+    const totalRows = Math.ceil((index + 1) / 7);
+    const gridHeight = totalRows * 342 - 270;
+    grid.style.height = `${gridHeight}px`;
+
+    // Dynamic canvas height scaling
+    const gridBottom = 2305 + gridHeight;
+    const currentHeight = parseFloat(canvasContainer.getAttribute('data-original-height')) || 3860;
+    const requiredHeight = gridBottom + 457;
+    if (requiredHeight > currentHeight) {
+      canvasContainer.setAttribute('data-original-height', requiredHeight);
+      canvasContainer.style.height = `${requiredHeight}px`;
+      canvasContainer.dataset.originalHeight = requiredHeight;
       resizeCanvas();
     }
 
-    // Update parallax on the newly created card
-    updateCommunityParallax();
+    return top;
   }
 
   // --- Helper to update parallax on community portraits ---
@@ -1142,8 +1283,9 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'paperface-confirm') {
       const { image, name } = event.data;
+      let cellTop = 0;
       if (image && name) {
-        addNewConfirmedPortrait(image, name);
+        cellTop = addNewConfirmedPortrait(image, name);
       }
 
       const iframe = document.getElementById('paperface-iframe');
@@ -1151,8 +1293,15 @@ document.addEventListener('DOMContentLoaded', () => {
         iframe.src = 'about:blank';
       }
       switchPage('community-page');
-      // Trigger initial parallax on page switch
-      setTimeout(updateCommunityParallax, 50);
+      
+      // Auto scroll to the newly uploaded portrait
+      setTimeout(() => {
+        const scale = window.innerWidth < 1728 ? (window.innerWidth / 1728) : 1;
+        const targetY = (2305 + cellTop) - (window.innerHeight / 2) + 40;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const physicalScrollTarget = Math.min(Math.max(0, targetY), maxScroll) * scale;
+        startProgrammaticScroll(physicalScrollTarget, { behavior: 'smooth' });
+      }, 150);
     }
   });
 
@@ -1166,52 +1315,53 @@ document.addEventListener('DOMContentLoaded', () => {
     anim.goToAndStop(progress * (totalFrames - 1), true);
   }
 
-  let lockScrollY = 0;
-
   // Interpolation loop to make scrubbing extremely smooth, fluid, and harmonic
   function tick() {
     const diff = targetProgress - currentProgress;
-    let shouldContinue = true;
+    let shouldContinue = false;
 
-    // Smooth scroll pinning transition / Release slide
-    if (isReleasing) {
-      const scrollDiff = releaseTargetScrollY - lockScrollY;
+    // Apply a light scroll inertia effect when virtual scroll damping is active
+    if (isDampingActive) {
+      const scrollDiff = virtualScrollY - getScrollTop();
       if (Math.abs(scrollDiff) > 0.5) {
-        lockScrollY += scrollDiff * 0.15; // smooth exit slide
-        window.scrollTo(0, lockScrollY);
+        // Calculate dynamic LERP factor based on distance to make the entry seamless
+        const range = DAMPING_RANGE;
+        let lerpFactor = 1.0;
+        const virtualDistance = Math.abs(virtualScrollY - targetScrollY);
+        if (virtualDistance < range) {
+          const t = virtualDistance / range;
+          lerpFactor = 0.18 + (1.0 - 0.18) * t;
+        }
+
+        const nextScrollY = getScrollTop() + scrollDiff * lerpFactor;
+        if (lenisInstance) {
+          lenisInstance.scrollTo(nextScrollY, { immediate: true });
+        } else {
+          window.scrollTo(0, nextScrollY);
+        }
+        shouldContinue = true;
       } else {
-        lockScrollY = releaseTargetScrollY;
-        window.scrollTo(0, releaseTargetScrollY);
-        document.documentElement.style.overflow = '';
-        isLocked = false;
-        isReleasing = null;
-        lastScrollY = releaseTargetScrollY;
-        tickId = null; // stop tick loop
-        return;
-      }
-    } else if (isLocked) {
-      const scrollDiff = targetScrollY - lockScrollY;
-      if (Math.abs(scrollDiff) > 0.5) {
-        lockScrollY += scrollDiff * 0.15; // smooth slide centering LERP
-        window.scrollTo(0, lockScrollY);
-      } else {
-        lockScrollY = targetScrollY;
-        window.scrollTo(0, targetScrollY);
+        if (lenisInstance) {
+          lenisInstance.scrollTo(virtualScrollY, { immediate: true });
+        } else {
+          window.scrollTo(0, virtualScrollY);
+        }
       }
     }
 
     if (Math.abs(diff) < 0.0001) {
       currentProgress = targetProgress;
       updateAnimation(currentProgress);
-
-      // Stop the tick loop if centering is also finished
-      if (!isLocked || Math.abs(targetScrollY - lockScrollY) <= 0.5) {
-        shouldContinue = false;
-      }
     } else {
-      // Ease factor 0.06 makes the movement slow, elegant, and fluid
-      currentProgress += diff * 0.06;
+      // Ease factor 0.08 makes the circular rotation transition extremely smooth, slow, and delicate
+      currentProgress += diff * 0.08;
       updateAnimation(currentProgress);
+      shouldContinue = true;
+    }
+
+    const isPrimaryActive = document.getElementById('primary-page').classList.contains('active');
+    if (isPrimaryActive) {
+      updateCircularParallax();
     }
 
     if (shouldContinue) {
@@ -1244,86 +1394,52 @@ document.addEventListener('DOMContentLoaded', () => {
     targetScrollY = actualCenterY - window.innerHeight / 2;
   }
 
-  // Helper to handle scrubbing delta
-  function handleScrub(deltaY) {
-    // Slowed down further by 200% -> sensitivity = 0.00025 (requires 40 clicks to complete)
-    const sensitivity = 0.00025;
 
-    // Check if we reverse direction while releasing
-    if (isReleasing === 'down' && deltaY < 0) {
-      isReleasing = null;
-      isLocked = true;
-      document.documentElement.style.overflow = 'hidden';
-    } else if (isReleasing === 'up' && deltaY > 0) {
-      isReleasing = null;
-      isLocked = true;
-      document.documentElement.style.overflow = 'hidden';
-    }
 
-    if (isReleasing === 'down' && deltaY > 0) {
-      lockScrollY += deltaY * 0.6; // user helps push scroll down
-      if (lockScrollY >= releaseTargetScrollY) {
-        // Release immediately if we scroll past release target
-        lockScrollY = releaseTargetScrollY;
-        window.scrollTo(0, releaseTargetScrollY);
-        document.documentElement.style.overflow = '';
-        isLocked = false;
-        isReleasing = null;
-        lastScrollY = releaseTargetScrollY;
-        if (tickId) {
-          cancelAnimationFrame(tickId);
-          tickId = null;
-        }
-        return;
-      }
-    } else if (isReleasing === 'up' && deltaY < 0) {
-      lockScrollY += deltaY * 0.6; // user helps push scroll up
-      if (lockScrollY <= releaseTargetScrollY) {
-        // Release immediately if we scroll past release target
-        lockScrollY = releaseTargetScrollY;
-        window.scrollTo(0, releaseTargetScrollY);
-        document.documentElement.style.overflow = '';
-        isLocked = false;
-        isReleasing = null;
-        lastScrollY = releaseTargetScrollY;
-        if (tickId) {
-          cancelAnimationFrame(tickId);
-          tickId = null;
-        }
-        return;
-      }
-    }
 
-    if (!isReleasing) {
-      targetProgress += deltaY * sensitivity;
-      targetProgress = Math.max(0, Math.min(1, targetProgress));
 
-      // If targetProgress crosses boundaries, prepare release
-      if (targetProgress >= 1) {
-        targetProgress = 1;
-        isReleasing = 'down';
-        releaseTargetScrollY = targetScrollY + 60; // 60px gentle exit slide
-      } else if (targetProgress <= 0) {
-        targetProgress = 0;
-        isReleasing = 'up';
-        releaseTargetScrollY = targetScrollY - 60; // 60px gentle exit slide
-      } else {
-        isLocked = true;
-      }
-    }
-
-    startTick();
-  }
-
-  // Handle wheel events when locked
+  // Handle wheel events with virtual scroll damping near circular input
   window.addEventListener('wheel', (e) => {
-    if (isLocked) {
+    const isPrimaryActive = document.getElementById('primary-page').classList.contains('active');
+    if (!isPrimaryActive) return;
+
+    calculateTargetScroll();
+    const currentScrollY = getScrollTop();
+    const distance = Math.abs(currentScrollY - targetScrollY);
+    const range = DAMPING_RANGE; // Symmetric range matching animation range exactly
+
+    if (distance < range) {
+      if (!isDampingActive) {
+        isDampingActive = true;
+        virtualScrollY = currentScrollY;
+      }
+
       e.preventDefault();
-      handleScrub(e.deltaY);
+
+      const virtualDistance = Math.abs(virtualScrollY - targetScrollY);
+      let speedFactor = 1.0;
+      if (virtualDistance < range) {
+        const t = virtualDistance / range;
+        // Damp down to 3.5% (0.035) scroll speed at center with linear scaling for smoother entry/exit
+        speedFactor = 0.035 + (1.0 - 0.035) * t;
+      }
+
+      // Clamp e.deltaY to max 15 to prevent fast scroll acceleration spikes
+      const clampedDeltaY = Math.max(-15, Math.min(15, e.deltaY));
+      virtualScrollY += clampedDeltaY * speedFactor;
+
+      const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
+      virtualScrollY = Math.max(0, Math.min(maxScrollY, virtualScrollY));
+
+      startTick();
+    } else {
+      if (isDampingActive) {
+        isDampingActive = false;
+      }
     }
   }, { passive: false });
 
-  // Handle touch events on mobile when locked
+  // Handle touch movements with virtual scroll damping on mobile devices
   let touchStartY = 0;
   window.addEventListener('touchstart', (e) => {
     if (e.touches.length > 0) {
@@ -1332,35 +1448,72 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.addEventListener('touchmove', (e) => {
-    if (isLocked) {
+    const isPrimaryActive = document.getElementById('primary-page').classList.contains('active');
+    if (!isPrimaryActive) return;
+
+    calculateTargetScroll();
+    const currentScrollY = getScrollTop();
+    const distance = Math.abs(currentScrollY - targetScrollY);
+    const range = DAMPING_RANGE;
+
+    if (distance < range) {
+      if (!isDampingActive) {
+        isDampingActive = true;
+        virtualScrollY = currentScrollY;
+      }
+
       e.preventDefault();
+
       if (e.touches.length > 0) {
         const currentY = e.touches[0].clientY;
         const deltaY = touchStartY - currentY; // positive delta means drag up -> scroll down
         touchStartY = currentY;
-        handleScrub(deltaY * 0.4); // touch swipe sensitivity slowed down proportionally
+
+        const virtualDistance = Math.abs(virtualScrollY - targetScrollY);
+        let speedFactor = 1.0;
+        if (virtualDistance < range) {
+          const t = virtualDistance / range;
+          speedFactor = 0.035 + (1.0 - 0.035) * t;
+        }
+
+        // Clamp touch drag deltaY to max 15
+        const clampedTouchDeltaY = Math.max(-15, Math.min(15, deltaY));
+        virtualScrollY += clampedTouchDeltaY * speedFactor * 0.8;
+
+        const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
+        virtualScrollY = Math.max(0, Math.min(maxScrollY, virtualScrollY));
+
+        startTick();
+      }
+    } else {
+      if (isDampingActive) {
+        isDampingActive = false;
       }
     }
   }, { passive: false });
 
-  // Keyboard navigation controls when locked
-  const scrollKeys = { 32: 1, 33: 1, 34: 1, 35: 1, 36: 1, 37: 1, 38: 1, 39: 1, 40: 1 };
-  window.addEventListener('keydown', (e) => {
-    if (isLocked && scrollKeys[e.keyCode]) {
-      e.preventDefault();
-      let delta = 0;
-      if (e.keyCode === 40 || e.keyCode === 32 || e.keyCode === 34) { // Down, Space, PageDown
-        delta = 100;
-      } else if (e.keyCode === 38 || e.keyCode === 33) { // Up, PageUp
-        delta = -100;
-      }
-      if (delta !== 0) {
-        handleScrub(delta * 0.2);
-      }
-    }
-  }, { passive: false });
+  // Parallax compensation to keep the circular input container almost perfectly centered/still during scroll
+  function updateCircularParallax() {
+    const container = document.querySelector('.container-generale');
+    if (!container) return;
 
-  // Intercept window scroll event to trigger locks
+    const currentScrollY = getScrollTop();
+    calculateTargetScroll();
+    const distance = Math.abs(currentScrollY - targetScrollY);
+    const range = DAMPING_RANGE; // Match animation active range
+
+    if (distance < range && isDampingActive) {
+      const t = distance / range;
+      // Cubic decay keeps offset near 0 at boundaries and only locks/aggancia near the center (no early rising/pulling)
+      const lockFactor = 0.85 * Math.pow(1 - t, 3);
+      const translateY = (currentScrollY - targetScrollY) * lockFactor;
+      container.style.transform = `translate3d(0, ${translateY}px, 0)`;
+    } else {
+      container.style.transform = '';
+    }
+  }
+
+  // Intercept window scroll event to update Lottie animation progress
   window.addEventListener('scroll', () => {
     updateCanvasVisibility();
     updateCommunityParallax();
@@ -1368,57 +1521,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentScrollY = getScrollTop();
     const isPrimaryActive = document.getElementById('primary-page').classList.contains('active');
 
-    if (!isPrimaryActive || isProgrammaticScrolling) {
+    if (!isPrimaryActive) {
       lastScrollY = currentScrollY;
       return;
     }
 
-    if (isLocked) {
-      return; // Do nothing, let the tick loop programmatically control scroll
+    // Safely clear the transform outside damping to prevent layout jumps/stray translation
+    if (!isDampingActive) {
+      const container = document.querySelector('.container-generale');
+      if (container && container.style.transform !== '') {
+        container.style.transform = '';
+      }
     }
 
     calculateTargetScroll();
 
-    // Check if we crossed the targetScrollY position
-    const crossedDown = lastScrollY < targetScrollY && currentScrollY >= targetScrollY;
-    const crossedUp = lastScrollY > targetScrollY && currentScrollY <= targetScrollY;
+    // Map scroll position to Lottie progress
+    // The damping starts at targetScrollY - 480px, but the animation starts rotating later (delay)
+    // and completes symmetrically over a range of [targetScrollY - DAMPING_RANGE, targetScrollY + DAMPING_RANGE]
+    const startScroll = targetScrollY - DAMPING_RANGE;
+    const endScroll = targetScrollY + DAMPING_RANGE;
 
-    // Lock scroll and snap only if we cross and have progress to run
-    if (crossedDown && targetProgress < 1) {
-      isLocked = true;
-      lockScrollY = currentScrollY;
-      document.documentElement.style.overflow = 'hidden';
+    let progress = (currentScrollY - startScroll) / (endScroll - startScroll);
+    progress = Math.max(0, Math.min(1, progress));
 
-      const excessDelta = currentScrollY - targetScrollY;
-      targetProgress = 0;
-      currentProgress = 0;
-      updateAnimation(currentProgress);
-      if (excessDelta > 0) {
-        handleScrub(excessDelta);
-      }
-      startTick();
-    } else if (crossedUp && targetProgress > 0) {
-      isLocked = true;
-      lockScrollY = currentScrollY;
-      document.documentElement.style.overflow = 'hidden';
+    // Apply cosine ease-in-out to make the start and end of rotation slower, while keeping the center speed correct
+    progress = (1 - Math.cos(progress * Math.PI)) / 2;
 
-      const excessDelta = currentScrollY - targetScrollY;
-      targetProgress = 1;
-      currentProgress = 1;
-      updateAnimation(currentProgress);
-      if (excessDelta < 0) {
-        handleScrub(excessDelta);
-      }
-      startTick();
-    }
+    targetProgress = progress;
+    startTick();
 
-    lastScrollY = getScrollTop();
+    lastScrollY = currentScrollY;
   });
 
   // Handle reset when the virus attack is finished/bypassed
   window.addEventListener('virus-attack-finished', () => {
-    isLocked = false;
-    isReleasing = null;
     isProgrammaticScrolling = false;
     targetProgress = 0;
     currentProgress = 0;
@@ -1431,7 +1568,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Unlock scroll settings
-    document.documentElement.style.overflow = '';
     document.body.classList.remove('virus-lock');
 
     // Update Lottie animation to start
@@ -1719,7 +1855,74 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Community Grid Portrait Hover Typewriter ---
+  function initCommunityGridHovers() {
+    const cells = document.querySelectorAll('.community-cell');
+    cells.forEach(cell => {
+      const nameEl = cell.querySelector('.community-name');
+      if (!nameEl) return;
+
+      const targetName = cell.getAttribute('data-name') || "";
+      nameEl._typeInterval = null;
+
+      // Populate spans for character-by-character animation
+      nameEl.innerHTML = '';
+      const chars = [];
+      for (let i = 0; i < targetName.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = targetName[i];
+        span.style.opacity = '0';
+        span.style.transition = 'opacity 0.05s ease';
+        nameEl.appendChild(span);
+        chars.push(span);
+      }
+
+      cell.addEventListener('mouseenter', () => {
+        if (nameEl._typeInterval) clearInterval(nameEl._typeInterval);
+        
+        let currentIdx = 0;
+        chars.forEach((span, idx) => {
+          if (span.style.opacity === '1') {
+            currentIdx = idx + 1;
+          }
+        });
+
+        nameEl._typeInterval = setInterval(() => {
+          if (currentIdx < chars.length) {
+            chars[currentIdx].style.opacity = '1';
+            currentIdx++;
+          } else {
+            clearInterval(nameEl._typeInterval);
+            nameEl._typeInterval = null;
+          }
+        }, 20); // 20ms per character typing speed
+      });
+
+      cell.addEventListener('mouseleave', () => {
+        if (nameEl._typeInterval) clearInterval(nameEl._typeInterval);
+        
+        let currentIdx = chars.length - 1;
+        chars.forEach((span, idx) => {
+          if (span.style.opacity === '1') {
+            currentIdx = idx;
+          }
+        });
+
+        nameEl._typeInterval = setInterval(() => {
+          if (currentIdx >= 0) {
+            chars[currentIdx].style.opacity = '0';
+            currentIdx--;
+          } else {
+            clearInterval(nameEl._typeInterval);
+            nameEl._typeInterval = null;
+          }
+        }, 15); // 15ms per character erasing speed
+      });
+    });
+  }
+
   // Run the community hovers initialization
   initCommunityHovers();
+  initCommunityGridHovers();
 
 });
