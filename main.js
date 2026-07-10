@@ -228,7 +228,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastScrollY = getScrollTop();
   let isDampingActive = false;
   let virtualScrollY = 0;
-  const DAMPING_RANGE = 380;
+  let smoothScrollY = 0;
+  let programmaticScrollTarget = null;
+  const SCROLL_RANGE = 180; // Scroll damping zone (ANIMATION_RANGE + 100px boundary)
+  const ANIMATION_RANGE = 80; // Animation starts very close to center — component fully visible
 
   // Nav Links
   const headerLogoBtn = document.getElementById('header-logo-btn');
@@ -1322,29 +1325,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Apply a light scroll inertia effect when virtual scroll damping is active
     if (isDampingActive) {
-      const scrollDiff = virtualScrollY - getScrollTop();
-      if (Math.abs(scrollDiff) > 0.5) {
-        // Calculate dynamic LERP factor based on distance to make the entry seamless
-        const range = DAMPING_RANGE;
-        let lerpFactor = 1.0;
-        const virtualDistance = Math.abs(virtualScrollY - targetScrollY);
-        if (virtualDistance < range) {
-          const t = virtualDistance / range;
-          lerpFactor = 0.18 + (1.0 - 0.18) * t;
-        }
+      const scrollDiff = virtualScrollY - smoothScrollY;
+      if (Math.abs(scrollDiff) > 0.05) {
+        // Low LERP for smooth inertial gliding (tremor-safe because parallax uses smoothScrollY)
+        const lerpFactor = 0.15;
 
-        const nextScrollY = getScrollTop() + scrollDiff * lerpFactor;
-        if (lenisInstance) {
-          lenisInstance.scrollTo(nextScrollY, { immediate: true });
-        } else {
-          window.scrollTo(0, nextScrollY);
+        smoothScrollY += scrollDiff * lerpFactor;
+
+        // Physical scroll update
+        const targetPhysical = Math.round(smoothScrollY);
+        if (targetPhysical !== getScrollTop()) {
+          programmaticScrollTarget = targetPhysical;
+          if (lenisInstance) {
+            lenisInstance.scrollTo(targetPhysical, { immediate: true });
+          } else {
+            window.scrollTo(0, targetPhysical);
+          }
         }
         shouldContinue = true;
       } else {
-        if (lenisInstance) {
-          lenisInstance.scrollTo(virtualScrollY, { immediate: true });
-        } else {
-          window.scrollTo(0, virtualScrollY);
+        smoothScrollY = virtualScrollY;
+        const targetPhysical = Math.round(smoothScrollY);
+        if (targetPhysical !== getScrollTop()) {
+          programmaticScrollTarget = targetPhysical;
+          if (lenisInstance) {
+            lenisInstance.scrollTo(targetPhysical, { immediate: true });
+          } else {
+            window.scrollTo(0, targetPhysical);
+          }
         }
       }
     }
@@ -1353,8 +1361,8 @@ document.addEventListener('DOMContentLoaded', () => {
       currentProgress = targetProgress;
       updateAnimation(currentProgress);
     } else {
-      // Ease factor 0.08 makes the circular rotation transition extremely smooth, slow, and delicate
-      currentProgress += diff * 0.08;
+      // Low ease factor for silky-smooth, flowing rotation
+      currentProgress += diff * 0.06;
       updateAnimation(currentProgress);
       shouldContinue = true;
     }
@@ -1406,12 +1414,14 @@ document.addEventListener('DOMContentLoaded', () => {
     calculateTargetScroll();
     const currentScrollY = getScrollTop();
     const distance = Math.abs(currentScrollY - targetScrollY);
-    const range = DAMPING_RANGE; // Symmetric range matching animation range exactly
+    const range = SCROLL_RANGE;
 
     if (distance < range) {
       if (!isDampingActive) {
         isDampingActive = true;
         virtualScrollY = currentScrollY;
+        smoothScrollY = currentScrollY;
+        programmaticScrollTarget = currentScrollY;
       }
 
       e.preventDefault();
@@ -1419,9 +1429,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const virtualDistance = Math.abs(virtualScrollY - targetScrollY);
       let speedFactor = 1.0;
       if (virtualDistance < range) {
-        const t = virtualDistance / range;
-        // Damp down to 3.5% (0.035) scroll speed at center with linear scaling for smoother entry/exit
-        speedFactor = 0.035 + (1.0 - 0.035) * t;
+          const boundaryWidth = 100;
+        if (virtualDistance > range - boundaryWidth) {
+          // Smooth quadratic ease-in at the boundary for gentle entry
+          const u = (range - virtualDistance) / boundaryWidth;
+          speedFactor = 1.0 - (1.0 - 0.10) * (u * u);
+        } else {
+          speedFactor = 0.10;
+        }
       }
 
       // Clamp e.deltaY to max 15 to prevent fast scroll acceleration spikes
@@ -1454,12 +1469,14 @@ document.addEventListener('DOMContentLoaded', () => {
     calculateTargetScroll();
     const currentScrollY = getScrollTop();
     const distance = Math.abs(currentScrollY - targetScrollY);
-    const range = DAMPING_RANGE;
+    const range = SCROLL_RANGE;
 
     if (distance < range) {
       if (!isDampingActive) {
         isDampingActive = true;
         virtualScrollY = currentScrollY;
+        smoothScrollY = currentScrollY;
+        programmaticScrollTarget = currentScrollY;
       }
 
       e.preventDefault();
@@ -1472,8 +1489,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const virtualDistance = Math.abs(virtualScrollY - targetScrollY);
         let speedFactor = 1.0;
         if (virtualDistance < range) {
-          const t = virtualDistance / range;
-          speedFactor = 0.035 + (1.0 - 0.035) * t;
+            const boundaryWidth = 100;
+          if (virtualDistance > range - boundaryWidth) {
+            // Smooth quadratic ease-in at the boundary for gentle entry
+            const u = (range - virtualDistance) / boundaryWidth;
+            speedFactor = 1.0 - (1.0 - 0.10) * (u * u);
+          } else {
+            speedFactor = 0.10;
+          }
         }
 
         // Clamp touch drag deltaY to max 15
@@ -1497,16 +1520,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.container-generale');
     if (!container) return;
 
-    const currentScrollY = getScrollTop();
+    // Use smoothScrollY for sub-pixel-stable parallax (avoids getScrollTop() rounding tremors)
+    const scrollRef = isDampingActive ? smoothScrollY : getScrollTop();
     calculateTargetScroll();
-    const distance = Math.abs(currentScrollY - targetScrollY);
-    const range = DAMPING_RANGE; // Match animation active range
+    const distance = Math.abs(scrollRef - targetScrollY);
+    const range = SCROLL_RANGE;
 
     if (distance < range && isDampingActive) {
       const t = distance / range;
-      // Cubic decay keeps offset near 0 at boundaries and only locks/aggancia near the center (no early rising/pulling)
       const lockFactor = 0.85 * Math.pow(1 - t, 3);
-      const translateY = (currentScrollY - targetScrollY) * lockFactor;
+      const translateY = (scrollRef - targetScrollY) * lockFactor;
       container.style.transform = `translate3d(0, ${translateY}px, 0)`;
     } else {
       container.style.transform = '';
@@ -1526,6 +1549,17 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    // Sync state with manual scrolls (scrollbar dragging, keys, trackpad)
+    if (isDampingActive) {
+      if (programmaticScrollTarget !== null && Math.abs(currentScrollY - programmaticScrollTarget) <= 1) {
+        // Programmatic scroll, do not sync
+      } else {
+        virtualScrollY = currentScrollY;
+        smoothScrollY = currentScrollY;
+        programmaticScrollTarget = null;
+      }
+    }
+
     // Safely clear the transform outside damping to prevent layout jumps/stray translation
     if (!isDampingActive) {
       const container = document.querySelector('.container-generale');
@@ -1536,17 +1570,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     calculateTargetScroll();
 
-    // Map scroll position to Lottie progress
-    // The damping starts at targetScrollY - 480px, but the animation starts rotating later (delay)
-    // and completes symmetrically over a range of [targetScrollY - DAMPING_RANGE, targetScrollY + DAMPING_RANGE]
-    const startScroll = targetScrollY - DAMPING_RANGE;
-    const endScroll = targetScrollY + DAMPING_RANGE;
+    // Map scroll position to Lottie progress using ANIMATION_RANGE
+    // The animation only starts when the circular input is near the center of the viewport
+    const startScroll = targetScrollY - ANIMATION_RANGE;
+    const endScroll = targetScrollY + ANIMATION_RANGE;
 
     let progress = (currentScrollY - startScroll) / (endScroll - startScroll);
     progress = Math.max(0, Math.min(1, progress));
-
-    // Apply cosine ease-in-out to make the start and end of rotation slower, while keeping the center speed correct
-    progress = (1 - Math.cos(progress * Math.PI)) / 2;
 
     targetProgress = progress;
     startTick();
@@ -1561,6 +1591,10 @@ document.addEventListener('DOMContentLoaded', () => {
     currentProgress = 0;
     targetScrollY = 0;
     lastScrollY = 0;
+    isDampingActive = false;
+    virtualScrollY = 0;
+    smoothScrollY = 0;
+    programmaticScrollTarget = null;
 
     if (tickId) {
       cancelAnimationFrame(tickId);

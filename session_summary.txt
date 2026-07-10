@@ -1002,26 +1002,28 @@ GOAL & NEXT STEPS FOR NEW SESSIONS:
      - Verified Vite build compiles successfully.
 ================================================================================================================================
 
+150. Circular Scroll Damping Smoothness & Rate Adjustment:
+     - Increased DAMPING_RANGE from 380 to 633 in main.js, slowing down the circular input animation progression relative to scrolling by approximately 40%.
+     - Introduced an internal float representation smoothScrollY to track the unrounded virtual scroll position, completely eliminating sub-pixel rounding desynchronization loops between window.scrollTo and getScrollTop().
+     - Implemented programmaticScrollTarget checking in the window scroll event listener to distinguish between programmatic LERP scroll events and manual user scrolling.
+     - Linearized the animation mapping (removed cosine easing) and updated speedFactor and lerpFactor calculations to follow a piecewise function (transitioning from 1.0 to 0.20/0.22 and remaining constant inside the active zone).
+     - Added full state variable resets for isDampingActive, virtualScrollY, smoothScrollY, and programmaticScrollTarget in the virus-attack-finished event listener.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
 
+151. Circular Scroll Decoupled Animation Range & Tremor Fix:
+     - Decoupled `ANIMATION_RANGE` (250px) from `DAMPING_RANGE` (633px). The scroll speed reduction zone remains wide (633px), but the Lottie animation only starts rotating when the component is within 250px of the viewport center, ensuring the circular input is fully visible.
+     - Fixed scroll tremors by increasing the LERP factor from 0.22 to a constant 0.45, eliminating the lag-induced oscillation loop between virtualScrollY and smoothScrollY.
+     - Switched `updateCircularParallax()` to reference `smoothScrollY` (floating-point) instead of `getScrollTop()` (integer-rounded), removing sub-pixel parallax jitter.
+     - Increased the Lottie progress ease factor from 0.08 to 0.15 for snappier animation response.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+152. Circular Scroll Unified Range & Inertial Tuning:
+     - Replaced separate `DAMPING_RANGE` (633px) and `ANIMATION_RANGE` (250px) with a single `SCROLL_RANGE` (417px) that controls both scroll damping and animation mapping synchronously. The animation is 40% slower (250/0.6 = 417).
+     - Increased scroll speed factor from 0.20 to 0.30 (30% of native speed) to reduce the "wall" blocking sensation.
+     - Replaced linear boundary transitions with smooth quadratic easing (`u*u`) over 150px for gentle entry/exit into the damping zone.
+     - Lowered LERP factor from 0.45 to 0.15 for smooth inertial gliding feel (safe because parallax uses smoothScrollY).
+     - Lowered Lottie progress ease factor from 0.15 to 0.06 for silky-smooth, flowing rotation that harmonizes with the slow scroll.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
