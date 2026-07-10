@@ -100,10 +100,21 @@ export default function App() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      const isTextInput = target ? (
+        (target.tagName === 'INPUT' && ['text', 'email', 'password', 'tel', 'number', 'search', 'url'].includes((target as HTMLInputElement).type)) ||
+        target.tagName === 'TEXTAREA' ||
+        target.isContentEditable ||
+        target.classList.contains('pin-input-slot') ||
+        target.closest('.pin-input-field') ||
+        target.closest('.pin-input-slot')
+      ) : false;
+
       window.parent.postMessage({
         type: 'iframe-mousemove',
         clientX: e.clientX,
-        clientY: e.clientY
+        clientY: e.clientY,
+        isTextInput: isTextInput
       }, '*');
     };
 

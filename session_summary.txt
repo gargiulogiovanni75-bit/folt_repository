@@ -1027,3 +1027,10 @@ GOAL & NEXT STEPS FOR NEW SESSIONS:
      - Lowered Lottie progress ease factor from 0.15 to 0.06 for silky-smooth, flowing rotation that harmonizes with the slow scroll.
      - Verified Vite build compiles successfully.
 ================================================================================================================================
+
+153. Custom Cursor Caret (Text Input) State:
+     - Added `#custom-cursor.text-input` rules to style.css to hide the SVG crosshair and render a 2px wide vertical caret with difference blending mode.
+     - Registered a global mouseover event listener in main.js to detect when the cursor enters interactive text elements and toggle the text-input class.
+     - Updated the iframe postMessage handlers in main.js and paperface_tool/src/App.tsx to communicate text-input hover events from the React sub-app frame.
+     - Verified Vite build compiles successfully.
+================================================================================================================================

@@ -2369,6 +2369,20 @@ body.virus-lock {
   display: none;
 }
 
+#custom-cursor.text-input svg {
+  display: none !important;
+}
+
+#custom-cursor.text-input::after {
+  content: '';
+  position: absolute;
+  left: 0%;
+  right: 90%;
+  top: 0%;
+  bottom: 0%;
+  background: #FFFFFF;
+}
+
 @media (pointer: coarse) {
   #custom-cursor {
     display: none !important;

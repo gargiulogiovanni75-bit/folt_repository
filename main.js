@@ -186,6 +186,27 @@ document.addEventListener('DOMContentLoaded', () => {
     customCursor.style.display = 'block';
   });
 
+  // Toggle custom cursor text input caret style on hover
+  document.addEventListener('mouseover', (e) => {
+    const target = e.target;
+    if (!target) return;
+
+    const isTextInput = (
+      (target.tagName === 'INPUT' && ['text', 'email', 'password', 'tel', 'number', 'search', 'url'].includes(target.type)) ||
+      target.tagName === 'TEXTAREA' ||
+      target.isContentEditable ||
+      target.classList.contains('pin-input-slot') ||
+      target.closest('.pin-input-field') ||
+      target.closest('.pin-input-slot')
+    );
+
+    if (isTextInput) {
+      customCursor.classList.add('text-input');
+    } else {
+      customCursor.classList.remove('text-input');
+    }
+  });
+
   window.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'iframe-mousemove') {
       const iframe = document.getElementById('paperface-iframe');
@@ -195,9 +216,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const parentY = rect.top + event.data.clientY;
         customCursor.style.display = 'block';
         customCursor.style.transform = `translate3d(${parentX}px, ${parentY}px, 0) translate(-50%, -50%)`;
+
+        if (event.data.isTextInput) {
+          customCursor.classList.add('text-input');
+        } else {
+          customCursor.classList.remove('text-input');
+        }
       }
     } else if (event.data && event.data.type === 'iframe-mouseleave') {
       customCursor.style.display = 'none';
+      customCursor.classList.remove('text-input');
     } else if (event.data && event.data.type === 'iframe-mouseenter') {
       customCursor.style.display = 'block';
     } else if (event.data && event.data.type === 'paperface-back') {
