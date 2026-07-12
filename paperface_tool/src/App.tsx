@@ -432,7 +432,6 @@ export default function App() {
 
           {/* slider_section */}
           <div className="slider-section">
-            {/* slider_extrusion_lenght */}
             <div className={`slider-row-container ${!params.extrusionEnabled ? 'disabled' : ''}`}>
               <span className="slider-label">Extrusion length</span>
               <div className="slider-and-value">
@@ -451,7 +450,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* slider_glitch_fragments */}
             <div className="slider-row-container">
               <span className="slider-label">Glitch fragments</span>
               <div className="slider-and-value">
@@ -469,7 +467,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* slider_fragment_size */}
             <div className="slider-row-container">
               <span className="slider-label">Fragment size</span>
               <div className="slider-and-value">
@@ -487,7 +484,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* slider_chaos_&_variance */}
             <div className="slider-row-container">
               <span className="slider-label">Chaos & variance</span>
               <div className="slider-and-value">
@@ -570,7 +566,7 @@ export default function App() {
           </div>
         ) : (
           <div className="relative w-full h-full flex flex-col items-center justify-center gap-6 p-4 pb-12">
-            <div className="flex-grow flex flex-col items-center justify-center min-h-0 w-full relative pt-8">
+            <div className="flex-grow flex flex-col items-center justify-center min-h-0 w-full relative">
               <div className="relative flex flex-col items-start">
                 <canvas 
                   ref={canvasRef}

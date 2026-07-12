@@ -80,6 +80,18 @@ body {
   pointer-events: auto;
 }
 
+/* Inline variant: flows in the same flex row as the canvas */
+.paperface-action-window-inline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 82px;
+  width: 258px;
+  flex-shrink: 0;
+  pointer-events: auto;
+}
+
 /* selectors_section */
 .selectors-section {
   display: flex;
