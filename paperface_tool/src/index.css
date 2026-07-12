@@ -134,7 +134,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #979797;
+  background-color: #B3B3B3;
   transition: .2s;
   border-radius: 16px;
 }
@@ -215,7 +215,7 @@ body {
   appearance: none;
   width: 230.11px;
   height: 11px;
-  background: linear-gradient(to right, #000000 0%, #000000 var(--value-percent, 0%), #979797 var(--value-percent, 0%), #979797 100%) no-repeat center;
+  background: linear-gradient(to right, #000000 0%, #000000 var(--value-percent, 0%), #B3B3B3 var(--value-percent, 0%), #B3B3B3 100%) no-repeat center;
   background-size: 100% 2px;
   outline: none;
   margin: 0;
@@ -282,7 +282,7 @@ body {
   align-items: center;
   text-align: right;
   letter-spacing: -0.03em;
-  color: #979797;
+  color: #B3B3B3;
   width: 7px;
   height: 9px;
 }
@@ -401,7 +401,7 @@ body {
   transform: translate(-50%, -50%);
 
   background: #FFFFFF;
-  border: 1px solid #979797;
+  border: 1px solid #B3B3B3;
   cursor: pointer;
   transition: border-color 0.2s ease;
 }
@@ -428,7 +428,7 @@ body {
 .uploader-icon {
   width: 54px !important;
   height: 43px !important;
-  color: #979797;
+  color: #B3B3B3;
   transition: color 0.2s ease;
   flex: none;
   order: 0;
@@ -481,7 +481,7 @@ body {
   font-size: 20px;
   line-height: 100%;
   letter-spacing: -0.03em;
-  color: #979797;
+  color: #B3B3B3;
   flex: none;
   order: 1;
   align-self: stretch;

@@ -141,7 +141,7 @@
   --primitive-white: #FFFFFF;
   --primitive-black: #000000;
   --primitive-light-grey: #CACACA;
-  --primitive-medium-grey: #979797;
+  --primitive-medium-grey: #B3B3B3;
   --primitive-feedback-red: #CD0000;
 
   /* Text Colors */
@@ -508,7 +508,8 @@ html, body {
   transition: transform 0.25s ease-out;
 }
 
-.nav-link:hover span::after {
+.nav-link:hover span::after,
+.nav-link.active span::after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
@@ -1661,7 +1662,7 @@ html, body {
   font-size: 20px;
   line-height: 100%;
   letter-spacing: -0.03em;
-  color: #979797;
+  color: var(--primitive-medium-grey);
 }
 
 .community-join-btn {
@@ -1917,6 +1918,10 @@ body[data-page="video"] .main-header {
   display: none;
 }
 
+.shipping-checkbox-rect:not(.checked):not(.disabled):hover {
+  transform: scale(1.222);
+}
+
 .shipping-label-text,
 .payment-label-text {
   height: 20px;
@@ -1926,6 +1931,7 @@ body[data-page="video"] .main-header {
   line-height: var(--label_link_button_small_texts-line-height);
   letter-spacing: var(--label_link_button_small_texts-letter-spacing);
   color: var(--color-text-primary);
+  white-space: nowrap;
 }
 
 /* Address & Hub detail blocks */
@@ -2378,8 +2384,8 @@ body.virus-lock {
   position: absolute;
   left: 0%;
   right: 90%;
-  top: 0%;
-  bottom: 0%;
+  top: 12.5%;
+  bottom: 12.5%;
   background: #FFFFFF;
 }
 
@@ -2486,7 +2492,7 @@ html, body, *, *::before, *::after {
   font-size: 20px;
   line-height: 100%;
   letter-spacing: -0.03em;
-  color: var(--primitive-medium-grey);
+  color: #4C4C4C; /* Inverted #B3B3B3 for difference blending over white */
   white-space: nowrap;
   transition: color 0.3s ease;
 }
@@ -2555,7 +2561,7 @@ html, body, *, *::before, *::after {
   font-size: 20px;
   line-height: 100%;
   letter-spacing: -0.03em;
-  color: #979797;
+  color: var(--primitive-medium-grey);
   
   transition: color 0.2s ease;
 }
@@ -2570,7 +2576,7 @@ html, body, *, *::before, *::after {
   right: 0%;
   bottom: 0%;
   height: 0px;
-  border-bottom: 1px solid #979797;
+  border-bottom: 1px solid var(--primitive-medium-grey);
   transition: border-color 0.3s ease;
 }
 
@@ -3167,7 +3173,7 @@ body[data-page="order-confirmed"] .main-header {
 .confirmed-subtitle .order-check-email {
   display: block;
   margin-top: 11px;
-  color: #979797;
+  color: var(--primitive-medium-grey);
   line-height: 100%;
 }
 

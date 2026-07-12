@@ -258,6 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let virtualScrollY = 0;
   let smoothScrollY = 0;
   let programmaticScrollTarget = null;
+  let dampingExitedPastAnim = false; // Prevents damping re-activation after animation exit
   const SCROLL_RANGE = 180; // Scroll damping zone (ANIMATION_RANGE + 100px boundary)
   const ANIMATION_RANGE = 80; // Animation starts very close to center — component fully visible
 
@@ -450,6 +451,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update particles visibility
     updateCanvasVisibility();
+
+    // Toggle active underline on Community and About nav links
+    if (navCommunity) {
+      navCommunity.classList.toggle('active', pageId === 'community-page' || pageId === 'community-login-page');
+    }
+    if (navAbout) {
+      navAbout.classList.toggle('active', pageId === 'about-page');
+    }
   }
 
   // --- Navigation Event Listeners ---
@@ -504,17 +513,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isAlreadyPrimary = document.getElementById('primary-page').classList.contains('active');
 
+    // Disable damping so it doesn't interfere with programmatic scroll
+    isDampingActive = false;
+    dampingExitedPastAnim = false;
+    const container = document.querySelector('.container-generale');
+    if (container) container.style.transform = '';
+
     if (!isAlreadyPrimary) {
       switchPage('primary-page');
-      setTimeout(scrollToPrimaryBottom, 100);
+      // Wait for layout to fully settle after page switch, then scroll
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          // Force Lenis to recalculate its scroll limits for the new page
+          if (lenisInstance) lenisInstance.resize();
+          scrollToPrimaryBottom();
+        });
+      });
     } else {
       scrollToPrimaryBottom();
     }
   });
 
   function scrollToPrimaryBottom() {
-    const targetY = document.documentElement.scrollHeight;
-    startProgrammaticScroll(targetY);
+    // Target the buy-button element directly for a reliable scroll position
+    const buyBtn = document.getElementById('buy-button');
+    if (buyBtn) {
+      const btnRect = buyBtn.getBoundingClientRect();
+      const currentScroll = getScrollTop();
+      // Scroll so the button is visible near the bottom of the viewport
+      const targetY = currentScroll + btnRect.top + btnRect.height - window.innerHeight + 80;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      startProgrammaticScroll(Math.min(Math.max(0, targetY), maxScroll));
+    } else {
+      // Fallback: scroll to absolute bottom
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      startProgrammaticScroll(Math.max(0, maxScroll));
+    }
   }
 
   // Buy Button at bottom of primary page
@@ -1445,6 +1479,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const range = SCROLL_RANGE;
 
     if (distance < range) {
+      // If we already exited damping past the animation boundary, don't re-enter
+      // unless the user has scrolled back within the animation zone
+      if (dampingExitedPastAnim) {
+        const withinAnimZone = currentScrollY > (targetScrollY - ANIMATION_RANGE) &&
+                               currentScrollY < (targetScrollY + ANIMATION_RANGE);
+        if (!withinAnimZone) {
+          return; // Let native/Lenis scroll handle it normally
+        }
+        dampingExitedPastAnim = false; // User scrolled back into animation zone
+      }
+
       if (!isDampingActive) {
         isDampingActive = true;
         virtualScrollY = currentScrollY;
@@ -1474,11 +1519,35 @@ document.addEventListener('DOMContentLoaded', () => {
       const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
       virtualScrollY = Math.max(0, Math.min(maxScrollY, virtualScrollY));
 
+      // Release damping once animation is complete and user is scrolling away
+      const animEnd = targetScrollY + ANIMATION_RANGE;
+      const animStart = targetScrollY - ANIMATION_RANGE;
+      const scrollingDown = clampedDeltaY > 0;
+      const scrollingUp = clampedDeltaY < 0;
+      if ((scrollingDown && virtualScrollY > animEnd) || (scrollingUp && virtualScrollY < animStart)) {
+        // Flush smooth scroll to virtual position to prevent desync bounce
+        smoothScrollY = virtualScrollY;
+        const flushPos = Math.round(virtualScrollY);
+        programmaticScrollTarget = flushPos;
+        if (lenisInstance) {
+          lenisInstance.scrollTo(flushPos, { immediate: true });
+        } else {
+          window.scrollTo(0, flushPos);
+        }
+        // Clear parallax transform
+        const container = document.querySelector('.container-generale');
+        if (container) container.style.transform = '';
+        isDampingActive = false;
+        dampingExitedPastAnim = true;
+        return; // Let subsequent wheel events pass through to Lenis naturally
+      }
+
       startTick();
     } else {
       if (isDampingActive) {
         isDampingActive = false;
       }
+      dampingExitedPastAnim = false;
     }
   }, { passive: false });
 
@@ -1500,6 +1569,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const range = SCROLL_RANGE;
 
     if (distance < range) {
+      // If we already exited damping past the animation boundary, don't re-enter
+      // unless the user has scrolled back within the animation zone
+      if (dampingExitedPastAnim) {
+        const withinAnimZone = currentScrollY > (targetScrollY - ANIMATION_RANGE) &&
+                               currentScrollY < (targetScrollY + ANIMATION_RANGE);
+        if (!withinAnimZone) {
+          return; // Let native/Lenis scroll handle it normally
+        }
+        dampingExitedPastAnim = false; // User scrolled back into animation zone
+      }
+
       if (!isDampingActive) {
         isDampingActive = true;
         virtualScrollY = currentScrollY;
@@ -1534,12 +1614,36 @@ document.addEventListener('DOMContentLoaded', () => {
         const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
         virtualScrollY = Math.max(0, Math.min(maxScrollY, virtualScrollY));
 
+        // Release damping once animation is complete and user is scrolling away
+        const animEnd = targetScrollY + ANIMATION_RANGE;
+        const animStart = targetScrollY - ANIMATION_RANGE;
+        const scrollingDown = clampedTouchDeltaY > 0;
+        const scrollingUp = clampedTouchDeltaY < 0;
+        if ((scrollingDown && virtualScrollY > animEnd) || (scrollingUp && virtualScrollY < animStart)) {
+          // Flush smooth scroll to virtual position to prevent desync bounce
+          smoothScrollY = virtualScrollY;
+          const flushPos = Math.round(virtualScrollY);
+          programmaticScrollTarget = flushPos;
+          if (lenisInstance) {
+            lenisInstance.scrollTo(flushPos, { immediate: true });
+          } else {
+            window.scrollTo(0, flushPos);
+          }
+          // Clear parallax transform
+          const container = document.querySelector('.container-generale');
+          if (container) container.style.transform = '';
+          isDampingActive = false;
+          dampingExitedPastAnim = true;
+          return; // Let subsequent touch events pass through naturally
+        }
+
         startTick();
       }
     } else {
       if (isDampingActive) {
         isDampingActive = false;
       }
+      dampingExitedPastAnim = false;
     }
   }, { passive: false });
 
@@ -1620,6 +1724,7 @@ document.addEventListener('DOMContentLoaded', () => {
     targetScrollY = 0;
     lastScrollY = 0;
     isDampingActive = false;
+    dampingExitedPastAnim = false;
     virtualScrollY = 0;
     smoothScrollY = 0;
     programmaticScrollTarget = null;

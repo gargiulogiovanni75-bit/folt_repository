@@ -255,14 +255,14 @@ export function initVirusAttack(force = false) {
 
   // Insert base layout with foreground texts "click to hear the sound" and "key_components"
   container.innerHTML = `
-    <div id="virus-header-left" class="header_texts" style="position: absolute; top: 39px; left: 40px; color: var(--color-text-disabled); text-transform: uppercase; letter-spacing: 0.05em; z-index: 100000; cursor: default;">click to hear the sound</div>
+    <div id="virus-header-left" class="body_small_texts" style="position: absolute; top: 39px; left: 40px; color: var(--primitive-light-grey); z-index: 100000; cursor: default;">click to hear the sound</div>
     
     <div class="key-components-container" id="key-components-container">
       <div class="key-components" id="key-components-wrapper">
         <!-- Close Button X -->
         <div class="key-close-btn" id="key-close-btn" style="display: none;">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13.5 4.5L4.5 13.5M4.5 4.5L13.5 13.5" stroke="#979797" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13.5 4.5L4.5 13.5M4.5 4.5L13.5 13.5" stroke="#B3B3B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         
