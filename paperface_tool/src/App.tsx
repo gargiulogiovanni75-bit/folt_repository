@@ -565,45 +565,55 @@ export default function App() {
             />
           </div>
         ) : (
-          <div className="relative w-full h-full flex flex-col items-center justify-center gap-6 p-4 pb-12">
-            <div className="flex-grow flex flex-col items-center justify-center min-h-0 w-full relative">
-              <div className="relative flex flex-col items-start">
-                <canvas 
-                  ref={canvasRef}
-                  className="max-w-full max-h-[65vh] object-contain drop-shadow-[0_4px_20px_rgba(0,0,0,0.05)]"
-                />
-                {checkoutName && (
-                  <div 
-                    className="checkout-photo-name text-black tracking-[-0.03em] mt-2 select-none self-start"
-                    style={{ fontFamily: "'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: '20px', lineHeight: '100%', letterSpacing: '-0.03em', fontWeight: 500 }}
-                  >
-                    {checkoutName}
-                  </div>
-                )}
-              </div>
+          <div className="relative w-full h-full flex items-center justify-center">
+            <div className="relative inline-flex flex-col items-start" style={{ height: '527px' }}>
+              <canvas 
+                ref={canvasRef}
+                style={{ height: '527px', maxWidth: '100%', objectFit: 'contain' }}
+                className="drop-shadow-[0_4px_20px_rgba(0,0,0,0.05)]"
+              />
+              {checkoutName && (
+                <div 
+                  className="checkout-photo-name text-black tracking-[-0.03em] select-none absolute"
+                  style={{ 
+                    fontFamily: "'Helvetica Now Text', 'Helvetica Neue', Helvetica, Arial, sans-serif", 
+                    fontSize: '20px', 
+                    lineHeight: '100%', 
+                    letterSpacing: '-0.03em', 
+                    fontWeight: 500,
+                    bottom: '-40px',
+                    left: '0px'
+                  }}
+                >
+                  {checkoutName}
+                </div>
+              )}
             </div>
-            <button 
-              onClick={() => {
-                downloadImage();
-                let imageDataUrl = "";
-                if (canvasRef.current) {
-                  imageDataUrl = canvasRef.current.toDataURL('image/png');
-                }
-                if (window.parent && window.parent !== window) {
-                  window.parent.postMessage({ 
-                    type: 'paperface-confirm',
-                    image: imageDataUrl,
-                    name: checkoutName
-                  }, '*');
-                }
-              }}
-              className="confirm-btn"
-            >
-              Confirm
-            </button>
           </div>
         )}
       </main>
+
+      {originalImage && (
+        <button 
+          onClick={() => {
+            downloadImage();
+            let imageDataUrl = "";
+            if (canvasRef.current) {
+              imageDataUrl = canvasRef.current.toDataURL('image/png');
+            }
+            if (window.parent && window.parent !== window) {
+              window.parent.postMessage({ 
+                type: 'paperface-confirm',
+                image: imageDataUrl,
+                name: checkoutName
+              }, '*');
+            }
+          }}
+          className="confirm-btn"
+        >
+          <span>Confirm</span>
+        </button>
+      )}
     </div>
   );
 }

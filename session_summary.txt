@@ -983,6 +983,10 @@ GOAL & NEXT STEPS FOR NEW SESSIONS:
      - Verified Vite build compiles successfully.
 ================================================================================================================================
 
+155. Paperface Tool Confirm Button Centering:
+     - Updated `App.tsx` in the paperface tool to absolutely position the confirm button at the bottom center of the page using `left: 50%` and `transform: translateX(-50%)` to restore its layout relation.
+================================================================================================================================
+
 147. Back Button Capitalization Update:
      - Updated `.login-back-btn` span text from "back" to "Back" inside `index.html`.
      - Verified Vite build compiles successfully.
@@ -1042,5 +1046,13 @@ GOAL & NEXT STEPS FOR NEW SESSIONS:
      - Modified the `.shipping-checkbox-rect` hover style to use `transform: scale(1.222)` instead of altering `width` and `height`, preventing layout displacement of elements like the checkout button.
      - Added `white-space: nowrap` to `.shipping-label-text` and `.payment-label-text` to prevent text-wrapping on hover.
      - Styled the "click to hear the sound" text in the virus attack layout to use Helvetica Now Text (via class `.body_small_texts` with size 20px) in lowercase, inheriting the standard -0.03em kerning/letter-spacing, and set its color to `var(--primitive-light-grey)`.
+     - Verified Vite build compiles successfully.
+================================================================================================================================
+
+156. Responsive Confirm Button & Lowered Underline in Paperface Tool:
+     - Restored the canvas image container structure to exactly `relative w-full h-full flex items-center justify-center` in `App.tsx` to maintain its original positioning.
+     - Moved the `.confirm-btn` to be a flex sibling outside `<main>` in the root `flex-col` layout, styling it with `position: relative`, `align-self: center`, and `margin-bottom: 123px` to fit exactly at `top: 929px` on a 1090px screen.
+     - Implemented `@media` query overrides to dynamically shrink `margin-bottom` to `60px` and `30px` on shorter viewports to keep it responsively visible.
+     - Lowered `.confirm-btn span::after` underline bottom coordinate to `bottom: -2px` to add a visible white space gap below the font baseline.
      - Verified Vite build compiles successfully.
 ================================================================================================================================

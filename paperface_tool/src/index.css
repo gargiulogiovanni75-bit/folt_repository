@@ -362,23 +362,48 @@ body {
   margin-top: 50px;
   cursor: pointer;
   position: relative;
+  width: auto;
+  height: auto;
+  align-self: center;
+  margin-top: 0px;
+  margin-bottom: 123px;
   transition: none;
+  z-index: 10000;
 }
 
-.confirm-btn::after {
+@media (max-height: 950px) {
+  .confirm-btn {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-height: 800px) {
+  .confirm-btn {
+    margin-bottom: 30px;
+  }
+}
+
+.confirm-btn span {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+}
+
+.confirm-btn span::after {
   content: '';
   position: absolute;
-  left: 0;
-  bottom: 0px;
   width: 100%;
-  height: 1px;
-  background-color: #000000;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  z-index: -1;
+  background-color: currentColor;
   transform: scaleX(0);
   transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+  transition: transform 0.3s ease-out;
 }
 
-.confirm-btn:hover::after {
+.confirm-btn:hover span::after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
